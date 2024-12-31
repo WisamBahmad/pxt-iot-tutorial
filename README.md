@@ -254,14 +254,12 @@ IoTCube.SendBufferSimple()
 ```
 
 ## Clavis Cloud ☁️ @fullscreen
-// Todo: Relative Links (funktioniert bei mir nicht)
 
 Nun geht es an die Visualisierung der Daten auf der  Clavis Cloud ☁️. 
 * Rufe die Website [🌍iot.claviscloud.ch](https://iot.claviscloud.ch/home) auf.
 * Melde dich an (Login- Informationen kriegst Du vom Smartfeld)
 * Gehe zu Dashboards  
 ![Tutorialbild 1](https://github.com/reifab/pxt-iot-tutorial/blob/development/docs/static/tutorials/1_Tutorial_Add_Group.png?raw=true)
-
 * Klicke die Gruppen an (Groups):
 ![Tutorialbild 2](https://github.com/reifab/pxt-iot-tutorial/blob/development/docs/static/tutorials/2_Tutorial_Add_Group.png?raw=true)
 * Klicke auf **Add entity group** oder wähle eine bestende Gruppe aus:
@@ -269,11 +267,11 @@ Nun geht es an die Visualisierung der Daten auf der  Clavis Cloud ☁️.
 *  Gib einen passenden Namen und Beschreibung für deine Gruppe und klicke auf **hinzufügen**:
 ![Tutorialbild 4](https://github.com/reifab/pxt-iot-tutorial/blob/development/docs/static/tutorials/4_Tutorial_Add_Group.png?raw=true)
 
-## Clavis Cloud ☁️, Dashboard erstellen
+## Clavis Cloud ☁️, Dashboard importieren
 * [Klicke hier, um eine Vorlage zu laden](https://github.com/reifab/pxt-iot-tutorial/blob/development/docs/static/tutorials/seifenspender_dashboard.json?raw=true)
-* Drücke "CTRL+S" um dies als Datei zu speichern
-* Klicke auf der Clavis Cloud **🡅Dashboard importieren**
-* Suche auf dem Dateisystem nach der heruntergeladenen Datei
+* Drücke die Tastenkombination "CTRL+S" um dies als Datei zu speichern.
+* Klicke auf der Clavis Cloud **🡅Dashboard importieren**.
+* Suche auf dem Dateisystem nach der heruntergeladenen Datei wähle sie aus.
 
 ```template
 function warte_5_Sekunden_mit_Anzeige () {
