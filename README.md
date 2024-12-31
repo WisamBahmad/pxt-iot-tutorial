@@ -253,7 +253,7 @@ IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
 IoTCube.SendBufferSimple()
 ```
 
-## Clavis Cloud ☁️ @fullscreen
+## Clavis Cloud ☁️
 
 Nun geht es an die Visualisierung der Daten auf der  Clavis Cloud ☁️. 
 * Rufe die Website [🌍iot.claviscloud.ch](https://iot.claviscloud.ch/home) auf.
