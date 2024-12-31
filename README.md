@@ -253,26 +253,27 @@ IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
 IoTCube.SendBufferSimple()
 ```
 
-## Clavis Cloud, Einloggen, Gruppe erstellen ☁️ 
+## Clavis Cloud ☁️ @fullscreen
+// Todo: Relative Links (funktioniert bei mir nicht)
 
 Nun geht es an die Visualisierung der Daten auf der  Clavis Cloud ☁️. 
 * Rufe die Website [🌍iot.claviscloud.ch](https://iot.claviscloud.ch/home) auf.
 * Melde dich an (Login- Informationen kriegst Du vom Smartfeld)
+* Gehe zu Dashboards  
+![Tutorialbild 1](https://github.com/reifab/pxt-iot-tutorial/blob/development/docs/static/tutorials/1_Tutorial_Add_Group.png?raw=true)
 
-Führe nun folgende Schritte auf der Clavis Cloud durch:
-1. Gehe zu Dashboards  
-![Tutorialbild](/static/tutorials/1_Tutorial_Add_Group.png)
-2. Klicke die Gruppen an (Groups):
-![Tutorialbild](/static/tutorials/2_Tutorial_Add_Group.png)
-3.  Klicke auf **Add entity group** oder wähle eine bestende Gruppe aus.
-![Tutorialbild](/static/tutorials/3_Tutorial_Add_Group.png)
-4.  Gib einen passenden Namen und Beschreibung für deine Gruppe und klicke auf **hinzufügen**
-![Tutorialbild](/static/tutorials/4_Tutorial_Add_Group.png)
+* Klicke die Gruppen an (Groups):
+![Tutorialbild 2](https://github.com/reifab/pxt-iot-tutorial/blob/development/docs/static/tutorials/2_Tutorial_Add_Group.png?raw=true)
+* Klicke auf **Add entity group** oder wähle eine bestende Gruppe aus:
+![Tutorialbild 3](https://github.com/reifab/pxt-iot-tutorial/blob/development/docs/static/tutorials/3_Tutorial_Add_Group.png?raw=true)
+*  Gib einen passenden Namen und Beschreibung für deine Gruppe und klicke auf **hinzufügen**:
+![Tutorialbild 4](https://github.com/reifab/pxt-iot-tutorial/blob/development/docs/static/tutorials/4_Tutorial_Add_Group.png?raw=true)
 
-## Clavis Cloud, Dashboard erstellen ☁️ 
-
-* Klicke auf **🡅Dashboard importieren**
-* [Vorlage](/static/tutorials/seifenspender.json)
+## Clavis Cloud ☁️, Dashboard erstellen
+* [Klicke hier, um eine Vorlage zu laden](https://github.com/reifab/pxt-iot-tutorial/blob/development/docs/static/tutorials/seifenspender_dashboard.json?raw=true)
+* Drücke "CTRL+S" um dies als Datei zu speichern
+* Klicke auf der Clavis Cloud **🡅Dashboard importieren**
+* Suche auf dem Dateisystem nach der heruntergeladenen Datei
 
 ```template
 function warte_5_Sekunden_mit_Anzeige () {
