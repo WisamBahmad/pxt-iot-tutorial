@@ -268,7 +268,7 @@ Nun geht es an die Visualisierung der Daten auf der  Clavis Cloud ☁️.
 *  Gib einen passenden Namen und Beschreibung für deine Gruppe und klicke auf **hinzufügen**:
 ![Tutorialbild 4](https://github.com/reifab/pxt-iot-tutorial/blob/development/docs/static/tutorials/4_Tutorial_Add_Group.png?raw=true)
 
-## Clavis Cloud ☁️, Dashboard importieren
+## Clavis Cloud ☁️, Dashboard importieren @showdialog
 * [Klicke hier, um eine Vorlage zu laden](https://github.com/reifab/pxt-iot-tutorial/blob/development/docs/static/tutorials/seifenspender_dashboard.json?raw=true)
 * Drücke die Tastenkombination "CTRL+S" um dies als Datei zu speichern.
 * Klicke auf der Clavis Cloud **🡅Dashboard importieren**.
