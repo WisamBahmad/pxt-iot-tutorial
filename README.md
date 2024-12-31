@@ -223,7 +223,8 @@ damit dieser Text mindestens für diese Zeit auf dem Display steht.
 um Energie zu sparen.
 * Darunter setzt du den Block ``||IoTCube:Ganzzahl mit ID_0 = 0 hinzufügen||`` ein.
 * Die 0 ersetzt du nun mit der Variable ``||variables:seifenstandInProzent||``.
-* Nun schickst du diese Zahl mit ``||IoTCube:Sende Daten||`` in die ☁️ Cloud!
+* 📥 Drücke `|Download|`.
+* Mit etwas Glück schickst du diese Zahl mit ``||IoTCube:Sende Daten||`` in die ☁️ Cloud!
 
 ```blocks
 let seifenstandInProzent = 100
@@ -253,12 +254,12 @@ IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
 IoTCube.SendBufferSimple()
 ```
 
-## Clavis Cloud ☁️
+## Clavis Cloud ☁️ @showdialog
 
 Nun geht es an die Visualisierung der Daten auf der  Clavis Cloud ☁️. 
 * Rufe die Website [🌍iot.claviscloud.ch](https://iot.claviscloud.ch/home) auf.
-* Melde dich an (Login- Informationen kriegst Du vom Smartfeld)
-* Gehe zu Dashboards  
+* Melde dich an (Login- Informationen kriegst Du vom Smartfeld).
+* Gehe zu Dashboards:  
 ![Tutorialbild 1](https://github.com/reifab/pxt-iot-tutorial/blob/development/docs/static/tutorials/1_Tutorial_Add_Group.png?raw=true)
 * Klicke die Gruppen an (Groups):
 ![Tutorialbild 2](https://github.com/reifab/pxt-iot-tutorial/blob/development/docs/static/tutorials/2_Tutorial_Add_Group.png?raw=true)
@@ -273,72 +274,15 @@ Nun geht es an die Visualisierung der Daten auf der  Clavis Cloud ☁️.
 * Klicke auf der Clavis Cloud **🡅Dashboard importieren**.
 * Suche auf dem Dateisystem nach der heruntergeladenen Datei wähle sie aus.
 
-```template
-function warte_5_Sekunden_mit_Anzeige () {
-    smartfeldAktoren.oledClear()
-    for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
-        smartfeldAktoren.oledLoadingBar(fortschritt)
-        basic.pause(50)
-    }
-    smartfeldAktoren.oledClear()
-}
-music.setVolume(50)
-let seifenstandInProzent = 100
-led.plotBarGraph(
-seifenstandInProzent,
-100
-)
-smartfeldAktoren.oledInit(128, 64)
-smartfeldAktoren.oledClear()
-smartfeldAktoren.oledWriteStr("Verbinde")
-IoTCube.LoRa_Join(
-eBool.enable,
-eBool.enable,
-10,
-8
-)
-while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
-    smartfeldAktoren.oledWriteStr(".")
-    basic.pause(1000)
-}
-smartfeldAktoren.oledClear()
-smartfeldAktoren.oledWriteStr("Verbunden!")
-basic.pause(2000)
-smartfeldAktoren.oledClear()
-basic.clearScreen()
-IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
-IoTCube.SendBufferSimple()
-basic.forever(function () {
-    if (input.buttonIsPressed(Button.A)) {
-        if (seifenstandInProzent > 0) {
-            seifenstandInProzent = seifenstandInProzent - 20
-            IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
-            IoTCube.SendBufferSimple()
-            led.plotBarGraph(
-            seifenstandInProzent,
-            100
-            )
-            warte_5_Sekunden_mit_Anzeige()
-        } else {
-            music.play(music.builtinPlayableSoundEffect(soundExpression.sad), music.PlaybackMode.UntilDone)
-            seifenstandInProzent = 0
-        }
-    }
-    if (input.buttonIsPressed(Button.A)) {
-        music.play(music.builtinPlayableSoundEffect(soundExpression.giggle), music.PlaybackMode.InBackground)
-        seifenstandInProzent = 100
-        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
-        IoTCube.SendBufferSimple()
-        led.plotBarGraph(
-        seifenstandInProzent,
-        100
-        )
-        warte_5_Sekunden_mit_Anzeige()
-    }
-    basic.clearScreen()
-})
-
-```
+## Clavis Cloud ☁️, Korrekte Datenquelle auswählen @showdialog
+* Klicke auf das Bleistiftsymbol (Widget bearbeiten):  
+![Tutorialbild 11](https://github.com/reifab/pxt-iot-tutorial/blob/development/docs/static/tutorials/11_Tutorial_Seifenspender_Widget.png?raw=true)
+* Wähle das Gerät gemäss Beschriftung auf dem IoT Cube
+* Lösche den bestehenden "Data key" und wähle Ganzzahl_ID_0:  
+* Klicke auf "Anwenden"
+![Tutorialbild 12](https://github.com/reifab/pxt-iot-tutorial/blob/development/docs/static/tutorials/12_Tutorial_Seifenspender_Widget.png?raw=true)
+* Klicke auf "Speichern"  
+![Tutorialbild 13](https://github.com/reifab/pxt-iot-tutorial/blob/development/docs/static/tutorials/13_Tutorial_Seifenspender_Widget.png?raw=true)
 
 ## Step 3
 
