@@ -125,7 +125,12 @@ eBool.enable,
 10,
 8
 )
-
+while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
+    smartfeldAktoren.oledWriteStr(".")
+    basic.pause(1000)
+}
+smartfeldAktoren.oledClear()
+smartfeldAktoren.oledWriteStr("Verbunden!")
 // @highlight
 basic.pause(2000)
 // @highlight
