@@ -36,7 +36,7 @@ let seifenstandInProzent = 100
 ## 🧼 Seifenstand anzeigen
 * 🟥 Hol dir den Block ``||led:Zeichne Säulendiagramm|`` und ziehe diesen in den Block **beim Start** direkt unter der Variablendeklaration.
 * 🧼 Hol die Variable ``||variables:seifenstandInProzent||`` um sie mit dem Säulendiagramm darzustellen. 
-* 🧼 Ändere den Bereich von ``seifenstandInProzent`` bis 100. 
+* 🧼 Ändere den Bereich von **seifenstandInProzent** bis 100. 
 * 📥 Drücke `|Download|` und kontrolliere die LED- Anzeige:  
 🟥🟥🟥🟥🟥  
 🟥🟥🟥🟥🟥  
@@ -58,7 +58,8 @@ seifenstandInProzent,
 * Hol dir den Block ``||Logic:wenn wahr dann||`` und ziehe ihn in die ``dauerhaft`` Schleife
 * Schiebe den Block ``||Input:Knopf A ist geklickt||`` auf das Feld ``wahr``
 * 🧼 Reduziere die Variable ``||variables:seifenstandInProzent||`` um die Zahl 20. Benutze dazu ``||Math:Mathematik||``
-* 🟥 Zeichne erneut das Säulendiagramm. Kopiere diesen Teil aus ``beim Start``
+* 🟥 Zeichne erneut das Säulendiagramm. Dupliziere diesen Teil aus ``beim Start``
+* Verzögere die Dauerhaftschleife um 100 ms mit ``||basic:pausiere (ms)||``.
 
 ```blocks
 basic.forever(function () {
@@ -70,14 +71,14 @@ basic.forever(function () {
             100
         )
     }
+    basic.pause(100)
 }
 ```
 
 ## 🧼 Flüllstand kleiner 0 verhindern
 * 🧼 Versuche mit dem Block ``||Logic:wenn wahr dann||`` Füllstände kleiner als 0 zu verhindern. 
 * 🧼 Setze den Füllstand auf 0 sollte der Füllstand die 0 unterschreiten.
-[Hier findest du weitere Informationen zu logischen Operatoren]
-(https://makecode.microbit.org/blocks/logic/boolean)
+[Hier findest du weitere Informationen zu logischen Operatoren](https://makecode.microbit.org/blocks/logic/boolean)
 * 📥 Drücke `|Download|` und kontrolliere die 🟥 LEDs:  
 ⬛⬛🟥⬛⬛  
 🟥🟥🟥🟥🟥  
