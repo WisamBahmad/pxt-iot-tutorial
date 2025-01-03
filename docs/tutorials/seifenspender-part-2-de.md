@@ -193,7 +193,7 @@ basic.forever(function () {
         100
         )
     }
-    basic.clearScreen()
+    basic.pause(100)
 })
 ```
 
