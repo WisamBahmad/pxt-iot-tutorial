@@ -79,6 +79,7 @@ seifenstandInProzent,
 smartfeldAktoren.oledInit(128, 64)
 smartfeldAktoren.oledClear()
 smartfeldAktoren.oledWriteStr("Verbinde")
+// @highlight
 IoTCube.LoRa_Join(
 eBool.enable,
 eBool.enable,
