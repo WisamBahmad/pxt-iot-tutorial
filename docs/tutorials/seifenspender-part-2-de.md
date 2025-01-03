@@ -163,19 +163,18 @@ werden. Lass uns die nötigen Schritte durchführen.
 ```blocks
 basic.forever(function () {
     if (input.buttonIsPressed(Button.A)) {
-        if (seifenstandInProzent > 0) {
-            seifenstandInProzent = seifenstandInProzent - 20
-            // @highlight
-            IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
-            // @highlight
-            IoTCube.SendBufferSimple()
-            led.plotBarGraph(
-            seifenstandInProzent,
-            100
-            )
-        } else {
+        seifenstandInProzent = seifenstandInProzent - 20
+        if (seifenstandInProzent < 0) {
             seifenstandInProzent = 0
         }
+        // @highlight
+        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
+        // @highlight
+        IoTCube.SendBufferSimple()
+        led.plotBarGraph(
+        seifenstandInProzent,
+        100
+        )
     }
     if (input.buttonIsPressed(Button.B)) {
         seifenstandInProzent = 100
@@ -235,19 +234,18 @@ function warte_5_Sekunden_mit_Anzeige () {
 ```blocks
 basic.forever(function () {
     if (input.buttonIsPressed(Button.A)) {
-        if (seifenstandInProzent > 0) {
-            seifenstandInProzent = seifenstandInProzent - 20
-            IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
-            IoTCube.SendBufferSimple()
-            // @highlight
-            warte_5_Sekunden_mit_Anzeige ()
-            led.plotBarGraph(
-            seifenstandInProzent,
-            100
-            )
-        } else {
+        seifenstandInProzent = seifenstandInProzent - 20
+        if (seifenstandInProzent < 0) {
             seifenstandInProzent = 0
         }
+        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
+        IoTCube.SendBufferSimple()
+        // @highlight
+        warte_5_Sekunden_mit_Anzeige ()
+        led.plotBarGraph(
+        seifenstandInProzent,
+        100
+        )
     }
     if (input.buttonIsPressed(Button.B)) {
         seifenstandInProzent = 100
@@ -261,7 +259,7 @@ basic.forever(function () {
         100
         )
     }
-    basic.clearScreen()
+    basic.pause(100)
 })
 
 
@@ -281,18 +279,16 @@ led.plotBarGraph(
 seifenstandInProzent,
 100
 )
-
 basic.forever(function () {
     if (input.buttonIsPressed(Button.A)) {
-        if (seifenstandInProzent > 0) {
-            seifenstandInProzent = seifenstandInProzent - 20
-            led.plotBarGraph(
-            seifenstandInProzent,
-            100
-            )
-        } else {
+        seifenstandInProzent = seifenstandInProzent - 20
+        if (seifenstandInProzent < 0) {
             seifenstandInProzent = 0
         }
+        led.plotBarGraph(
+        seifenstandInProzent,
+        100
+        )
     }
     if (input.buttonIsPressed(Button.B)) {
         seifenstandInProzent = 100
@@ -303,5 +299,4 @@ basic.forever(function () {
     }
     basic.pause(100)
 })
-
 ```
