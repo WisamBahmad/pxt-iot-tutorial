@@ -234,7 +234,7 @@ function warte_5_Sekunden_mit_Anzeige () {
 ## ⏱️ Wartezeit einbauen
 
 * Nachdem du die Funktion nachgebaut hast, fügst du sie nach jedem Senden ein.
-* 📥 Drücke `|Download|` und teste Dein fertiges Programm!
+* 📥 Drücke `|Download|` und teste das Programm!
     * Reagiert das Dashboard auf [iot.claviscloud.ch](https://iot.claviscloud.ch/dashboards/)
 
 ```blocks
@@ -278,6 +278,12 @@ function warte_5_Sekunden_mit_Anzeige () {
     smartfeldAktoren.oledClear()
 }
 ```
+
+## 🪫 Energie sparen
+
+* Um Energie zu sparen kannst du die Anzeige des Füllstandes in der Dauerhaftschleife nach jedem Durchlauf löschen.
+Nutze dazu ``||basic:Bildschirminhalt löschen||``.
+* 📥 Drücke `|Download|` und teste Dein fertiges Programm!
 
 ```template
 let seifenstandInProzent = 100
