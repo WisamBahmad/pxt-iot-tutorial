@@ -10,9 +10,9 @@
         "main.blocks",
         "main.ts",
         "docs/tutorials/seifenspender-de.md",
-        "docs/tutorials/seifenspender-part1-de.md",
         "docs/tutorials/seifenspender-part-2-de.md",
-        "overview.md"
+        "docs/tutorials/seifenspender-part-1-de.md",
+        "README.md"
     ],
     "testFiles": [
         "test.ts"

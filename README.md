@@ -13,6 +13,6 @@ das einen Seifenstand simuliert über 🛜 LoRa ins Internet sendet.
 
 Das Tutorial ist in zwei Teile aufgeteilt:
 
-[Teil 1](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part1-de)
-[Teil 2](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part2-de)
+[Teil 1](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-1-de)
+[Teil 2](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-2-de)
 
