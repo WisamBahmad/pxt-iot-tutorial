@@ -107,8 +107,8 @@ damit dieser Text mindestens für diese Zeit auf dem Display steht.
 um Energie zu sparen.
 * Darunter setzt du den Block ``||IoTCube:Ganzzahl mit ID_0 = 0 hinzufügen||`` ein.
 * Die 0 ersetzt du nun mit der Variable ``||variables:seifenstandInProzent||``.
-* 📥 Drücke `|Download|`.
 * Mit etwas Glück schickst du diese Zahl mit ``||IoTCube:Sende Daten||`` in die ☁️ Cloud!
+* 📥 Drücke `|Download|`.
 
 ```blocks
 let seifenstandInProzent = 100
