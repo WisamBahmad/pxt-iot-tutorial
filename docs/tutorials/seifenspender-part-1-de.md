@@ -21,8 +21,14 @@ du ein funktionsfähiges Programm, das:
     * ➖ Knopf A geklickt -> Seifenstand wird reduziert  
     * ➕ Knopf B geklickt -> Seifenspender wird aufgefüllt  
 
-## 👁️ Vorraussetzungen
-* Für Teil 1 brauchst Du nur einen Micro:Bit
+## 👁️ Vorraussetzungen @showdialog
+* Für Teil 1 brauchst Du grundsätzlich nur einen Micro:Bit. 
+* Falls du lieber gleich den IoT- Cube nehmen möchtest, kannst du ihn so anschliessen:
+![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/iot-cube-anschliessen-klein.png)
+* Stelle die Schalter vorerst so ein:
+    * Battery Switch: **off**
+    * LoRa Module: **on**
+![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/iot-cube-power-switches-klein.png)
 
 ## 🧼 Variable für den Seifenstand
 Um den Füllstand des Seifenspenders zu speichern, setzen wir eine Variable ein.

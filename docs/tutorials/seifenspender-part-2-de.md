@@ -20,9 +20,18 @@ funktionsfähiges Programm,das:
 * 🧼 Den Seifenstand über 🛜 LoRa sendet. 
 * ⏳ Eine Ladebalken-Animation für Wartezeiten darstellt.
 
-## 👁️ Vorraussetzungen
+## 👁️ Vorraussetzungen @showdialog
 * 🖥️ Du benötigst einen IoT Cube dessen OLED Display an J5 angeschlossen ist.
+* Schliesse den Cube so an, falls noch nicht gemacht:
+![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/iot-cube-anschliessen-klein.png)
+* Stelle die Schalter vorerst so ein:
+    * Battery Switch: **off**
+    * LoRa Module: **on**
+![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/iot-cube-power-switches-klein.png)
+
 * 🛜 Ein LoRa- Gateway muss in Reichweite sein, welches mit TTN (The Things Network) verbunden ist.
+Dies ist im Klassensatz einmal vorhanden und kann hunterdte von IoT- Cubes bedienen.
+![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/gateway-klein.png)
 
 ## 🖥️ Statusmeldung anzeigen auf OLED
 Auf dem kleinen Display auf dem IoT Cube wollen wir den Text "Verbinde" anzeigen. 
