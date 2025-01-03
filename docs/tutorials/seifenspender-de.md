@@ -262,9 +262,3 @@ Nun geht es an die Visualisierung der Daten auf der  Clavis Cloud ☁️.
  * Dashboard- Gruppe erstellen (falls noch nicht vorhanden)
  * Dashboard erstellen
  * Widget erstellen für die Anzeige des 🧼 Seifenstandes
-
-## Step 3
-
-```blockconfig.global
-randint(1, 3)
-```
