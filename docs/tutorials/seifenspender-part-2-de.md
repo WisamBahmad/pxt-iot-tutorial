@@ -158,7 +158,7 @@ Nun geht es an die Visualisierung der Daten auf der  Clavis Cloud ☁️.
 Immer wenn eine Taste gedrückt wird, sollen die Daten an die Cloud geschickt 
 werden. Lass uns die nötigen Schritte durchführen.
 
-* Wenn Knopf A geklickt ist und der Seifenstand grösser als 0 ist, schickst Du 
+* Wenn Knopf A geklickt ist, schickst Du 
   den aktuellen Seifenstand mithilfe der Blöcke ``||IoTCube:Ganzzahl mit ID_0 = 0 hinzufügen||``, 
   und ``||IoTCube:Sende Daten||`` ins Internet. Falls du unsicher bist, klicke
   auf die 💡 Glühbirne links unten.
