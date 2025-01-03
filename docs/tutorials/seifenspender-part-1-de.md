@@ -20,10 +20,6 @@ du ein funktionsfähiges Programm, das:
 * 🔘 Per Knopfdruck den Seifenstand reduziert oder wieder auffüllt: (Teil 1)
     * ➖ Knopf A geklickt -> Seifenstand wird reduziert  
     * ➕ Knopf B geklickt -> Seifenspender wird aufgefüllt  
-* 🖥️ Ein OLED-Display initialisiert und Statusmeldungen ausgibt.  (Teil 2)
-* 🛜 Eine LoRa-Verbindung aufbaut.  (Teil 2)
-* 🧼 Den Seifenstand über 🛜 LoRa sendet. (Teil 2)
-* ⏳ Eine Ladebalken-Animation für Wartezeiten darstellt. (Teil 2)
 
 ## 👁️ Vorraussetzungen
 * Für Teil 1 brauchst Du nur einen Micro:Bit
