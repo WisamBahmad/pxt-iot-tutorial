@@ -9,17 +9,29 @@ sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
 
 ## 📗 Einführung,  Teil 1
 
-Vorraussetzungen: 🌱 IoT Basics abgeschlossen  
-Schwierigkeitsgrad: 🔥🔥⚪⚪
+**Vorraussetzungen**
+* Micro:Bit Basics: 
+    * Du kannst Programme erstellen und herunterladen.
+    * Du kennst die Einstiegspunkte "Beim Start" und "Dauerhaft".
+    * Dir ist klar, dass Programme in der Regel schrittweise (von oben nach unten) abgearbeitet werden.
+    Zudem kannst Du Schleifen und Verzweigungen einsetzen.
+    * es ist bekannnt, dass Kategorien Blöcke (z.B. ``||basic:Grundlagen||``) beinhalten, welche in Programmen genutzt werden können
+    * Variablen können erstellt, verwendet und verändert werden
+
+**Lernergebnis**
 
 In diesem Tutorial baust du Schritt für Schritt ein Programm auf, 
-das einen Seifenstand simuliert über 🛜 LoRa ins Internet sendet. Am Ende hast 
-du ein funktionsfähiges Programm, das:
+das einen Seifenstand simuliert und über 🛜 LoRa ins Internet sendet. Am Ende hast 
+du ein funktionsfähiges Programm, das...
 
-* 🧼 Den Seifenstand anzeigt (Teil 1)
-* 🔘 Per Knopfdruck den Seifenstand reduziert oder wieder auffüllt: (Teil 1)
-    * ➖ Knopf A geklickt -> Seifenstand wird reduziert  
-    * ➕ Knopf B geklickt -> Seifenspender wird aufgefüllt  
+* den Seifenstand 🧼 anzeigt.
+* per ``||Input:Knopfdruck||`` den Seifenstand reduziert oder wieder auffüllt:
+    * ``||Input:Knopf A ist geklickt||``: Seifenstand 🧼 wird durch Knopf A um 20% reduziert.
+    * ``||Input:Knopf B ist geklickt||``: Seifenstand 🧼 wird durch Knopf B wieder auf 100% aufgefüllt.
+
+**Schwierigkeitsgrad:** 🔥🔥⚪⚪
+
+Klicke auf das 💡- Symbol, falls Du zusätzliche Hilfe brauchst und um deinen Code zu überprüfen.
 
 ## 👁️ Vorraussetzungen @showdialog
 * Für Teil 1 brauchst Du grundsätzlich nur einen Micro:Bit. 
