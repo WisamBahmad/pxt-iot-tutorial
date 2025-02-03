@@ -4,7 +4,7 @@ sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
 ```
 ### @explicitHints false
 
-# IoT Tutorial Teil 1
+# IoT Tutorial Toilette Teil 1
 
 
 ## 📗 Einführung,  Teil 1
@@ -20,11 +20,11 @@ sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
 
 **Lernergebnis**
 
-In diesem Tutorial baust du Schritt für Schritt ein Programm auf, 
-das einen Seifenstand simuliert und über 🛜 LoRa ins Internet sendet. Am Ende hast 
+In diesem Tutorial entwickelst du Schritt für Schritt ein Programm, das den Belegungsstatus einer Toilette 
+simuliert und die Daten über 🛜 LoRa ins Internet sendet. Am Ende hast 
 du ein funktionsfähiges Programm, das...
 
-* den Seifenstand 🧼 anzeigt.
+* den Belegungsstatus anzeigt.
 * per ``||Input:Knopfdruck||`` den Seifenstand reduziert oder wieder auffüllt:
     * ``||Input:Knopf A ist geklickt||``: Seifenstand 🧼 wird durch Knopf A um 20% reduziert.
     * ``||Input:Knopf B ist geklickt||``: Seifenstand 🧼 wird durch Knopf B wieder auf 100% aufgefüllt.
@@ -33,37 +33,28 @@ du ein funktionsfähiges Programm, das...
 
 Klicke auf das 💡- Symbol, falls Du zusätzliche Hilfe brauchst und um deinen Code zu überprüfen.
 
-```blocks
-//Super! Du hast den Hinweis gefuden. Nutze ihn, wenn du nicht weiterkommst.
-let hinweisGefunden = true;
-```
-
 ## 👁️ Vorraussetzungen @showdialog
 * Für Teil 1 brauchst Du grundsätzlich nur einen Micro:Bit. 
-* Falls du lieber gleich den IoT- Cube nehmen möchtest, kannst du ihn so anschliessen. Achte auf
-die rote Markierung:
+* Falls du lieber gleich den IoT- Cube nehmen möchtest, kannst du ihn so anschliessen:
 ![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/iot-cube-anschliessen-klein.png)
 * Stelle die Schalter vorerst so ein:
     * Battery Switch: **off**
     * LoRa Module: **on**
 ![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/iot-cube-power-switches-klein.png)
-* Überprüfe, ob der micro:bit verbunden ist.
 
 ## 🧼 Variable für den Seifenstand
-Um den Füllstand des Seifenspenders zu speichern, nutzen wir eine Variable.
-* Um den aktuellen Seifenstand zu speichern, benötigen wir eine Variable, die den Seitfenstand in Prozent anzeigt: 
-``||variables:Erstelle eine Variable...||`` und benenne sie mit **seifenstandInProzent** 🧼.
-* Der Seifenspender ist am Beginn vollständig gefüllt. Setze deshalb **beim Start** den Seifenstand auf 100 %. Nutze dazu die zuvor angelegte Variable: ``||variables:setze seifenstandInProzent auf 100||``🧼
+Um den Füllstand des Seifenspenders zu speichern, setzen wir eine Variable ein.
+* 🧼 ``||variables:Erstelle eine Variable...||`` und benenne sie mit **seifenstandInProzent**.
+* 🧼 **beim Start** soll der Seifenstand auf 100 % gesetzt werden. ``||variables:setze seifenstandInProzent auf 100||``
 
 ```blocks
 let seifenstandInProzent = 100
 ```
 
 ## 🧼 Seifenstand anzeigen
-Ziel ist es, den aktuellen Seifenstand am IoT Cube anzuzeigen.
-* Hol dir den Block ``||led:Zeichne Säulendiagramm|``🟥 und ziehe diesen in den Block **beim Start** direkt unter der Variablendeklaration.
-* Hol die Variable ``||variables:seifenstandInProzent||``🧼 um sie mit dem Säulendiagramm darzustellen. 
-* Ändere den Bereich von **seifenstandInProzent**🧼 bis 100. 
+* 🟥 Hol dir den Block ``||led:Zeichne Säulendiagramm|`` und ziehe diesen in den Block **beim Start** direkt unter der Variablendeklaration.
+* 🧼 Hol die Variable ``||variables:seifenstandInProzent||`` um sie mit dem Säulendiagramm darzustellen. 
+* 🧼 Ändere den Bereich von **seifenstandInProzent** bis 100. 
 * 📥 Drücke `|Download|` und kontrolliere die LED- Anzeige:  
 🟥🟥🟥🟥🟥  
 🟥🟥🟥🟥🟥  
@@ -81,15 +72,11 @@ seifenstandInProzent,
 )
 ```
 
-## ➖ Füllstand reduzieren mit Knopf A
-Ziel ist es bei jedem Knopfdruck auf A den Seifenstand jeweils um 20% zu reduzieren.
-Dazu benötigen wir eine Verzweigung, die prüft, ob Knopf A gedrückt wurde. Wenn dies der Fall ist, 
-dann soll der Seifenstand um 20% reduziert werden.
-* Um diese Verzweigung einzufügen, hol dir den Block ``||Logic:wenn wahr dann||`` und 
-ziehe ihn in die ``dauerhaft`` Schleife
+## ➖ Füllstand reduzieren mit  Knopf A 
+* Hol dir den Block ``||Logic:wenn wahr dann||`` und ziehe ihn in die ``dauerhaft`` Schleife
 * Schiebe den Block ``||Input:Knopf A ist geklickt||`` auf das Feld ``wahr``
-* Ändere die Variable ``||variables:seifenstandInProzent||`` 🧼 um -20.
-* Zeichne erneut das Säulendiagramm.🟥 Dupliziere diesen Teil aus ``beim Start``
+* 🧼 Reduziere die Variable ``||variables:seifenstandInProzent||`` um die Zahl 20. Benutze dazu ``||Math:Mathematik||``
+* 🟥 Zeichne erneut das Säulendiagramm. Dupliziere diesen Teil aus ``beim Start``
 * Verzögere die Dauerhaftschleife um 100 ms mit ``||basic:pausiere (ms)||``.
 
 ```blocks

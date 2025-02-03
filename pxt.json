@@ -11,7 +11,8 @@
         "main.ts",
         "docs/tutorials/seifenspender-part-2-de.md",
         "docs/tutorials/seifenspender-part-1-de.md",
-        "README.md"
+        "README.md",
+        "docs/tutorials/toilette-part-1-de.md"
     ],
     "testFiles": [
         "test.ts"
