@@ -108,16 +108,19 @@ basic.forever(function () {
 ```
 
 ## 🧼 Flüllstand kleiner 0 verhindern
-* 🧼 Versuche mit dem Block ``||Logic:wenn wahr dann||`` Seifenstände kleiner als 0 zu verhindern. 
-* 🧼 Setze den ``||variables:seifenstandInProzent||`` auf 0 sollte der Seifenstand die 0 unterschreiten.
+Damit wir vermeiden, dass der Füllstand unter 0% fällt, benötigen wir eine weitere Bedingung, die prüft, 
+ob der Seifenstand unter 0% gefallen ist. Wenn dies der Fall ist, soll der Seifenstand auf 0% gesetzt werden.
+* Ergänze einen weiteren Block ``||Logic:wenn wahr dann||`` nachdem der Seifenstand 🧼 um 20% reduziert wurde.
+* Setze den ``||variables:seifenstandInProzent||`` auf 0% in dem du den Seifenstand 🧼 auf 0 setzt.
 [Hier findest du weitere Informationen zu logischen Operatoren](https://makecode.microbit.org/blocks/logic/boolean)
-* 📥 Drücke `|Download|` und kontrolliere die 🟥 LEDs:  
+* 📥 Drücke `|Download|` und kontrolliere die 🟥 LED-Anzeige. Drücke öfters Knopf A, bis der Seifenstand unter 0% fällt. 
+
 ⬛⬛🟥⬛⬛  
 🟥🟥🟥🟥🟥  
 🟥🟥🟥🟥🟥  
 🟥🟥🟥🟥🟥  
 🟥🟥🟥🟥🟥  
-Reduziert sich die Anzeige?
+Was passiert? Bleibt die Anzeige bei 0 stehen?  
 
 ```blocks
 basic.forever(function () {
@@ -137,14 +140,16 @@ basic.forever(function () {
 ```
 
 ## ➕ Seifenspender auffüllen mit Knopf B
+Nun wollen wir den Seifenstand 🧼 wieder auffüllen, wenn Knopf B gedrückt wird.
+Dazu benötigen wir eine Bedingung, die prüft, ob Knopf B gedrückt wurde. Wenn dies der Fall ist, soll der Seifenstand 🧼 auf 100% gesetzt werden.
 * Hol dir den Block ``||Logic:wenn wahr dann||`` und ziehe ihn in zuunterst in
 die ``dauerhaft`` Schleife
 * Schiebe den Block ``||Input:Knopf A ist geklickt||`` auf das Feld ``wahr``
 und ändere Knopf A zu Knopf **B**
-* 🧼 Setze die Variable ``||variables:seifenstandInProzent||`` auf die Zahl 100, wenn B gedrückt wurde.
+* Setze den Seifenstand auf 100% indem du die Variable ``||variables:seifenstandInProzent||``🧼 auf 100 setzt.
 * Zeichne erneut das Säulendiagramm. Kopiere diesen Teil aus ``beim Start``
 * 📥 Drücke `|Download|` und kontrolliere die 🟥 LED-Anzeige... 
-Funktioniert alles wie gewünscht?
+Füllt sich der Seifenstand auf 100% auf?
 
 ```blocks
 basic.forever(function () {
@@ -165,6 +170,10 @@ basic.forever(function () {
         // @highlight
         seifenstandInProzent = 100
     }
+    led.plotBarGraph(
+        seifenstandInProzent,
+        100
+    )
 }
 ```
 
