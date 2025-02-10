@@ -9,8 +9,8 @@
     "files": [
         "main.blocks",
         "main.ts",
-        "docs/tutorials/seifenspender-part-2-de.md",
-        "docs/tutorials/seifenspender-part-1-de.md",
+        "docs/tutorials/seifenspender-part-2.md",
+        "docs/tutorials/seifenspender-part-1.md",
         "README.md",
         "docs/tutorials/toilette-part-1-de.md"
     ],
