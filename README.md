@@ -5,6 +5,11 @@ sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
 
 # Dies ist ein Tutorial für den IoT Cube
 
+## Wichtige Hinweise zu Beginn:
+* Fenster vergrössern: Zieh dieses Browser-Fenster oder das MakeCode-Fenster grösser, damit du alles gut sehen kannst.
+* Scrollen nicht vergessen: Scrolle immer ganz nach unten, um wirklich alle Schritte zu sehen. Sonst verpasst du Teile des Tutorials!
+* Auf Links klicken: Wenn du eine blau unterstrichene Stelle (Link) siehst, musst du darauf klicken. Dort geht das Tutorial weiter oder es öffnet sich ein zusätzlicher Inhalt.
+
 ## Einführung 
 Vorraussetzungen: 🌱 IoT Basics abgeschlossen  
 Schwierigkeitsgrad: 🔥🔥⚪⚪
