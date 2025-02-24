@@ -9,13 +9,16 @@
     "files": [
         "main.blocks",
         "main.ts",
-        "README.md"
+        "docs/tutorials/seifenspender-part-2.md",
+        "docs/tutorials/seifenspender-part-1.md",
+        "README.md",
+        "docs/tutorials/toilette-part-1-de.md"
     ],
     "testFiles": [
         "test.ts"
     ],
     "targetVersions": {
-        "target": "7.0.51",
+        "target": "7.0.57",
         "targetId": "microbit"
     },
     "supportedTargets": [
