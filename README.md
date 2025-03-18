@@ -16,10 +16,11 @@ Schwierigkeitsgrad: 🔥🔥⚪⚪
 
 In diesem Tutorial baust du Schritt für Schritt ein Programm auf, das den Seifenstand simuliert und die Daten über 🛜 LoRa ins Internet sendet.
 
-Das Tutorial ist in zwei Teile aufgeteilt.
+Das Tutorial ist in drei Teile aufgeteilt:
 
 * [Teil 1 - noch ohne Internetverbindung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-1)  
 * [Teil 2 - mit Internetverbindung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-2)
+* [Teil 3 - mit Internetverbindung und Sensorik](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-2)
 
 Tipp: Scrolle in jedem Tutorial-Schritt ganz nach unten und klicke erst dann auf den Weiter-Button, damit du nichts übersiehst!
 
