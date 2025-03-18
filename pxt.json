@@ -14,7 +14,8 @@
         "docs/tutorials/seifenspender-part-1.md",
         "README.md",
         "docs/tutorials/toilette-part-1-de.md",
-        "tutorial-info-cache.json"
+        "tutorial-info-cache.json",
+        "docs/tutorials/seifenspender-part-3.md"
     ],
     "testFiles": [
         "test.ts"
