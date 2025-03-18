@@ -49,18 +49,15 @@ Teste, ob die Daten immer noch auf der Clavis Cloud ☁️ ankommen.
 Wird der gemessene 🧼 Seifenstand auf dem Dashboard angezeigt?
 
 ```template
-function warte_5_Sekunden_mit_Anzeige () {
-    smartfeldAktoren.oledClear()
-    for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
-        smartfeldAktoren.oledLoadingBar(fortschritt)
-        basic.pause(50)
-    }
-    smartfeldAktoren.oledClear()
-}
+let seifenstandInProzent = 100
+led.plotBarGraph(
+seifenstandInProzent,
+100
+)
+
 smartfeldAktoren.oledInit(128, 64)
 smartfeldAktoren.oledClear()
 smartfeldAktoren.oledWriteStr("Verbinde")
-music.setVolume(50)
 IoTCube.LoRa_Join(
 eBool.enable,
 eBool.enable,
@@ -73,43 +70,47 @@ while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
 }
 smartfeldAktoren.oledClear()
 smartfeldAktoren.oledWriteStr("Verbunden!")
-let seifenstandInProzent = 100
-led.plotBarGraph(
-seifenstandInProzent,
-100
-)
 basic.pause(2000)
 smartfeldAktoren.oledClear()
 basic.clearScreen()
 IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
 IoTCube.SendBufferSimple()
+warte_5_Sekunden_mit_Anzeige ()
+
 basic.forever(function () {
     if (input.buttonIsPressed(Button.A)) {
-        if (seifenstandInProzent > 0) {
-            seifenstandInProzent = seifenstandInProzent - 20
-            IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
-            IoTCube.SendBufferSimple()
-            led.plotBarGraph(
-            seifenstandInProzent,
-            100
-            )
-            warte_5_Sekunden_mit_Anzeige()
-        } else {
-            music.play(music.builtinPlayableSoundEffect(soundExpression.sad), music.PlaybackMode.UntilDone)
+        seifenstandInProzent = seifenstandInProzent - 20
+        if (seifenstandInProzent < 0) {
             seifenstandInProzent = 0
         }
-    }
-    if (input.buttonIsPressed(Button.B)) {
-        music.play(music.builtinPlayableSoundEffect(soundExpression.giggle), music.PlaybackMode.InBackground)
-        seifenstandInProzent = 100
         IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
         IoTCube.SendBufferSimple()
+        warte_5_Sekunden_mit_Anzeige ()
         led.plotBarGraph(
         seifenstandInProzent,
         100
         )
-        warte_5_Sekunden_mit_Anzeige()
+    }
+    if (input.buttonIsPressed(Button.B)) {
+        seifenstandInProzent = 100
+        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
+        IoTCube.SendBufferSimple()
+        warte_5_Sekunden_mit_Anzeige ()
+        led.plotBarGraph(
+        seifenstandInProzent,
+        100
+        )
     }
     basic.clearScreen()
+    basic.pause(100)
 })
+
+function warte_5_Sekunden_mit_Anzeige () {
+    smartfeldAktoren.oledClear()
+    for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
+        smartfeldAktoren.oledLoadingBar(fortschritt)
+        basic.pause(50)
+    }
+    smartfeldAktoren.oledClear()
+}
 ```
