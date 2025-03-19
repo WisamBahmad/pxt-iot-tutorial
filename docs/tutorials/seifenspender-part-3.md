@@ -24,21 +24,10 @@ Am Schuluss hast du ein Programm, welches...
 * Eine Ladebalken-Animation⏳ für Wartezeiten darstellt.
 
 ## 👁️ Vorraussetzungen @showdialog
-* Du benötigst einen IoT Cube dessen OLED Display 🖥️ an J5 angeschlossen ist.
-* Schliesse den Cube so an, falls noch nicht gemacht:
-![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/iot-cube-anschliessen-klein.png)
-* Stelle die Schalter vorerst so ein:
-    * Battery Switch: **off**
-    * LoRa Module: **on**
-![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/iot-cube-power-switches-klein.png)
 
+Du brauchst gegenüber Tutorial Teil 2 folgendes:
 * Schliesse den Ultraschallsensor🦇 an J1 an.
 ![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/14_Tutorial_Seifenspender_Ultraschallsensor.png)
-
-* Ein LoRa- Gateway🛜 muss in Reichweite sein, welches mit TTN (The Things Network) verbunden ist.
-Dies ist im Klassensatz einmal vorhanden und kann hunderte von IoT- Cubes bedienen.
-![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/gateway-klein.png)
-
 
 ## Bisherige Funktion überprüfen
 
@@ -107,17 +96,16 @@ function warte_5_Sekunden_mit_Anzeige () {
     smartfeldAktoren.oledClear()
 }
 ```
-## Ultraschallsensor integrieren
 
-* Schliesse den Ultraschallsensor an J1 an. 
-* Um die gemessene Distanz zwischen Seife und Sensor zu speichern, benötigen wir eine Variable.
-``||variables:Erstelle eine Variable...||`` und benenne sie mit **distanzSensorZuSeife** 📏.
-* Ziehe den Block ``||variables:setze distanzSensorZuSeife auf 0|`` zuoberst in die Dauerhaftschleife .
-* Um der Variable den Messwert zuzuweisen, füge den Block 🦇 ``||SmartfeldSensoren:Distanz in cm||``
-anstelle der 0 ein. Belasse den Pin auf P0.
+## Senden vorerst verhindern
+
+Wir wollen vorerst noch nichts an die ☁️ Cloud senden.
+* Modifiziere **dauerhaft** so, wie unter dem 💡angezeigt. 
+Verwende dazu den Block ``||Logic:wenn wahr dann||``. 
+Dieser verhindert das Senden sobald du wahr auf **falsch** stellst.
+* Modiziere **beim Start** ebenfalls so, wie unter dem 💡angezeigt. 
 
 ```blocks
-// @collapsed
 let seifenstandInProzent = 100
 led.plotBarGraph(
 seifenstandInProzent,
@@ -125,39 +113,40 @@ seifenstandInProzent,
 )
 smartfeldAktoren.oledInit(128, 64)
 smartfeldAktoren.oledClear()
-smartfeldAktoren.oledWriteStr("Verbinde")
-IoTCube.LoRa_Join(
-eBool.enable,
-eBool.enable,
-10,
-8
-)
-while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
-    smartfeldAktoren.oledWriteStr(".")
-    basic.pause(1000)
-}
-smartfeldAktoren.oledClear()
-smartfeldAktoren.oledWriteStr("Verbunden!")
-basic.pause(3000)
-smartfeldAktoren.oledClear()
-IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
-IoTCube.SendBufferSimple()
-warte_5_Sekunden_mit_Anzeige ()
-
-
-basic.forever(function () {  
-    // @highlight
-    distanzSensorZuSeife = smartfeldSensoren.measureInCentimetersV2(DigitalPin.P0)
+// @highlight
+if (false) {
+    smartfeldAktoren.oledWriteStr("Verbinde")
+    IoTCube.LoRa_Join(
+    eBool.enable,
+    eBool.enable,
+    10,
+    8
+    )
+    while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
+        smartfeldAktoren.oledWriteStr(".")
+        basic.pause(1000)
+    }
+    smartfeldAktoren.oledClear()
+    smartfeldAktoren.oledWriteStr("Verbunden!")
+    basic.pause(3000)
+    smartfeldAktoren.oledClear()
     IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
     IoTCube.SendBufferSimple()
     warte_5_Sekunden_mit_Anzeige ()
-    led.plotBarGraph(
-    seifenstandInProzent,
-    100
-    )
+}
+basic.forever(function () {
+   // @highlight
+    if (false) {
+        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
+        IoTCube.SendBufferSimple()
+        warte_5_Sekunden_mit_Anzeige()
+        led.plotBarGraph(
+        seifenstandInProzent,
+        100
+        )
+    }
     basic.pause(100)
 })
-
 
 function warte_5_Sekunden_mit_Anzeige () {
     smartfeldAktoren.oledClear()
@@ -167,6 +156,78 @@ function warte_5_Sekunden_mit_Anzeige () {
     }
     smartfeldAktoren.oledClear()
 }
+```
+
+## Ultraschallsensor verwenden
+
+* Schliesse den Ultraschallsensor🦇  an J1 an. 
+* Um die gemessene Distanz 📏 zwischen Seife und Sensor zu speichern, benötigen wir eine Variable.
+``||variables:Erstelle eine Variable...||`` und benenne sie mit **distanzSensorZuSeife** .
+* Ziehe den Block ``||variables:setze distanzSensorZuSeife auf 0|`` zuoberst in die Dauerhaftschleife .
+* Um der Variable den Messwert zuzuweisen, füge den Block ``||SmartfeldSensoren:Distanz in cm||``
+anstelle der 0 ein. Belasse den Pin auf P0.
+
+```blocks
+basic.forever(function () {
+    // @highlight
+    distanzSensorZuSeife = smartfeldSensoren.measureInCentimetersV2(DigitalPin.P0)
+    if (false) {
+        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
+        IoTCube.SendBufferSimple()
+        warte_5_Sekunden_mit_Anzeige()
+        led.plotBarGraph(
+        seifenstandInProzent,
+        100
+        )
+    }
+    basic.pause(100)
+})
+// @collapsed
+function warte_5_Sekunden_mit_Anzeige () {
+    smartfeldAktoren.oledClear()
+    for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
+        smartfeldAktoren.oledLoadingBar(fortschritt)
+        basic.pause(50)
+    }
+    smartfeldAktoren.oledClear()
+}
+```
+
+## Messwert anzeigen
+
+Der Sensor liefert die Distanz in cm. Um die Funktion des Sensors zu überprüfen,
+zeigen wir den Sensorwert auf dem OLED- Display an. 
+
+* Setze den Block 🖥️ ``||SmartfeldAktoren:Lösche Displayinhalt||``
+zuoberst in der Dauerhaftschleife ein.
+Damit löschst du bestehende Inhalte auf dem Display.
+* Unter der Variable setzt du den Block ``||SmartfeldAktoren:schreibe Nummer||``
+ein. 
+* Ersetze die 0 mit der Variable ``||variables:|distanzSensorZuSeife``
+* Runde den Wert auf ganze Zahlen mit dem Block ``||math:runden||``
+* Gibt nach dem Messwert die Masseinheit aus mit ``||SmartfeldAktoren:schreibe String||``
+
+```blocks
+basic.forever(function () {
+    // @highlight
+    smartfeldAktoren.oledClear()
+    // @highlight
+    distanzSensorZuSeife = smartfeldSensoren.measureInCentimetersV2(DigitalPin.P0)
+     // @highlight
+    smartfeldAktoren.oledWriteNum(Math.round(distanzSensorZuSeife))
+     // @highlight
+    smartfeldAktoren.oledWriteStr(" cm")
+    if (false) {
+        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
+        IoTCube.SendBufferSimple()
+        warte_5_Sekunden_mit_Anzeige()
+        led.plotBarGraph(
+        seifenstandInProzent,
+        100
+        )
+    }
+    basic.pause(100)
+})
 ```
 
 ```template
