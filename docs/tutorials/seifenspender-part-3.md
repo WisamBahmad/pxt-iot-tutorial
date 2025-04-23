@@ -10,7 +10,7 @@ sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
 ## 📗 Einführung, Teil 3
 
 Vorraussetzungen: 🌱 IoT Basics abgeschlossen und IoT Tutorial [Teil 2](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-2) abgeschlossen.
-Schwierigkeitsgrad: 🔥🔥⚪⚪
+Schwierigkeitsgrad: 🔥🔥🔥⚪
 
 Aus dem Tutorial Teil 2 hast du bereits ein Programm, das den Seifenstand mit Knopf A und B 
 simuliert und über LoRa🛜 ins Internet sendet. Um der realen Anwendung näher zu kommen, 
@@ -163,7 +163,7 @@ function warte_5_Sekunden_mit_Anzeige () {
 * Schliesse den Ultraschallsensor🦇  an J1 an. 
 * Um die gemessene Distanz 📏 zwischen Seife und Sensor zu speichern, benötigen wir eine Variable.
 ``||variables:Erstelle eine Variable...||`` und benenne sie mit **distanzSensorZuSeife** .
-* Ziehe den Block ``||variables:setze distanzSensorZuSeife auf 0|`` zuoberst in die Dauerhaftschleife .
+* Ziehe den Block ``||variables:setze distanzSensorZuSeife auf 0||`` zuoberst in die Dauerhaftschleife .
 * Um der Variable den Messwert zuzuweisen, füge den Block ``||SmartfeldSensoren:Distanz in cm||``
 anstelle der 0 ein. Belasse den Pin auf P0.
 
@@ -203,9 +203,9 @@ zuoberst in der Dauerhaftschleife ein.
 Damit löschst du bestehende Inhalte auf dem Display.
 * Unter der Variable setzt du den Block ``||SmartfeldAktoren:schreibe Nummer||``
 ein. 
-* Ersetze die 0 mit der Variable ``||variables:|distanzSensorZuSeife``
+* Ersetze die 0 mit der Variable ``||variables:distanzSensorZuSeife||``
 * Runde den Wert auf ganze Zahlen mit dem Block ``||math:runden||``
-* Gibt nach dem Messwert die Masseinheit aus mit ``||SmartfeldAktoren:schreibe String||``
+* Schreibe nach dem Messwert die Masseinheit ** cm** auf das Display mit ``||SmartfeldAktoren:schreibe String||``
 
 ```blocks
 basic.forever(function () {
@@ -229,6 +229,19 @@ basic.forever(function () {
     basic.pause(100)
 })
 ```
+
+## Modell für Seifenspender bauen
+
+
+
+
+
+
+## Füllstand berechnen 
+
+
+
+## Füllstand anzeigen
 
 ```template
 let seifenstandInProzent = 100
