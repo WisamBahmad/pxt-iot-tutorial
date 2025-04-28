@@ -1,48 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>3D Viewer</title>
-    <style>
-      body { margin: 0; }
-      canvas { display: block; }
-    </style>
-  </head>
-  <body>
-    <script type="module">
-      import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.156.1/build/three.module.js';
-      import { STLLoader } from 'https://cdn.jsdelivr.net/npm/three@0.156.1/examples/jsm/loaders/STLLoader.js';
-      import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.156.1/examples/jsm/controls/OrbitControls.js';
+<head>
+  <meta charset="UTF-8" />
+  <title>3D STL Viewer</title>
+  <style>
+    body { margin: 0; }
+    canvas { display: block; }
+  </style>
 
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer({ antialias: true });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      document.body.appendChild(renderer.domElement);
+  <!-- Import-Map, löst "three" auf -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.156.1/build/three.module.js"
+    }
+  }
+  </script>
+</head>
+<body>
+  <script type="module">
+    import * as THREE from 'three';
+    import { STLLoader }   from 'https://cdn.jsdelivr.net/npm/three@0.156.1/examples/jsm/loaders/STLLoader.js';
+    import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.156.1/examples/jsm/controls/OrbitControls.js';
 
-      const controls = new OrbitControls(camera, renderer.domElement);
+    // Rest Deines Codes (unverändert) …
+    const scene    = new THREE.Scene();
+    const camera   = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
 
-      const light = new THREE.DirectionalLight(0xffffff, 1);
-      light.position.set(0, 0, 1).normalize();
-      scene.add(light);
+    const controls = new OrbitControls(camera, renderer.domElement);
 
-      const loader = new STLLoader();
-      loader.load('Seifenspender.stl', function (geometry) {
-        const material = new THREE.MeshPhongMaterial({ color: 0x607d8b });
-        const mesh = new THREE.Mesh(geometry, material);
-        scene.add(mesh);
-        mesh.rotation.x = -0.5 * Math.PI;
-      });
+    const light = new THREE.DirectionalLight(0xffffff, 1);
+    light.position.set(0, 1, 1).normalize();
+    scene.add(light);
 
-      camera.position.z = 100;
+    const loader = new STLLoader();
+    loader.load('Seifenspender.stl', geometry => {
+      const material = new THREE.MeshPhongMaterial({ color: 0x607d8b });
+      const mesh     = new THREE.Mesh(geometry, material);
+      mesh.rotation.x = -Math.PI/2;
+      scene.add(mesh);
+    });
 
-      function animate() {
-        requestAnimationFrame(animate);
-        controls.update();
-        renderer.render(scene, camera);
-      }
+    camera.position.z = 100;
 
-      animate();
-    </script>
-  </body>
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+</body>
 </html>
