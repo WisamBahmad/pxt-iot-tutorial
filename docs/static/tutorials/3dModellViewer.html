@@ -37,19 +37,30 @@
     light.position.set(0, 1, 1).normalize();
     scene.add(light);
 
+    let mesh;
+
     const loader = new STLLoader();
     loader.load('Seifenspender.stl', geometry => {
       const material = new THREE.MeshPhongMaterial({ color: 0xD2B48C });
-      const mesh     = new THREE.Mesh(geometry, material);
-      mesh.rotation.x = -Math.PI/2;
+      mesh     = new THREE.Mesh(geometry, material);
+      mesh.rotation.x = -Math.PI/8;
+      mesh.rotation.y = Math.PI;
+      mesh.rotation.z = 0;
       scene.add(mesh);
     });
 
-    camera.position.z = 100;
+    camera.position.z = 300;
 
     function animate() {
       requestAnimationFrame(animate);
       controls.update();
+
+      // Optional: Rotation für Animation
+      if(mesh){
+        mesh.rotation.z += 0.01;
+        mesh.rotation.y += 0.001;
+    }
+
       renderer.render(scene, camera);
     }
     animate();
