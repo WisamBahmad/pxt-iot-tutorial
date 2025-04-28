@@ -409,6 +409,7 @@ basic.forever(function () {
         100
         )
     }
+    // @highlight
     basic.clearScreen()
     basic.pause(100)
 })
