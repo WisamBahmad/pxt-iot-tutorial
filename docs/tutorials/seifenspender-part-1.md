@@ -177,6 +177,7 @@ basic.forever(function () {
 }
 ```
 
-## Weiter gehts mit Teil 2!
+## Gratuliere 🏆 - du hast den Teil 1 erfolgreich bearbeitet 🚀
 
-[Teil 2](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-2)
+* Weiter gehts mit Teil 2: [Teil 2](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-2)
+

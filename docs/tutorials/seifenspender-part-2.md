@@ -250,7 +250,7 @@ Baue dir mit folgenden Blöcken die Wartefunktion nach, welche im Tootip
 (die 💡 Glühbirne links unten) angezeigt wird.
 
 * ``||function:Erstelle eine Funktion||`` (im Bereich Fortgeschritten zu finden)
-    * Benenne die Funktion mit "warte_5_Sekunden_mit_Anzeige" und klicke auf **Fertig**.
+    * Benenne die Funktion mit "warte5SekundenUndZeigeFortschritt" und klicke auf **Fertig**.
     * Lösche darin den Displayinhalt mit ``||SmartfeldAktoren:Lösche Displayinhalt||`` 
     * ``||loops:für Index von 0 bis 4||`` 
         * klicke auf Index --> klicke auf **Neue Variable**, Neuer Variablenname: **fortschritt**
@@ -263,7 +263,7 @@ Baue dir mit folgenden Blöcken die Wartefunktion nach, welche im Tootip
 
 ```blocks
 // @highlight
-function warte_5_Sekunden_mit_Anzeige () {
+function warte5SekundenUndZeigeFortschritt () {
     smartfeldAktoren.oledClear()
     for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
         smartfeldAktoren.oledLoadingBar(fortschritt)
@@ -275,7 +275,7 @@ function warte_5_Sekunden_mit_Anzeige () {
 
 ## ⏱️ Wartezeit einbauen
 
-* Nach jedem Befehl ``||IoTCube:Sende Daten||`` fügst Du die Funktion aus dem Bereich Fortgeschritten ``||function:warte_5_Sekunden_mit_Anzeige||`` ein.
+* Nach jedem Befehl ``||IoTCube:Sende Daten||`` fügst Du die Funktion aus dem Bereich Fortgeschritten ``||function:warte5SekundenUndZeigeFortschritt||`` ein.
 * 📥 Drücke `|Download|` und kontrolliere ob...
     * der Ladebalken am OLED-Display bei Tastendruck angezeigt wird
     * die Daten auf deinem Dashboard angezeigt werden: [iot.claviscloud.ch](https://iot.claviscloud.ch/dashboards/)
@@ -307,7 +307,7 @@ basic.clearScreen()
 IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
 IoTCube.SendBufferSimple()
 // @highlight
-warte_5_Sekunden_mit_Anzeige ()
+warte5SekundenUndZeigeFortschritt ()
 
 basic.forever(function () {
     if (input.buttonIsPressed(Button.A)) {
@@ -318,7 +318,7 @@ basic.forever(function () {
         IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
         IoTCube.SendBufferSimple()
         // @highlight
-        warte_5_Sekunden_mit_Anzeige ()
+        warte5SekundenUndZeigeFortschritt ()
         led.plotBarGraph(
         seifenstandInProzent,
         100
@@ -330,7 +330,7 @@ basic.forever(function () {
        
         IoTCube.SendBufferSimple()
         // @highlight
-        warte_5_Sekunden_mit_Anzeige ()
+        warte5SekundenUndZeigeFortschritt ()
         led.plotBarGraph(
         seifenstandInProzent,
         100
@@ -340,7 +340,7 @@ basic.forever(function () {
 })
 
 
-function warte_5_Sekunden_mit_Anzeige () {
+function warte5SekundenUndZeigeFortschritt () {
     smartfeldAktoren.oledClear()
     for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
         smartfeldAktoren.oledLoadingBar(fortschritt)
@@ -355,6 +355,10 @@ function warte_5_Sekunden_mit_Anzeige () {
 * Um Energie zu sparen kannst du die Anzeige des Seifenstandes🧼 in der Dauerhaftschleife nach jedem Durchlauf löschen.
 Nutze dazu ``||basic:Bildschirminhalt löschen||``.
 * 📥 Drücke `|Download|` und teste Dein fertiges Programm!
+
+## Gratuliere 🏆 - du hast den Teil 2 erfolgreich bearbeitet 🚀
+
+* Weiter gehts mit Teil 3: [Teil 3](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-3)
 
 ```blocks
 let seifenstandInProzent = 100
@@ -382,7 +386,7 @@ smartfeldAktoren.oledClear()
 basic.clearScreen()
 IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
 IoTCube.SendBufferSimple()
-warte_5_Sekunden_mit_Anzeige ()
+warte5SekundenUndZeigeFortschritt ()
 
 basic.forever(function () {
     if (input.buttonIsPressed(Button.A)) {
@@ -392,7 +396,7 @@ basic.forever(function () {
         }
         IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
         IoTCube.SendBufferSimple()
-        warte_5_Sekunden_mit_Anzeige ()
+        warte5SekundenUndZeigeFortschritt ()
         led.plotBarGraph(
         seifenstandInProzent,
         100
@@ -403,7 +407,7 @@ basic.forever(function () {
         IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
        
         IoTCube.SendBufferSimple()
-        warte_5_Sekunden_mit_Anzeige ()
+        warte5SekundenUndZeigeFortschritt ()
         led.plotBarGraph(
         seifenstandInProzent,
         100
@@ -415,7 +419,7 @@ basic.forever(function () {
 })
 
 
-function warte_5_Sekunden_mit_Anzeige () {
+function warte5SekundenUndZeigeFortschritt () {
     smartfeldAktoren.oledClear()
     for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
         smartfeldAktoren.oledLoadingBar(fortschritt)

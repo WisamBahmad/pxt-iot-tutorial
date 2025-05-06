@@ -72,20 +72,20 @@ basic.pause(3000)
 smartfeldAktoren.oledClear()
 IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
 IoTCube.SendBufferSimple()
-warte_5_Sekunden_mit_Anzeige ()
+warte5SekundenUndZeigeFortschritt ()
 
 // @highlight
 basic.forever(function () {  
     IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
     IoTCube.SendBufferSimple()
-    warte_5_Sekunden_mit_Anzeige ()
+    warte5SekundenUndZeigeFortschritt ()
     led.plotBarGraph(
     seifenstandInProzent,
     100
     )
     basic.pause(100)
 })
-function warte_5_Sekunden_mit_Anzeige () {
+function warte5SekundenUndZeigeFortschritt () {
     smartfeldAktoren.oledClear()
     for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
         smartfeldAktoren.oledLoadingBar(fortschritt)
@@ -130,14 +130,14 @@ if (false) {
     smartfeldAktoren.oledClear()
     IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
     IoTCube.SendBufferSimple()
-    warte_5_Sekunden_mit_Anzeige ()
+    warte5SekundenUndZeigeFortschritt ()
 }
 basic.forever(function () {
    // @highlight
     if (false) {
         IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
         IoTCube.SendBufferSimple()
-        warte_5_Sekunden_mit_Anzeige()
+        warte5SekundenUndZeigeFortschritt()
         led.plotBarGraph(
         seifenstandInProzent,
         100
@@ -146,7 +146,7 @@ basic.forever(function () {
     basic.pause(100)
 })
 
-function warte_5_Sekunden_mit_Anzeige () {
+function warte5SekundenUndZeigeFortschritt () {
     smartfeldAktoren.oledClear()
     for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
         smartfeldAktoren.oledLoadingBar(fortschritt)
@@ -172,7 +172,7 @@ basic.forever(function () {
     if (false) {
         IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
         IoTCube.SendBufferSimple()
-        warte_5_Sekunden_mit_Anzeige()
+        warte5SekundenUndZeigeFortschritt()
         led.plotBarGraph(
         seifenstandInProzent,
         100
@@ -180,7 +180,7 @@ basic.forever(function () {
     }
     basic.pause(100)
 })
-function warte_5_Sekunden_mit_Anzeige () {
+function warte5SekundenUndZeigeFortschritt () {
     smartfeldAktoren.oledClear()
     for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
         smartfeldAktoren.oledLoadingBar(fortschritt)
@@ -218,7 +218,7 @@ basic.forever(function () {
     if (false) {
         IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
         IoTCube.SendBufferSimple()
-        warte_5_Sekunden_mit_Anzeige()
+        warte5SekundenUndZeigeFortschritt()
         led.plotBarGraph(
         seifenstandInProzent,
         100
@@ -226,7 +226,7 @@ basic.forever(function () {
     }
     basic.pause(100)
 })
-function warte_5_Sekunden_mit_Anzeige () {
+function warte5SekundenUndZeigeFortschritt () {
     smartfeldAktoren.oledClear()
     for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
         smartfeldAktoren.oledLoadingBar(fortschritt)
@@ -271,7 +271,7 @@ basic.forever(function () {
     if (false) {
         IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
         IoTCube.SendBufferSimple()
-        warte_5_Sekunden_mit_Anzeige()
+        warte5SekundenUndZeigeFortschritt()
         led.plotBarGraph(
         seifenstandInProzent,
         100
@@ -280,7 +280,7 @@ basic.forever(function () {
     basic.pause(100)
 })
 
-function warte_5_Sekunden_mit_Anzeige () {
+function warte5SekundenUndZeigeFortschritt () {
     smartfeldAktoren.oledClear()
     for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
         smartfeldAktoren.oledLoadingBar(fortschritt)
@@ -299,7 +299,6 @@ Sobald sich der Seifenstand ändert, wollen wir einen aktuellen Wert in die Clou
 * beim Start ``||variables:setze seifenstandAlt auf -1||``, bzw. auf einen Wert, der sich beim ersten Mal von der Realität unterscheidet.
 * Prüfe mit ``||Logic:Vergleich 0 ≠ 0||``, ob sich die Variablen ``||variables:seifenstandAlt||`` und ``||variables:seifenstandInProzent||`` unterscheiden. Falls ja, schicke den aktuellen Wert in die Cloud und setze ``||variables:seifenstandAlt||`` auf ``||variables:seifenstandInProzent||``.
 * Setze beim Start die Variable wieder auf true, damit der Verbindungsaufbau wierder ausgeführt wird.
-* Drücke 📥`|Download|` und prüfe, ob in der Cloud Änderungen des des Seifenstands 🧼 angezeigt werden: [iot.claviscloud.ch](https://iot.claviscloud.ch/dashboards/)
 
 ```blocks
 let distanzSensorZuSeife = 0
@@ -340,7 +339,7 @@ basic.forever(function () {
     if (seifenstandAlt != seifenstandInProzent) {
         IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
         IoTCube.SendBufferSimple()
-        warte_5_Sekunden_mit_Anzeige()
+        warte5SekundenUndZeigeFortschritt()
         led.plotBarGraph(
         seifenstandInProzent,
         100
@@ -351,7 +350,7 @@ basic.forever(function () {
     basic.pause(100)
 })
 
-function warte_5_Sekunden_mit_Anzeige () {
+function warte5SekundenUndZeigeFortschritt () {
     smartfeldAktoren.oledClear()
     for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
         smartfeldAktoren.oledLoadingBar(fortschritt)
@@ -360,6 +359,14 @@ function warte_5_Sekunden_mit_Anzeige () {
     smartfeldAktoren.oledClear()
 }
 ```
+
+## Gratuliere 🏆 - du hast das Tutorial erfolgreich bearbeitet 🚀
+
+* Drücke 📥`|Download|`
+* Prüfe, ob in der Cloud Änderungen des des Seifenstands 🧼 angezeigt werden: [iot.claviscloud.ch](https://iot.claviscloud.ch/dashboards/)
+* Behebe gegebenenfalls aufgetretene Fehler. Klicke auf das 💡- Symbol, um den gesamten Code des "Seifenspenders" anzuzeigen.
+
+* TODO: blöcke ergänzen
 
 ```template
 let seifenstandInProzent = 100
@@ -386,7 +393,7 @@ basic.pause(3000)
 smartfeldAktoren.oledClear()
 IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
 IoTCube.SendBufferSimple()
-warte_5_Sekunden_mit_Anzeige ()
+warte5SekundenUndZeigeFortschritt ()
 
 basic.forever(function () {
     if (input.buttonIsPressed(Button.A)) {
@@ -396,7 +403,7 @@ basic.forever(function () {
         }
         IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
         IoTCube.SendBufferSimple()
-        warte_5_Sekunden_mit_Anzeige ()
+        warte5SekundenUndZeigeFortschritt ()
         led.plotBarGraph(
         seifenstandInProzent,
         100
@@ -406,7 +413,7 @@ basic.forever(function () {
         seifenstandInProzent = 100
         IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
         IoTCube.SendBufferSimple()
-        warte_5_Sekunden_mit_Anzeige ()
+        warte5SekundenUndZeigeFortschritt ()
         led.plotBarGraph(
         seifenstandInProzent,
         100
@@ -416,7 +423,7 @@ basic.forever(function () {
 })
 
 // @collapsed
-function warte_5_Sekunden_mit_Anzeige () {
+function warte5SekundenUndZeigeFortschritt () {
     smartfeldAktoren.oledClear()
     for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
         smartfeldAktoren.oledLoadingBar(fortschritt)
