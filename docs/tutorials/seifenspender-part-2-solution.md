@@ -2,7 +2,16 @@
 iot-cube=github:Smartfeld/pxt-iot-cube#v1.1.2
 sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
 ```
+### @explicitHints false
+
+# Seifenspender Teil 2
+## Lösung
+
+* Unten die Lösung von Tutorial Teil 2 
+* Drücke 📥`|Download|`und teste das Programm.
+
 ```template
+
 function initialisiereLoRaVerbindung () {
     smartfeldAktoren.oledInit(128, 64)
     smartfeldAktoren.oledClear()
@@ -66,4 +75,5 @@ basic.forever(function () {
     basic.pause(150)
     basic.clearScreen()
 })
+
 ```
