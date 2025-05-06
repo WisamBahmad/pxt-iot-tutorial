@@ -103,6 +103,7 @@ basic.forever(function () {
             100
         )
     }
+    // @highlight
     basic.pause(150)
 })
 ```

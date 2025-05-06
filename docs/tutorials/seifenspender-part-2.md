@@ -122,7 +122,6 @@ seifenstandInProzent,
 smartfeldAktoren.oledInit(128, 64)
 smartfeldAktoren.oledClear()
 smartfeldAktoren.oledWriteStr("Verbinde")
-// @highlight
 IoTCube.LoRa_Join(
 eBool.enable,
 eBool.enable,
@@ -400,10 +399,6 @@ function warte5SekundenUndZeigeFortschritt () {
 Nutze dazu ``||basic:Bildschirminhalt löschen||``.
 * 📥 Drücke `|Download|` und teste Dein fertiges Programm!
 
-## Gratuliere 🏆 - du hast den Teil 2 erfolgreich bearbeitet 🚀
-
-* Weiter gehts mit Teil 3: [Teil 3](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-3)
-
 ```blocks
 let seifenstandInProzent = 100
 led.plotBarGraph(
@@ -474,6 +469,9 @@ function warte5SekundenUndZeigeFortschritt () {
 
 ```
 
+## Gratuliere 🏆 - du hast den Teil 2 erfolgreich bearbeitet 🚀
+
+* Weiter gehts mit Teil 3: [Teil 3](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-3)
 
 ```template
 let seifenstandInProzent = 100
