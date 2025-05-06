@@ -8,13 +8,13 @@
         "microphone": "*"
     },
     "files": [
-        "main.blocks",
         "main.ts",
         "docs/tutorials/seifenspender-part-1.md",
         "docs/tutorials/seifenspender-part-2.md",
         "docs/tutorials/seifenspender-part-3.md",
         "README.md",
-        "tutorial-info-cache.json"
+        "tutorial-info-cache.json",
+        "docs/tutorials/seifenspender-part-2-solution.md"
     ],
     "testFiles": [
         "test.ts"

@@ -186,9 +186,9 @@ initialisiereLoRaVerbindung()
 ## 🧼 Seifenstand senden beim Start
 
 Zu Beginn ist der Seifenstand 100 %.
-Diesen wollen wir nach dem Verbindungsaufbau senden.
+Diesen wollen wir nach dem initialisieren der LoRa Verbindung senden.
 
-* Darunter setzt du den Block ``||IoTCube:Ganzzahl mit ID_0 = 0 hinzufügen||`` ein.
+* Setze unter der initialisierung der LoRa Verbindung den Block ``||IoTCube:Ganzzahl mit ID_0 = 0 hinzufügen||`` ein.
 * Die 0 ersetzt du nun mit der Variable ``||variables:seifenstandInProzent||``.
 * Schicke nun den Seifendstand mit dem Befehl ``||IoTCube:Sende Daten||`` in die ☁️ Cloud!
 * Drücke 📥`|Download|`.
@@ -199,25 +199,31 @@ led.plotBarGraph(
 seifenstandInProzent,
 100
 )
-smartfeldAktoren.oledInit(128, 64)
-smartfeldAktoren.oledClear()
-smartfeldAktoren.oledWriteStr("Verbinde")
-IoTCube.LoRa_Join(
-eBool.enable,
-eBool.enable,
-10,
-8
-)
-while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
-    smartfeldAktoren.oledWriteStr(".")
-    basic.pause(1000)
-}
-smartfeldAktoren.oledClear()
-smartfeldAktoren.oledWriteStr("Verbunden!")
+initialisiereLoRaVerbindung()
 // @highlight
 IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
 // @highlight
 IoTCube.SendBufferSimple()
+// @hide
+function initialisiereLoRaVerbindung () {
+    smartfeldAktoren.oledInit(128, 64)
+    smartfeldAktoren.oledClear()
+    smartfeldAktoren.oledWriteStr("Verbinde")
+    IoTCube.LoRa_Join(
+    eBool.enable,
+    eBool.enable,
+    10,
+    8
+    )
+    while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
+        smartfeldAktoren.oledWriteStr(".")
+        basic.pause(1000)
+    }
+    smartfeldAktoren.oledClear()
+    smartfeldAktoren.oledWriteStr("Verbunden!")
+    basic.pause(2000)
+    smartfeldAktoren.oledClear()
+}
 ```
 
 ## ☁️ Dashboard erstellen auf Clavis Cloud 
@@ -246,32 +252,33 @@ Immer wenn sich der Seifenstand ändert, dann soll der aktuelle Stand an die Clo
 ```blocks
 basic.forever(function () {
     if (input.buttonIsPressed(Button.A)) {
-        seifenstandInProzent = seifenstandInProzent - 20
+        seifenstandInProzent += -20
         if (seifenstandInProzent < 0) {
             seifenstandInProzent = 0
         }
-        // @highlight
-        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
-        // @highlight
-        IoTCube.SendBufferSimple()
         led.plotBarGraph(
         seifenstandInProzent,
         100
         )
+        // @highlight
+        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
+        // @highlight
+        IoTCube.SendBufferSimple()
     }
     if (input.buttonIsPressed(Button.B)) {
         seifenstandInProzent = 100
-        // @highlight
-        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
-        // @highlight
-        IoTCube.SendBufferSimple()
         led.plotBarGraph(
         seifenstandInProzent,
         100
         )
+        // @highlight
+        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
+        // @highlight
+        IoTCube.SendBufferSimple()
     }
-    basic.pause(100)
+    basic.pause(150)
 })
+
 ```
 
 ## ⏱️ Funktion für Wartezeit erstellen
@@ -316,65 +323,27 @@ function warte5SekundenUndZeigeFortschritt () {
     * die Daten auf deinem Dashboard angezeigt werden: [iot.claviscloud.ch](https://iot.claviscloud.ch/dashboards/)
 
 ```blocks
-let seifenstandInProzent = 100
-led.plotBarGraph(
-seifenstandInProzent,
-100
-)
-smartfeldAktoren.oledInit(128, 64)
-smartfeldAktoren.oledClear()
-smartfeldAktoren.oledWriteStr("Verbinde")
-IoTCube.LoRa_Join(
-eBool.enable,
-eBool.enable,
-10,
-8
-)
-while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
-    smartfeldAktoren.oledWriteStr(".")
-    basic.pause(1000)
+// @hide
+function initialisiereLoRaVerbindung () {
+    smartfeldAktoren.oledInit(128, 64)
+    smartfeldAktoren.oledClear()
+    smartfeldAktoren.oledWriteStr("Verbinde")
+    IoTCube.LoRa_Join(
+    eBool.enable,
+    eBool.enable,
+    10,
+    8
+    )
+    while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
+        smartfeldAktoren.oledWriteStr(".")
+        basic.pause(1000)
+    }
+    smartfeldAktoren.oledClear()
+    smartfeldAktoren.oledWriteStr("Verbunden!")
+    basic.pause(2000)
+    smartfeldAktoren.oledClear()
 }
-smartfeldAktoren.oledClear()
-smartfeldAktoren.oledWriteStr("Verbunden!")
-basic.pause(2000)
-smartfeldAktoren.oledClear()
-basic.clearScreen()
-IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
-IoTCube.SendBufferSimple()
-// @highlight
-warte5SekundenUndZeigeFortschritt ()
-
-basic.forever(function () {
-    if (input.buttonIsPressed(Button.A)) {
-        seifenstandInProzent = seifenstandInProzent - 20
-        if (seifenstandInProzent < 0) {
-            seifenstandInProzent = 0
-        }
-        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
-        IoTCube.SendBufferSimple()
-        // @highlight
-        warte5SekundenUndZeigeFortschritt ()
-        led.plotBarGraph(
-        seifenstandInProzent,
-        100
-        )
-    }
-    if (input.buttonIsPressed(Button.B)) {
-        seifenstandInProzent = 100
-        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
-       
-        IoTCube.SendBufferSimple()
-        // @highlight
-        warte5SekundenUndZeigeFortschritt ()
-        led.plotBarGraph(
-        seifenstandInProzent,
-        100
-        )
-    }
-    basic.pause(100)
-})
-
-
+// @hide
 function warte5SekundenUndZeigeFortschritt () {
     smartfeldAktoren.oledClear()
     for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
@@ -383,6 +352,44 @@ function warte5SekundenUndZeigeFortschritt () {
     }
     smartfeldAktoren.oledClear()
 }
+let seifenstandInProzent = 100
+led.plotBarGraph(
+seifenstandInProzent,
+100
+)
+initialisiereLoRaVerbindung()
+IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
+IoTCube.SendBufferSimple()
+// @highlight
+warte5SekundenUndZeigeFortschritt()
+basic.forever(function () {
+    if (input.buttonIsPressed(Button.A)) {
+        seifenstandInProzent += -20
+        if (seifenstandInProzent < 0) {
+            seifenstandInProzent = 0
+        }
+        led.plotBarGraph(
+        seifenstandInProzent,
+        100
+        )
+        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
+        IoTCube.SendBufferSimple()
+        // @highlight
+        warte5SekundenUndZeigeFortschritt()
+    }
+    if (input.buttonIsPressed(Button.B)) {
+        seifenstandInProzent = 100
+        led.plotBarGraph(
+        seifenstandInProzent,
+        100
+        )
+        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
+        IoTCube.SendBufferSimple()
+        // @highlight
+        warte5SekundenUndZeigeFortschritt()
+    }
+    basic.pause(150)
+})
 ```
 
 ## 🪫 Energie sparen
@@ -392,64 +399,27 @@ Nutze dazu ``||basic:Bildschirminhalt löschen||``.
 * 📥 Drücke `|Download|` und teste Dein fertiges Programm!
 
 ```blocks
-let seifenstandInProzent = 100
-led.plotBarGraph(
-seifenstandInProzent,
-100
-)
-smartfeldAktoren.oledInit(128, 64)
-smartfeldAktoren.oledClear()
-smartfeldAktoren.oledWriteStr("Verbinde")
-IoTCube.LoRa_Join(
-eBool.enable,
-eBool.enable,
-10,
-8
-)
-while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
-    smartfeldAktoren.oledWriteStr(".")
-    basic.pause(1000)
+// @hide
+function initialisiereLoRaVerbindung () {
+    smartfeldAktoren.oledInit(128, 64)
+    smartfeldAktoren.oledClear()
+    smartfeldAktoren.oledWriteStr("Verbinde")
+    IoTCube.LoRa_Join(
+    eBool.enable,
+    eBool.enable,
+    10,
+    8
+    )
+    while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
+        smartfeldAktoren.oledWriteStr(".")
+        basic.pause(1000)
+    }
+    smartfeldAktoren.oledClear()
+    smartfeldAktoren.oledWriteStr("Verbunden!")
+    basic.pause(2000)
+    smartfeldAktoren.oledClear()
 }
-smartfeldAktoren.oledClear()
-smartfeldAktoren.oledWriteStr("Verbunden!")
-basic.pause(2000)
-smartfeldAktoren.oledClear()
-basic.clearScreen()
-IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
-IoTCube.SendBufferSimple()
-warte5SekundenUndZeigeFortschritt ()
-
-basic.forever(function () {
-    if (input.buttonIsPressed(Button.A)) {
-        seifenstandInProzent = seifenstandInProzent - 20
-        if (seifenstandInProzent < 0) {
-            seifenstandInProzent = 0
-        }
-        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
-        IoTCube.SendBufferSimple()
-        warte5SekundenUndZeigeFortschritt ()
-        led.plotBarGraph(
-        seifenstandInProzent,
-        100
-        )
-    }
-    if (input.buttonIsPressed(Button.B)) {
-        seifenstandInProzent = 100
-        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
-       
-        IoTCube.SendBufferSimple()
-        warte5SekundenUndZeigeFortschritt ()
-        led.plotBarGraph(
-        seifenstandInProzent,
-        100
-        )
-    }
-    // @highlight
-    basic.clearScreen()
-    basic.pause(100)
-})
-
-
+// @hide
 function warte5SekundenUndZeigeFortschritt () {
     smartfeldAktoren.oledClear()
     for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
@@ -458,6 +428,43 @@ function warte5SekundenUndZeigeFortschritt () {
     }
     smartfeldAktoren.oledClear()
 }
+let seifenstandInProzent = 100
+led.plotBarGraph(
+seifenstandInProzent,
+100
+)
+initialisiereLoRaVerbindung()
+IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
+IoTCube.SendBufferSimple()
+warte5SekundenUndZeigeFortschritt()
+basic.forever(function () {
+    if (input.buttonIsPressed(Button.A)) {
+        seifenstandInProzent += -20
+        if (seifenstandInProzent < 0) {
+            seifenstandInProzent = 0
+        }
+        led.plotBarGraph(
+        seifenstandInProzent,
+        100
+        )
+        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
+        IoTCube.SendBufferSimple()
+        warte5SekundenUndZeigeFortschritt()
+    }
+    if (input.buttonIsPressed(Button.B)) {
+        seifenstandInProzent = 100
+        led.plotBarGraph(
+        seifenstandInProzent,
+        100
+        )
+        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
+        IoTCube.SendBufferSimple()
+        warte5SekundenUndZeigeFortschritt()
+    }
+    basic.pause(150)
+    // @highlight
+    basic.clearScreen()
+})
 
 ```
 
