@@ -44,47 +44,21 @@ sich der Seifenstand beim Drücken von Knopf A?
 Die Knöpfe A und B sollen durch eine reale Messung mittels Ultraschallsensor 
 ersetzt werden. Welcher Code wird neu nicht mehr benötigt? 
 * Klicke auf die Glühbirne 💡, dann siehst du den Code, wie er ohne die Knöpfe aussieht.
-Das Senden des Seifenstands wurde belassen. 
+Das Senden des Seifenstands und die Wartefunktion wurden belassen. 
 * Passe den Code entsprechend dem Beispiel (Glühbirne 💡) an.
-```blocks
-// @collapsed
-let seifenstandInProzent = 100
-led.plotBarGraph(
-seifenstandInProzent,
-100
-)
-smartfeldAktoren.oledInit(128, 64)
-smartfeldAktoren.oledClear()
-smartfeldAktoren.oledWriteStr("Verbinde")
-IoTCube.LoRa_Join(
-eBool.enable,
-eBool.enable,
-10,
-8
-)
-while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
-    smartfeldAktoren.oledWriteStr(".")
-    basic.pause(1000)
-}
-smartfeldAktoren.oledClear()
-smartfeldAktoren.oledWriteStr("Verbunden!")
-basic.pause(3000)
-smartfeldAktoren.oledClear()
-IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
-IoTCube.SendBufferSimple()
-warte5SekundenUndZeigeFortschritt ()
 
+```blocks
 // @highlight
 basic.forever(function () {  
+    led.plotBarGraph(seifenstandInProzent,100)
     IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
     IoTCube.SendBufferSimple()
-    warte5SekundenUndZeigeFortschritt ()
-    led.plotBarGraph(
-    seifenstandInProzent,
-    100
-    )
-    basic.pause(100)
+    warte5SekundenUndZeigeFortschritt()
+    basic.pause(150)
+    basic.clearScreen()
 })
+
+// @hide
 function warte5SekundenUndZeigeFortschritt () {
     smartfeldAktoren.oledClear()
     for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
@@ -98,10 +72,11 @@ function warte5SekundenUndZeigeFortschritt () {
 ## Senden vorerst verhindern
 
 Wir wollen vorerst noch nichts an die ☁️ Cloud senden.
-* Modifiziere **dauerhaft** so, wie unter dem 💡angezeigt. 
+* Modifiziere **dauerhaft** so, wie unter der💡angezeigt. 
 Verwende dazu den Block ``||Logic:wenn wahr dann||``. 
 Dieser verhindert das Senden sobald du wahr auf **falsch** stellst.
-* Modifiziere **beim Start** ebenfalls so, wie unter dem 💡angezeigt. 
+* **beim Start** verwendest Du ebenfalls den Block ``||Logic:wenn wahr dann||``,
+um das Senden der Daten zu verhindern (Block auf **falsch** stellen).
 
 ```blocks
 let seifenstandInProzent = 100
@@ -109,10 +84,40 @@ led.plotBarGraph(
 seifenstandInProzent,
 100
 )
-smartfeldAktoren.oledInit(128, 64)
-smartfeldAktoren.oledClear()
+initialisiereLoRaVerbindung()
 // @highlight
 if (false) {
+    IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
+    IoTCube.SendBufferSimple()
+    warte5SekundenUndZeigeFortschritt()
+}
+
+basic.forever(function () {
+    led.plotBarGraph(seifenstandInProzent,100)
+    // @highlight
+    if (false) {
+        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
+        IoTCube.SendBufferSimple()
+        warte5SekundenUndZeigeFortschritt()
+    }
+    basic.pause(150)
+    basic.clearScreen()
+})
+
+// @hide
+function warte5SekundenUndZeigeFortschritt () {
+    smartfeldAktoren.oledClear()
+    for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
+        smartfeldAktoren.oledLoadingBar(fortschritt)
+        basic.pause(50)
+    }
+    smartfeldAktoren.oledClear()
+}
+
+// @hide
+function initialisiereLoRaVerbindung () {
+    smartfeldAktoren.oledInit(128, 64)
+    smartfeldAktoren.oledClear()
     smartfeldAktoren.oledWriteStr("Verbinde")
     IoTCube.LoRa_Join(
     eBool.enable,
@@ -126,32 +131,7 @@ if (false) {
     }
     smartfeldAktoren.oledClear()
     smartfeldAktoren.oledWriteStr("Verbunden!")
-    basic.pause(3000)
-    smartfeldAktoren.oledClear()
-    IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
-    IoTCube.SendBufferSimple()
-    warte5SekundenUndZeigeFortschritt ()
-}
-basic.forever(function () {
-   // @highlight
-    if (false) {
-        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
-        IoTCube.SendBufferSimple()
-        warte5SekundenUndZeigeFortschritt()
-        led.plotBarGraph(
-        seifenstandInProzent,
-        100
-        )
-    }
-    basic.pause(100)
-})
-
-function warte5SekundenUndZeigeFortschritt () {
-    smartfeldAktoren.oledClear()
-    for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
-        smartfeldAktoren.oledLoadingBar(fortschritt)
-        basic.pause(50)
-    }
+    basic.pause(2000)
     smartfeldAktoren.oledClear()
 }
 ```
@@ -169,17 +149,20 @@ anstelle der 0 ein. Belasse den Pin auf P0.
 basic.forever(function () {
     // @highlight
     distanzSensorZuSeife = smartfeldSensoren.measureInCentimetersV2(DigitalPin.P0)
+    led.plotBarGraph(
+    seifenstandInProzent,
+    100
+    )
     if (false) {
         IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
         IoTCube.SendBufferSimple()
         warte5SekundenUndZeigeFortschritt()
-        led.plotBarGraph(
-        seifenstandInProzent,
-        100
-        )
     }
-    basic.pause(100)
+    basic.pause(150)
+    basic.clearScreen()
 })
+
+// @hide
 function warte5SekundenUndZeigeFortschritt () {
     smartfeldAktoren.oledClear()
     for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
@@ -215,17 +198,20 @@ basic.forever(function () {
     smartfeldAktoren.oledWriteNum(Math.round(distanzSensorZuSeife))
      // @highlight
     smartfeldAktoren.oledWriteStr(" cm")
+    led.plotBarGraph(
+    seifenstandInProzent,
+    100
+    )
     if (false) {
         IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
         IoTCube.SendBufferSimple()
         warte5SekundenUndZeigeFortschritt()
-        led.plotBarGraph(
-        seifenstandInProzent,
-        100
-        )
     }
-    basic.pause(100)
+    basic.pause(150)
+    basic.clearScreen()
 })
+
+// @hide
 function warte5SekundenUndZeigeFortschritt () {
     smartfeldAktoren.oledClear()
     for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
@@ -268,18 +254,20 @@ basic.forever(function () {
     smartfeldAktoren.oledWriteNum(seifenstandInProzent)
     // @highlight
     smartfeldAktoren.oledWriteStr(" %")
+    led.plotBarGraph(
+    seifenstandInProzent,
+    100
+    )
     if (false) {
         IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
         IoTCube.SendBufferSimple()
         warte5SekundenUndZeigeFortschritt()
-        led.plotBarGraph(
-        seifenstandInProzent,
-        100
-        )
     }
-    basic.pause(100)
+    basic.pause(150)
+    basic.clearScreen()
 })
 
+// @hide
 function warte5SekundenUndZeigeFortschritt () {
     smartfeldAktoren.oledClear()
     for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
@@ -369,60 +357,25 @@ function warte5SekundenUndZeigeFortschritt () {
 * TODO: blöcke ergänzen
 
 ```template
-let seifenstandInProzent = 100
-led.plotBarGraph(
-seifenstandInProzent,
-100
-)
-smartfeldAktoren.oledInit(128, 64)
-smartfeldAktoren.oledClear()
-smartfeldAktoren.oledWriteStr("Verbinde")
-IoTCube.LoRa_Join(
-eBool.enable,
-eBool.enable,
-10,
-8
-)
-while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
-    smartfeldAktoren.oledWriteStr(".")
-    basic.pause(1000)
+function initialisiereLoRaVerbindung () {
+    smartfeldAktoren.oledInit(128, 64)
+    smartfeldAktoren.oledClear()
+    smartfeldAktoren.oledWriteStr("Verbinde")
+    IoTCube.LoRa_Join(
+    eBool.enable,
+    eBool.enable,
+    10,
+    8
+    )
+    while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
+        smartfeldAktoren.oledWriteStr(".")
+        basic.pause(1000)
+    }
+    smartfeldAktoren.oledClear()
+    smartfeldAktoren.oledWriteStr("Verbunden!")
+    basic.pause(2000)
+    smartfeldAktoren.oledClear()
 }
-smartfeldAktoren.oledClear()
-smartfeldAktoren.oledWriteStr("Verbunden!")
-basic.pause(3000)
-smartfeldAktoren.oledClear()
-IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
-IoTCube.SendBufferSimple()
-warte5SekundenUndZeigeFortschritt ()
-
-basic.forever(function () {
-    if (input.buttonIsPressed(Button.A)) {
-        seifenstandInProzent = seifenstandInProzent - 20
-        if (seifenstandInProzent < 0) {
-            seifenstandInProzent = 0
-        }
-        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
-        IoTCube.SendBufferSimple()
-        warte5SekundenUndZeigeFortschritt ()
-        led.plotBarGraph(
-        seifenstandInProzent,
-        100
-        )
-    }
-    if (input.buttonIsPressed(Button.B)) {
-        seifenstandInProzent = 100
-        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
-        IoTCube.SendBufferSimple()
-        warte5SekundenUndZeigeFortschritt ()
-        led.plotBarGraph(
-        seifenstandInProzent,
-        100
-        )
-    }
-    basic.pause(100)
-})
-
-// @collapsed
 function warte5SekundenUndZeigeFortschritt () {
     smartfeldAktoren.oledClear()
     for (let fortschritt = 0; fortschritt <= 100; fortschritt++) {
@@ -431,4 +384,40 @@ function warte5SekundenUndZeigeFortschritt () {
     }
     smartfeldAktoren.oledClear()
 }
+let seifenstandInProzent = 100
+led.plotBarGraph(
+seifenstandInProzent,
+100
+)
+initialisiereLoRaVerbindung()
+IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
+IoTCube.SendBufferSimple()
+warte5SekundenUndZeigeFortschritt()
+basic.forever(function () {
+    if (input.buttonIsPressed(Button.A)) {
+        seifenstandInProzent += -20
+        if (seifenstandInProzent < 0) {
+            seifenstandInProzent = 0
+        }
+        led.plotBarGraph(
+        seifenstandInProzent,
+        100
+        )
+        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
+        IoTCube.SendBufferSimple()
+        warte5SekundenUndZeigeFortschritt()
+    }
+    if (input.buttonIsPressed(Button.B)) {
+        seifenstandInProzent = 100
+        led.plotBarGraph(
+        seifenstandInProzent,
+        100
+        )
+        IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
+        IoTCube.SendBufferSimple()
+        warte5SekundenUndZeigeFortschritt()
+    }
+    basic.pause(150)
+    basic.clearScreen()
+})
 ```
