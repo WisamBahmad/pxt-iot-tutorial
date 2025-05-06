@@ -9,12 +9,12 @@ sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
 
 ## 📗 Einführung,  Teil 1
 
-**Vorraussetzungen**
+**Voraussetzungen**
 * Micro:Bit Basics: 
     * Du kannst Programme erstellen und herunterladen.
     * Du kennst die Einstiegspunkte "Beim Start" und "Dauerhaft".
     * Dir ist klar, dass Programme in der Regel schrittweise (von oben nach unten) abgearbeitet werden. Zudem kannst Du Schleifen und Verzweigungen einsetzen.
-    * Es ist bekannnt, dass Kategorien einzelne Blöcke (z.B. ``||basic:Grundlagen||``) beinhalten, welche in Programmen genutzt werden können.
+    * Es ist bekannt, dass Kategorien einzelne Blöcke (z.B. ``||basic:Grundlagen||``) beinhalten, welche in Programmen genutzt werden können.
     * Variablen können erstellt, verwendet und verändert werden
 
 **Lernergebnis**
@@ -37,7 +37,7 @@ Klicke auf das 💡- Symbol, falls Du zusätzliche Hilfe brauchst und um deinen 
 let hinweisGefunden = true;
 ```
 
-## 👁️ Vorraussetzungen @showdialog
+## 👁️ Voraussetzungen @showdialog
 * Für Teil 1 brauchst Du grundsätzlich nur einen Micro:Bit. 
 * Falls du lieber gleich den IoT- Cube nehmen möchtest, kannst du ihn so anschliessen. Achte auf
 die rote Markierung:
@@ -50,7 +50,7 @@ die rote Markierung:
 
 ## 🧼 Variable für den Seifenstand
 Um den Seifenstand des Seifenspenders zu speichern, nutzen wir eine Variable.
-* Um den aktuellen Seifenstand zu speichern, benötigen wir eine Variable, die den Seitfenstand in Prozent anzeigt: 
+* Um den aktuellen Seifenstand zu speichern, benötigen wir eine Variable, die den Seifenstand in Prozent anzeigt: 
 ``||variables:Erstelle eine Variable...||`` und benenne sie mit **seifenstandInProzent** 🧼.
 * Der Seifenspender ist am Beginn vollständig gefüllt. Setze deshalb ``||basic:beim Start||`` den Seifenstand auf 100 %. Nutze dazu die zuvor angelegte Variable: ``||variables:setze seifenstandInProzent auf 100||``🧼
 
@@ -62,8 +62,8 @@ let seifenstandInProzent = 100
 
 ## 🧼 Seifenstand anzeigen
 Ziel ist es, den aktuellen Seifenstand am IoT Cube anzuzeigen.
-* Hol dir den Block ``||led:Zeichne Säulendiagramm|``🟥 und ziehe diesen in den Block **beim Start** direkt unter die Variable **seifenstandInProzent**🧼
-* Setze die Variable ``||variables:seifenstandInProzent||``🧼 ind das erste Feld des Befehls **zeichne Säulendiagramm von**. 
+* Hol dir den Block ``||led:Zeichne Säulendiagramm||``🟥 und ziehe diesen in den Block **beim Start** direkt unter die Variable **seifenstandInProzent**🧼
+* Setze die Variable ``||variables:seifenstandInProzent||``🧼 in das erste Feld des Befehls **zeichne Säulendiagramm von**. 
 * Ändere den Bereich von **seifenstandInProzent**🧼 bis 100. 
 * 📥 Drücke `|Download|` und kontrolliere die LED-Anzeige:  
 🟥🟥🟥🟥🟥  
@@ -104,10 +104,10 @@ basic.forever(function () {
         )
     }
     basic.pause(150)
-}
+})
 ```
 
-## 🧼 Flüllstand kleiner 0 verhindern
+## 🧼 Füllstand kleiner 0 verhindern
 Damit wir vermeiden, dass der Füllstand unter 0% fällt, benötigen wir eine weitere Bedingung, die prüft, 
 ob der Seifenstand unter 0% gefallen ist. Wenn dies der Fall ist, soll der Seifenstand auf 0% gesetzt werden.
 * Ergänze einen weiteren Block ``||Logic:wenn wahr dann||`` nachdem der Seifenstand 🧼 um 20% reduziert wurde.
@@ -136,7 +136,7 @@ basic.forever(function () {
             100
         )
     }
-}
+})
 ```
 
 ## ➕ Seifenspender auffüllen mit Knopf B
@@ -169,12 +169,13 @@ basic.forever(function () {
     if (input.buttonIsPressed(Button.B)) {
         // @highlight
         seifenstandInProzent = 100
+        led.plotBarGraph(
+            seifenstandInProzent,
+            100
+        )
     }
-    led.plotBarGraph(
-        seifenstandInProzent,
-        100
-    )
-}
+   
+})
 ```
 
 ## Gratuliere 🏆 - du hast den Teil 1 erfolgreich bearbeitet 🚀

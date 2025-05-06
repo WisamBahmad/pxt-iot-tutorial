@@ -9,7 +9,7 @@ sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
 
 ## 📗 Einführung, Teil 2
 
-Vorraussetzungen: 🌱 IoT Basics abgeschlossen und IoT Tutorial [Teil 1 - noch ohne Internetverbindung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-1) abgeschlossen.
+Voraussetzungen: 🌱 IoT Basics abgeschlossen und IoT Tutorial [Teil 1 - noch ohne Internetverbindung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-1) abgeschlossen.
 Schwierigkeitsgrad: 🔥🔥⚪⚪
 
 Aus dem Tutorial Teil 1 hast du bereits ein Programm, das den Seifenstand simuliert. 
@@ -20,7 +20,7 @@ funktionsfähiges Programm, das:
 * Den Seifenstand🧼  über LoRa🛜 sendet. 
 * Eine Ladebalken-Animation⏳ für Wartezeiten darstellt.
 
-## 👁️ Vorraussetzungen @showdialog
+## 👁️ Voraussetzungen @showdialog
 * Du benötigst einen IoT Cube dessen OLED Display 🖥️ an J5 angeschlossen ist.
 * Schliesse den Cube so an, falls noch nicht gemacht:
 ![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/iot-cube-anschliessen-klein.png)
@@ -67,7 +67,7 @@ Auf dem OLED- Display🖥️ wollen wir den Verbindungsaufbau mit **...** anzeig
 * Ziehe den Block 🛜``||IoTCube:LoRa Netzwerk-Verbindung||`` zuunterst in 
 ``||basic:beim Start||`` hinein.
 * Ziehe darunter den Block ``||loops:während falsch mache||`` hinein. Weil
-das Verbinden je nach Umständen 5 is 30 Sekunden dauert, wollen wir in dieser
+das Verbinden je nach Umständen 5 bis 30 Sekunden dauert, wollen wir in dieser
 Schleife verbleiben, solange die Verbindung noch **nicht** besteht.  
 * Ziehe dazu den Block ``||Logic:nicht||`` auf die Schleife,
 um den Wahrheitswert zu negieren.
@@ -106,7 +106,8 @@ while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
 Die Schleife wird beendet, wenn die Verbindung besteht, d.h. wir können nach der Schleife "Verbunden" am Display anzeigen:
 
 * Unter der Schleife löschst Du den Displayinhalt mittels 🖥️``||SmartfeldAktoren:Lösche Displayinhalt||``.
-* Im Anschluss schreibst du ein "Verbunden!" auf das OLED- Display🖥️.
+* Im Anschluss schreibst du ein "Verbunden!" auf das OLED- Display🖥️,
+wartest 2 Sekunden und löschst den Text wieder auf dem Display.
 * Drücke 📥`|Download|` und kontrolliere die Anzeige am OLED- Display🖥️.
 
 Wird dir zuvor "Verbinde" und im Anschluss "Verbunden" angezeigt?
@@ -136,6 +137,49 @@ while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
 smartfeldAktoren.oledClear()
 // @highlight
 smartfeldAktoren.oledWriteStr("Verbunden!")
+// @highlight
+basic.pause(2000)
+// @highlight
+smartfeldAktoren.oledClear()
+```
+
+## 🛜 Funktion für den Verbindungsaufbau
+
+Um die Übersicht zu behalten, werden beim Programmieren oft Funktionen eingesetzt. Wir wollen eine Funktion mit dem Namen **initialisiereLoRaVerbindung** erstellen, welche
+den Verbindungsaufbau beinhaltet.
+* Hol dir den Block ``||functions:Erstelle eine Funktion...||`` und benenne die Funktion **initialisiereLoRaVerbindung**.
+* Ziehe alle Code- Blocke, welche im Zusammenhang mit dem Verbindungsaufbau stehen in diese neue Funktion. 
+Klicke auf die 💡 Glühbirne, um zu klären, welche Code- Blöcke gemeint sind.
+* Hol dir den Block ``||functions:Aufruf initialisiereLoRaVerbindung ||`` und ziehe diesen zuunterst in den Block **beim Start**.
+
+```blocks
+// @highlight
+function initialisiereLoRaVerbindung() {
+    smartfeldAktoren.oledInit(128, 64)
+    smartfeldAktoren.oledClear()
+    smartfeldAktoren.oledWriteStr("Verbinde")
+    IoTCube.LoRa_Join(
+    eBool.enable,
+    eBool.enable,
+    10,
+    8
+    )
+    while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
+        smartfeldAktoren.oledWriteStr(".")
+        basic.pause(1000)
+    }
+    smartfeldAktoren.oledClear()
+    smartfeldAktoren.oledWriteStr("Verbunden!")
+    basic.pause(2000)
+    smartfeldAktoren.oledClear()
+}
+
+let seifenstandInProzent = 100
+led.plotBarGraph(
+seifenstandInProzent,
+100
+)
+initialisiereLoRaVerbindung()
 ```
 
 ## 🧼 Seifenstand senden beim Start
@@ -143,7 +187,7 @@ smartfeldAktoren.oledWriteStr("Verbunden!")
 Zu Beginn ist der Seifenstand 100 %.
 Diesen wollen wir nach dem Verbindungsaufbau senden.
 
-* ``||basic:pausiere (ms)||`` für 2 Sekunden (=2000 ms), nachdem der Text "Vebunden!" ausgegeben wurde,
+* ``||basic:pausiere (ms)||`` für 2 Sekunden (=2000 ms), nachdem der Text "Verbunden!" ausgegeben wurde,
 damit dieser Text mindestens für diese Zeit auf dem Display steht.
 * Lösche danach den Text mit ``||SmartfeldAktoren:Lösche Displayinhalt||`` 
 um Energie zu sparen.
@@ -187,12 +231,12 @@ IoTCube.SendBufferSimple()
 
 ## ☁️ Dashboard erstellen auf Clavis Cloud 
 
-Nun geht es an die Visualisierung der Daten auf der  Clavis Cloud ☁️.
+Nun geht es an die Visualisierung der Daten auf der Clavis Cloud ☁️.
 * Rufe die Website [🌍iot.claviscloud.ch](https://iot.claviscloud.ch/home) auf.
 * Melde dich an (Login- Informationen kriegst Du von der Lehrperson/ Kursleitung).
 * Schau dir dieses [📹 Video](https://wiki.smartfeld.ch/lib/exe/fetch.php?media=dashboard_erstellen_seifenspender.mp4) an. Es beinhaltet folgende Schritte. 
 Führe diese selbst aus und erstelle somit ein Dashboard.
- * Erstelle ein neues Dashboard in euerer Klassengruppe 
+ * Erstelle ein neues Dashboard in eurer Klassengruppe 
  * Erstelle ein Widget für die Anzeige des Seifenstandes🧼
 
 ## 🧼 Seifenstand bei Änderung senden
@@ -246,7 +290,7 @@ Nach dem Versenden von Daten über LoRa ist eine Wartezeit von mindestens
 Hintergrund: Während dieser 5 Sekunden steht ein Empfangsfenster zur Verfügung, 
 über das Daten von der Cloud zum Cube übertragen werden können.
 
-Baue dir mit folgenden Blöcken die Wartefunktion nach, welche im Tootip
+Baue dir mit folgenden Blöcken die Wartefunktion nach, welche im Tooltip
 (die 💡 Glühbirne links unten) angezeigt wird.
 
 * ``||function:Erstelle eine Funktion||`` (im Bereich Fortgeschritten zu finden)

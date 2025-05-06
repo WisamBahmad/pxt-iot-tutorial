@@ -9,21 +9,21 @@ sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
 
 ## 📗 Einführung, Teil 3
 
-Vorraussetzungen: 🌱 IoT Basics abgeschlossen und IoT Tutorial [Teil 2](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-2) abgeschlossen.
+Voraussetzungen: 🌱 IoT Basics abgeschlossen und IoT Tutorial [Teil 2](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-2) abgeschlossen.
 Schwierigkeitsgrad: 🔥🔥🔥⚪
 
 Aus dem Tutorial Teil 2 hast du bereits ein Programm, das den Seifenstand mit Knopf A und B 
 simuliert und über LoRa🛜 ins Internet sendet. Um der realen Anwendung näher zu kommen, 
 ersetzt Du die Knöpfe A und B durch einen Ultraschallsensor, der den Seifenstand misst.
 
-Am Schuluss hast du ein Programm, welches...
+Am Schluss hast du ein Programm, welches...
 
 * Den Seifenstand mit einem Ultraschallsensor🦇 misst.
 * Eine LoRa-Verbindung🛜 aufbaut. 
 * Den Seifenstand🧼 über LoRa🛜 sendet. 
 * Eine Ladebalken-Animation⏳ für Wartezeiten darstellt.
 
-## 👁️ Vorraussetzungen @showdialog
+## 👁️ Voraussetzungen @showdialog
 
 Du brauchst gegenüber Tutorial Teil 2 folgendes:
 * Schliesse den Ultraschallsensor🦇 an J1 an.
@@ -45,7 +45,7 @@ Die Knöpfe A und B sollen durch eine reale Messung mittels Ultraschallsensor
 ersetzt werden. Welcher Code wird neu nicht mehr benötigt? 
 * Klicke auf die Glühbirne 💡, dann siehst du den Code, wie er ohne die Knöpfe aussieht.
 Das Senden des Seifenstands wurde belassen. 
-* Passe den Code ensprechend dem Beispiel (Glühbirne 💡) an.
+* Passe den Code entsprechend dem Beispiel (Glühbirne 💡) an.
 ```blocks
 // @collapsed
 let seifenstandInProzent = 100
@@ -101,7 +101,7 @@ Wir wollen vorerst noch nichts an die ☁️ Cloud senden.
 * Modifiziere **dauerhaft** so, wie unter dem 💡angezeigt. 
 Verwende dazu den Block ``||Logic:wenn wahr dann||``. 
 Dieser verhindert das Senden sobald du wahr auf **falsch** stellst.
-* Modiziere **beim Start** ebenfalls so, wie unter dem 💡angezeigt. 
+* Modifiziere **beim Start** ebenfalls so, wie unter dem 💡angezeigt. 
 
 ```blocks
 let seifenstandInProzent = 100
@@ -203,7 +203,7 @@ ein.
 * Ersetze die 0 mit der Variable ``||variables:distanzSensorZuSeife||``
 * Runde den Wert auf ganze Zahlen mit dem Block ``||math:runden||``
 * Schreibe nach dem Messwert die Masseinheit **cm** auf das OLED- Display 🖥️ mit ``||SmartfeldAktoren:schreibe String||``
-* Drücke 📥`|Download|` und kontrolliere die Anzeige am OLED Display 🖥️. Wird die Distanz zwischen Sensor und Hinderniss angezeigt?
+* Drücke 📥`|Download|` und kontrolliere die Anzeige am OLED Display 🖥️. Wird die Distanz zwischen Sensor und Hindernis angezeigt?
 
 ```blocks
 basic.forever(function () {
@@ -246,12 +246,12 @@ Um die Anwendung des Seifenspenders zu testen, kannst Du dir mit Karton einen Ha
 ## Seifenstand🧼 berechnen
 ![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/Seifenspender_Distanzen.png)
 * Aus der Messgrösse distanzSensorZuSeife kannst du den Seifenstand🧼 in % berechnen. Siehst Du die Zusammenhänge?
-* Bechechne den Seifenstand in Prozent. Nutze ``||math:Mathematik||`` sowie ``||variables:setze seifenstandInProzent auf ... ||``
+* Berechne den Seifenstand in Prozent. Nutze ``||math:Mathematik||`` sowie ``||variables:setze seifenstandInProzent auf ... ||``
 * Runde den Seifenstand in Prozent auf ganze Zahlen mit ``||math:runden||``
 * Seifenstände kleiner 0% sollen auf 0% begrenzt werden. Verwende dazu ``||Logic:wenn wahr dann||``.
 * Gib den Seifenstand🧼 in % auf dem OLED- Display 🖥️ aus (Anstelle der Distanz)
 * Drücke 📥`|Download|` und kontrolliere die Anzeige am OLED Display 🖥️. Wird der Seifenstand in % angezeigt? Bewege den Schieber und teste das Programm!
-* Lass dir mit der Glühbirne 💡 eine mögliche Lösung anzeigen, falls Du kein Erfolg hast.
+* Lass dir mit der Glühbirne 💡 eine mögliche Lösung anzeigen, falls Du kein Erfolg hast. Wenn der Abstand 0 cm ist, bedeutet das 100 %, bei 25 cm bedeutet es 0 %.
 
 ```blocks
 basic.forever(function () {
@@ -298,7 +298,7 @@ Sobald sich der Seifenstand ändert, wollen wir einen aktuellen Wert in die Clou
 ``||variables:Erstelle eine Variable...||`` und benenne sie mit **seifenstandAlt** .
 * beim Start ``||variables:setze seifenstandAlt auf -1||``, bzw. auf einen Wert, der sich beim ersten Mal von der Realität unterscheidet.
 * Prüfe mit ``||Logic:Vergleich 0 ≠ 0||``, ob sich die Variablen ``||variables:seifenstandAlt||`` und ``||variables:seifenstandInProzent||`` unterscheiden. Falls ja, schicke den aktuellen Wert in die Cloud und setze ``||variables:seifenstandAlt||`` auf ``||variables:seifenstandInProzent||``.
-* Setze beim Start die Variable wieder auf true, damit der Verbindungsaufbau wierder ausgeführt wird.
+* Setze beim Start die Variable wieder auf true, damit der Verbindungsaufbau wieder ausgeführt wird.
 
 ```blocks
 let distanzSensorZuSeife = 0
@@ -363,7 +363,7 @@ function warte5SekundenUndZeigeFortschritt () {
 ## Gratuliere 🏆 - du hast das Tutorial erfolgreich bearbeitet 🚀
 
 * Drücke 📥`|Download|`
-* Prüfe, ob in der Cloud Änderungen des des Seifenstands 🧼 angezeigt werden: [iot.claviscloud.ch](https://iot.claviscloud.ch/dashboards/)
+* Prüfe, ob in der Cloud Änderungen des Seifenstands 🧼 angezeigt werden: [iot.claviscloud.ch](https://iot.claviscloud.ch/dashboards/)
 * Behebe gegebenenfalls aufgetretene Fehler. Klicke auf das 💡- Symbol, um den gesamten Code des "Seifenspenders" anzuzeigen.
 
 * TODO: blöcke ergänzen
