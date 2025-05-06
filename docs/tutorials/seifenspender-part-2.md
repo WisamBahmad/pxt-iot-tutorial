@@ -72,12 +72,11 @@ Schleife verbleiben, solange die Verbindung noch **nicht** besteht.
 * Ziehe dazu den Block ``||Logic:nicht||`` auf die Schleife,
 um den Wahrheitswert zu negieren.
 * Füge in den **nicht** Block nun 🛜``||IoTCube:Lese Gerätestatus-Bit||`` ein.
-Ändere darin das Bit auf "Verbunden". Der Code in der Schleife lautet nun "während nicht Lese gerätestatus-Bit verbunden". Programmierer/innen lesen den Code so: 
+Ändere darin das Bit auf **Verbunden**. Der Code in der Schleife lautet nun "während nicht Lese gerätestatus-Bit verbunden". Programmierer/innen lesen den Code so: 
 "Während das Gerät nicht verbunden ist." 
-* Warte in der Schleife 1 Sekunde (1000 ms). Nutze ``||basic:pausiere (ms)||``.
 * Schreibe mit dem Block 
-🖥️ ``||SmartfeldAktoren:schreibe String||`` bei jedem Schleifendurchlauf ein "."
-auf das Display.
+🖥️ ``||SmartfeldAktoren:schreibe String||`` bei jedem Schleifendurchlauf ein "." auf das Display.
+* Warte in der Schleife 1 Sekunde (1000 ms). Nutze ``||basic:pausiere (ms)||``.
 
 ```blocks
 let seifenstandInProzent = 100
@@ -106,12 +105,15 @@ while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
 Die Schleife wird beendet, wenn die Verbindung besteht, d.h. wir können nach der Schleife "Verbunden" am Display anzeigen:
 
 * Unter der Schleife löschst Du den Displayinhalt mittels 🖥️``||SmartfeldAktoren:Lösche Displayinhalt||``.
-* Im Anschluss schreibst du ein "Verbunden!" auf das OLED- Display🖥️,
-wartest 2 Sekunden und löschst den Text wieder auf dem Display.
+* Im Anschluss schreibst du ein "Verbunden!" auf das OLED- Display🖥️
+* ``||basic:pausiere (ms)||`` für 2 Sekunden (=2000 ms), nachdem der Text "Verbunden!" ausgegeben wurde,
+damit dieser Text mindestens für diese Zeit auf dem Display steht.
+* Lösche danach den Text mit ``||SmartfeldAktoren:Lösche Displayinhalt||`` 
+um Energie zu sparen.
 * Drücke 📥`|Download|` und kontrolliere die Anzeige am OLED- Display🖥️.
 
-Wird dir zuvor "Verbinde" und im Anschluss "Verbunden" angezeigt?
-Werden dir die zunehmend mehr Punkte angezeigt, während die Verbindung aufgebaut wird?
+Wird dir zuvor "Verbinde" und im Anschluss zunehmend mehr Punkte angezeigt, während die Verbindung aufgebaut wird?
+Wird dir "Verbunden!" für 2 Sekunden angezeigt?
 
 ```blocks
 let seifenstandInProzent = 100
@@ -186,10 +188,6 @@ initialisiereLoRaVerbindung()
 Zu Beginn ist der Seifenstand 100 %.
 Diesen wollen wir nach dem Verbindungsaufbau senden.
 
-* ``||basic:pausiere (ms)||`` für 2 Sekunden (=2000 ms), nachdem der Text "Verbunden!" ausgegeben wurde,
-damit dieser Text mindestens für diese Zeit auf dem Display steht.
-* Lösche danach den Text mit ``||SmartfeldAktoren:Lösche Displayinhalt||`` 
-um Energie zu sparen.
 * Darunter setzt du den Block ``||IoTCube:Ganzzahl mit ID_0 = 0 hinzufügen||`` ein.
 * Die 0 ersetzt du nun mit der Variable ``||variables:seifenstandInProzent||``.
 * Schicke nun den Seifendstand mit dem Befehl ``||IoTCube:Sende Daten||`` in die ☁️ Cloud!
@@ -216,12 +214,6 @@ while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
 }
 smartfeldAktoren.oledClear()
 smartfeldAktoren.oledWriteStr("Verbunden!")
-// @highlight
-basic.pause(2000)
-// @highlight
-smartfeldAktoren.oledClear()
-// @highlight
-basic.clearScreen()
 // @highlight
 IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
 // @highlight
@@ -481,7 +473,7 @@ seifenstandInProzent,
 )
 basic.forever(function () {
     if (input.buttonIsPressed(Button.A)) {
-        seifenstandInProzent = seifenstandInProzent - 20
+        seifenstandInProzent += -20
         if (seifenstandInProzent < 0) {
             seifenstandInProzent = 0
         }
@@ -497,6 +489,6 @@ basic.forever(function () {
         100
         )
     }
-    basic.pause(100)
+    basic.pause(150)
 })
 ```

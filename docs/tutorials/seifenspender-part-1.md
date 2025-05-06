@@ -137,14 +137,15 @@ basic.forever(function () {
             100
         )
     }
+    basic.pause(150)
 })
 ```
 
 ## ➕ Seifenspender auffüllen mit Knopf B
 Nun wollen wir den Seifenstand 🧼 wieder auffüllen, wenn Knopf B gedrückt wird.
 Dazu benötigen wir eine Bedingung, die prüft, ob Knopf B gedrückt wurde. Wenn dies der Fall ist, soll der Seifenstand 🧼 auf 100% gesetzt werden.
-* Hol dir den Block ``||Logic:wenn wahr dann||`` und ziehe ihn in zuunterst in
-die ``dauerhaft`` Schleife
+* Hol dir den Block ``||Logic:wenn wahr dann||`` und ziehe ihn in
+die ``dauerhaft`` Schleife, überhalb von ``||basic:pausiere (ms)||``
 * Schiebe den Block ``||Input:Knopf A ist geklickt||`` auf das Feld ``wahr``
 und ändere Knopf A zu Knopf **B**
 * Setze den Seifenstand auf 100% indem du die Variable ``||variables:seifenstandInProzent||``🧼 auf 100 setzt.
@@ -175,6 +176,7 @@ basic.forever(function () {
             100
         )
     }
+    basic.pause(150)
    
 })
 ```
