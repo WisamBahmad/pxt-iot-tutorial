@@ -10,12 +10,12 @@
     "files": [
         "main.blocks",
         "main.ts",
-        "docs/tutorials/seifenspender-part-2.md",
         "docs/tutorials/seifenspender-part-1.md",
+        "docs/tutorials/seifenspender-part-2.md",
+        "docs/tutorials/seifenspender-part-3.md",
         "README.md",
         "docs/tutorials/toilette-part-1-de.md",
-        "tutorial-info-cache.json",
-        "docs/tutorials/seifenspender-part-3.md"
+        "tutorial-info-cache.json"
     ],
     "testFiles": [
         "test.ts"
