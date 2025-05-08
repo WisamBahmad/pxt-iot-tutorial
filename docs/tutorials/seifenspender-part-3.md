@@ -141,7 +141,7 @@ function initialisiereLoRaVerbindung () {
 * Schliesse den Ultraschallsensor🦇  an J1 an. 
 * Um die gemessene Distanz 📏 zwischen Seife und Sensor zu speichern, benötigen wir eine Variable.
 ``||variables:Erstelle eine Variable...||`` und benenne sie mit **distanzSensorZuSeife** .
-* Ziehe den Block ``||variables:setze distanzSensorZuSeife auf 0||`` zuoberst in die Dauerhaftschleife .
+* Ziehe den Block ``||variables:setze distanzSensorZuSeife auf 0||`` zuoberst in die Dauerhaft-Schleife .
 * Um der Variable den Messwert zuzuweisen, füge den Block ``||SmartfeldSensoren:Distanz in cm||``
 anstelle der 0 ein. Belasse den Pin auf P0.
 
@@ -179,7 +179,7 @@ Der Sensor liefert die Distanz in cm. Um die Funktion des Sensors zu überprüfe
 zeigen wir den Sensorwert auf dem OLED- Display 🖥️ an. 
 
 * Setze den Block 🖥️ ``||SmartfeldAktoren:Lösche Displayinhalt||``
-zuoberst in der Dauerhaftschleife ein.
+zuoberst in der Dauerhaft-Schleife ein.
 Damit löschst du bestehende Inhalte auf dem OLED- Display 🖥️.
 * Unter der Variable setzt du den Block ``||SmartfeldAktoren:schreibe Nummer||``
 ein. 
@@ -226,7 +226,7 @@ function warte5SekundenUndZeigeFortschritt () {
 
 Um die Anwendung des Seifenspenders zu testen, kannst Du dir mit Karton einen Halter für den Ultraschallsensor🦇 bauen.
 
-* Hier kannst du Dir ansehen, wie es aussehen könnte, der Karton- Schieber simuliert den Seifenstand🧼: [🌍Kartonmodell](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/3dModellViewer.html)
+* Hier kannst du Dir ansehen, wie es aussehen könnte, der Karton-Schieber simuliert den Seifenstand🧼: [🌍Kartonmodell](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/3dModellViewer.html)
 * Falls dir das Modell gefällt, kannst Du dieses PDF herunterladen, auf A3 ausdrucken, auf ein Karton übertragen und zusammenfalten: [🌍Kartonmodell-Abwicklung](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/Seifenspender_Kartonvorlage_Abwicklung_zum_Ausdrucken_A3.pdf)
 
 ## Seifenstand🧼 berechnen
@@ -375,7 +375,7 @@ function initialisiereLoRaVerbindung () {
 * Drücke 📥`|Download|`
 * Prüfe, ob in der Cloud Änderungen des Seifenstands 🧼 angezeigt werden: [iot.claviscloud.ch](https://iot.claviscloud.ch/dashboards/)
 * Behebe gegebenenfalls aufgetretene Fehler. Klicke auf das 💡- Symbol, um den gesamten Code des "Seifenspenders" anzuzeigen.
-* Energie sparen: Displays (das LED- sowie das OLED- Display) brauchen relativ viel Storm. Kannst Du den Code optimieren, sodass die beiden Displays nur bei Seinfenstand- Änderungen aktiv sind?
+* Energie sparen: Displays (das LED- sowie das OLED- Display) brauchen relativ viel Storm. Kannst Du den Code optimieren, sodass die beiden Displays nur bei Seifenstand- Änderungen aktiv sind?
 
 ```blocks
 function initialisiereLoRaVerbindung () {

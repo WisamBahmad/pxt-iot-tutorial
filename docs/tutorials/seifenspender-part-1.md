@@ -33,7 +33,7 @@ du ein funktionsfähiges Programm, das...
 Klicke auf das 💡- Symbol, falls Du zusätzliche Hilfe brauchst und um deinen Code zu überprüfen.
 
 ```blocks
-//Super! Du hast den Hinweis gefuden. Nutze ihn, wenn du nicht weiterkommst.
+//Super! Du hast den Hinweis gefunden. Nutze ihn, wenn du nicht weiterkommst.
 let hinweisGefunden = true;
 ```
 

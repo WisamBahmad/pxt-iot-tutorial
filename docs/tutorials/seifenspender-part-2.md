@@ -148,8 +148,8 @@ smartfeldAktoren.oledClear()
 Um die Übersicht zu behalten, werden beim Programmieren oft Funktionen eingesetzt. Wir wollen eine Funktion mit dem Namen **initialisiereLoRaVerbindung** erstellen, welche
 den Verbindungsaufbau beinhaltet.
 * Hol dir den Block ``||functions:Erstelle eine Funktion...||`` und benenne die Funktion **initialisiereLoRaVerbindung**.
-* Ziehe alle Code- Blocke, welche im Zusammenhang mit dem Verbindungsaufbau stehen in diese neue Funktion. 
-Klicke auf die 💡 Glühbirne, um zu klären, welche Code- Blöcke gemeint sind.
+* Ziehe alle Code- Blöcke, welche im Zusammenhang mit dem Verbindungsaufbau stehen in diese neue Funktion. 
+Klicke auf die 💡Glühbirne, um zu klären, welche Code- Blöcke gemeint sind.
 * Hol dir den Block ``||functions:Aufruf initialisiereLoRaVerbindung ||`` und ziehe diesen zuunterst in den Block **beim Start**.
 
 ```blocks
@@ -185,11 +185,11 @@ initialisiereLoRaVerbindung()
 ## 🧼 Seifenstand senden beim Start
 
 Zu Beginn ist der Seifenstand 100 %.
-Diesen wollen wir nach dem initialisieren der LoRa Verbindung senden.
+Diesen wollen wir nach dem Initialisieren der LoRa Verbindung senden.
 
 * Setze unter der initialisierung der LoRa Verbindung den Block ``||IoTCube:Ganzzahl mit ID_0 = 0 hinzufügen||`` ein.
 * Die 0 ersetzt du nun mit der Variable ``||variables:seifenstandInProzent||``.
-* Schicke nun den Seifendstand mit dem Befehl ``||IoTCube:Sende Daten||`` in die ☁️ Cloud!
+* Schicke nun den Seifenstand mit dem Befehl ``||IoTCube:Sende Daten||`` in die ☁️ Cloud!
 * Drücke 📥`|Download|`.
 
 ```blocks
@@ -242,9 +242,9 @@ Immer wenn sich der Seifenstand ändert, dann soll der aktuelle Stand an die Clo
 * Wenn Knopf A geklickt ist, schickst Du 
   den aktuellen Seifenstand mithilfe der Blöcke ``||IoTCube:Ganzzahl mit ID_0 = 0 hinzufügen||``, 
   und ``||IoTCube:Sende Daten||`` ins Internet. Falls du unsicher bist, klicke
-  auf die 💡 Glühbirne links unten.
+  auf die 💡Glühbirne links unten.
 * Dasselbe machst du, wenn Knopf B geklickt wurde. Falls du unsicher bist, klicke
-  auf die 💡 Glühbirne links unten.
+  auf die 💡Glühbirne links unten.
 * Vergiss nicht die Variable zu senden (nicht einfach eine 0).
 * Hinweis: Grundsätzlich könntest du dein Programm jetzt schon wieder testen, aber bearbeite besser die nächsten beiden Schritte um Nebeneffekte zu vermeiden.
 
@@ -288,7 +288,7 @@ Hintergrund: Während dieser 5 Sekunden steht ein Empfangsfenster zur Verfügung
 über das Daten von der Cloud zum Cube übertragen werden können.
 
 Baue dir mit folgenden Blöcken die Wartefunktion nach, welche im Tooltip
-(die 💡 Glühbirne links unten) angezeigt wird.
+(die 💡Glühbirne links unten) angezeigt wird.
 
 * ``||function:Erstelle eine Funktion||`` (im Bereich Fortgeschritten zu finden)
     * Benenne die Funktion mit "warte5SekundenUndZeigeFortschritt" und klicke auf **Fertig**.
