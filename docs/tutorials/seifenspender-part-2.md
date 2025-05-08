@@ -6,7 +6,6 @@ sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
 
 # IoT Tutorial Teil 2
 
-
 ## 📗 Einführung, Teil 2
 
 Voraussetzungen: 🌱 IoT Basics abgeschlossen und IoT Tutorial [Teil 1 - noch ohne Internetverbindung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-1) abgeschlossen.
@@ -156,7 +155,6 @@ Klicke auf die 💡 Glühbirne, um zu klären, welche Code- Blöcke gemeint sind
 ```blocks
 // @highlight
 function initialisiereLoRaVerbindung() {
-    smartfeldAktoren.oledInit(128, 64)
     smartfeldAktoren.oledClear()
     smartfeldAktoren.oledWriteStr("Verbinde")
     IoTCube.LoRa_Join(
@@ -175,6 +173,7 @@ function initialisiereLoRaVerbindung() {
     smartfeldAktoren.oledClear()
 }
 
+smartfeldAktoren.oledInit(128, 64)
 let seifenstandInProzent = 100
 led.plotBarGraph(
 seifenstandInProzent,
@@ -471,6 +470,7 @@ basic.forever(function () {
 ## Gratuliere 🏆 - du hast den Teil 2 erfolgreich bearbeitet 🚀
 
 * Weiter gehts mit Teil 3: [Teil 3](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-3)
+* Falls irgendwas noch nicht richtig läuft, hier hast Du eine funktionierende Version zum testen: [Lösung Teil 2](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-2-solution)
 
 ```template
 let seifenstandInProzent = 100

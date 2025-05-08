@@ -446,6 +446,10 @@ basic.forever(function () {
 })
 ```
 
+## Gratuliere 🏆 - du hast das Tutorial für den Seifenspender erfolgreich bearbeitet 🚀
+
+* Falls irgendwas noch nicht richtig läuft, hier hast Du eine funktionierende Version zum testen: [Lösung Teil 3](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-3-solution)
+
 ```template
 function initialisiereLoRaVerbindung () {
     smartfeldAktoren.oledClear()

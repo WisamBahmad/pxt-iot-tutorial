@@ -184,4 +184,6 @@ basic.forever(function () {
 ## Gratuliere 🏆 - du hast den Teil 1 erfolgreich bearbeitet 🚀
 
 * Weiter gehts mit Teil 2: [Teil 2](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-2)
+* Falls irgendwas noch nicht richtig läuft, hier hast Du eine funktionierende Version zum testen: [Lösung Teil 1](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-1-solution)
+
 
