@@ -13,7 +13,6 @@ sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
 ```template
 
 function initialisiereLoRaVerbindung () {
-    smartfeldAktoren.oledInit(128, 64)
     smartfeldAktoren.oledClear()
     smartfeldAktoren.oledWriteStr("Verbinde")
     IoTCube.LoRa_Join(
@@ -44,6 +43,7 @@ led.plotBarGraph(
 seifenstandInProzent,
 100
 )
+smartfeldAktoren.oledInit(128, 64)
 initialisiereLoRaVerbindung()
 IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
 IoTCube.SendBufferSimple()

@@ -41,12 +41,12 @@ function warte5SekundenUndZeigeFortschritt () {
 let zwischenresultat = 0
 let distanzSensorZuSeife = 0
 let seifenstandAlt = -1
-smartfeldAktoren.oledInit(128, 64)
 let seifenstandInProzent = 100
 led.plotBarGraph(
 seifenstandInProzent,
 100
 )
+smartfeldAktoren.oledInit(128, 64)
 if (true) {
     initialisiereLoRaVerbindung()
     IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)

@@ -198,6 +198,7 @@ led.plotBarGraph(
 seifenstandInProzent,
 100
 )
+smartfeldAktoren.oledInit(128, 64)
 initialisiereLoRaVerbindung()
 // @highlight
 IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
@@ -205,7 +206,6 @@ IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
 IoTCube.SendBufferSimple()
 // @hide
 function initialisiereLoRaVerbindung () {
-    smartfeldAktoren.oledInit(128, 64)
     smartfeldAktoren.oledClear()
     smartfeldAktoren.oledWriteStr("Verbinde")
     IoTCube.LoRa_Join(
@@ -324,7 +324,6 @@ function warte5SekundenUndZeigeFortschritt () {
 ```blocks
 // @hide
 function initialisiereLoRaVerbindung () {
-    smartfeldAktoren.oledInit(128, 64)
     smartfeldAktoren.oledClear()
     smartfeldAktoren.oledWriteStr("Verbinde")
     IoTCube.LoRa_Join(
@@ -356,6 +355,7 @@ led.plotBarGraph(
 seifenstandInProzent,
 100
 )
+smartfeldAktoren.oledInit(128, 64)
 initialisiereLoRaVerbindung()
 IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
 IoTCube.SendBufferSimple()
@@ -400,7 +400,6 @@ Nutze dazu ``||basic:Bildschirminhalt löschen||``.
 ```blocks
 // @hide
 function initialisiereLoRaVerbindung () {
-    smartfeldAktoren.oledInit(128, 64)
     smartfeldAktoren.oledClear()
     smartfeldAktoren.oledWriteStr("Verbinde")
     IoTCube.LoRa_Join(
@@ -427,15 +426,18 @@ function warte5SekundenUndZeigeFortschritt () {
     }
     smartfeldAktoren.oledClear()
 }
+
 let seifenstandInProzent = 100
 led.plotBarGraph(
 seifenstandInProzent,
 100
 )
+smartfeldAktoren.oledInit(128, 64)
 initialisiereLoRaVerbindung()
 IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
 IoTCube.SendBufferSimple()
 warte5SekundenUndZeigeFortschritt()
+
 basic.forever(function () {
     if (input.buttonIsPressed(Button.A)) {
         seifenstandInProzent += -20
@@ -478,6 +480,7 @@ led.plotBarGraph(
 seifenstandInProzent,
 100
 )
+
 basic.forever(function () {
     if (input.buttonIsPressed(Button.A)) {
         seifenstandInProzent += -20
