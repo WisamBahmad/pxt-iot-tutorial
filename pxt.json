@@ -15,7 +15,8 @@
         "README.md",
         "tutorial-info-cache.json",
         "docs/tutorials/seifenspender-part-1-solution.md",
-        "docs/tutorials/seifenspender-part-2-solution.md"
+        "docs/tutorials/seifenspender-part-2-solution.md",
+        "docs/tutorials/seifenspender-part-3-solution.md"
     ],
     "testFiles": [
         "test.ts"
