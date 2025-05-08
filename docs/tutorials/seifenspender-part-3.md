@@ -241,7 +241,7 @@ Es steht Dir frei, eine weitere Variable für Zwischenresultate zu erstellen.
 * Drücke 📥`|Download|` und kontrolliere die Anzeige am OLED Display 🖥️. Wird der Seifenstand in % angezeigt? Bewege den Schieber und teste das Programm!
 * Lass dir mit der Glühbirne 💡 eine mögliche Lösung anzeigen, falls Du kein Erfolg hast. Wenn der Abstand 0 cm ist, bedeutet das 100 %, bei 25 cm bedeutet es 0 %.
 
-<img src="https://reifab.github.io/pxt-iot-tutorial/static/tutorials/Seifenspender_Distanzen.png" width="400">
+<img src="https://reifab.github.io/pxt-iot-tutorial/static/tutorials/Seifenspender_Distanzen.png" width="800">
 
 ```blocks
 basic.forever(function () {
