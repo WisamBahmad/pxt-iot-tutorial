@@ -230,8 +230,9 @@ Um die Anwendung des Seifenspenders zu testen, kannst Du dir mit Karton einen Ha
 * Falls dir das Modell gefällt, kannst Du dieses PDF herunterladen, auf A3 ausdrucken, auf ein Karton übertragen und zusammenfalten: [🌍Kartonmodell-Abwicklung](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/Seifenspender_Kartonvorlage_Abwicklung_zum_Ausdrucken_A3.pdf)
 
 ## Seifenstand🧼 berechnen
-![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/Seifenspender_Distanzen.png)
-* Aus der Messgrösse distanzSensorZuSeife kannst du den Seifenstand🧼 in % berechnen. Siehst Du die Zusammenhänge?
+
+
+* Aus der Messgrösse distanzSensorZuSeife kannst du den Seifenstand🧼 in % berechnen. Siehst Du die Zusammenhänge, wenn Du das Bild weiter unten studierst?
 * Berechne den Seifenstand in Prozent. Nutze ``||math:Mathematik||`` sowie ``||variables:setze seifenstandInProzent auf ... ||``.
 Es steht Dir frei, eine weitere Variable für Zwischenresultate zu erstellen.
 * Runde den Seifenstand in Prozent auf ganze Zahlen mit ``||math:runden||``
@@ -239,6 +240,8 @@ Es steht Dir frei, eine weitere Variable für Zwischenresultate zu erstellen.
 * Gib den Seifenstand🧼 in % auf dem OLED- Display 🖥️ aus (Anstelle der Distanz)
 * Drücke 📥`|Download|` und kontrolliere die Anzeige am OLED Display 🖥️. Wird der Seifenstand in % angezeigt? Bewege den Schieber und teste das Programm!
 * Lass dir mit der Glühbirne 💡 eine mögliche Lösung anzeigen, falls Du kein Erfolg hast. Wenn der Abstand 0 cm ist, bedeutet das 100 %, bei 25 cm bedeutet es 0 %.
+
+<img src="https://reifab.github.io/pxt-iot-tutorial/static/tutorials/Seifenspender_Distanzen.png" width="400">
 
 ```blocks
 basic.forever(function () {
