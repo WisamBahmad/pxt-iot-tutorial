@@ -79,14 +79,16 @@ Dieser verhindert das Senden sobald du wahr auf **falsch** stellst.
 um das Senden der Daten zu verhindern (Block auf **falsch** stellen).
 
 ```blocks
+smartfeldAktoren.oledInit(128, 64)
 let seifenstandInProzent = 100
 led.plotBarGraph(
 seifenstandInProzent,
 100
 )
-initialisiereLoRaVerbindung()
+
 // @highlight
 if (false) {
+    initialisiereLoRaVerbindung()
     IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
     IoTCube.SendBufferSimple()
     warte5SekundenUndZeigeFortschritt()
@@ -116,7 +118,6 @@ function warte5SekundenUndZeigeFortschritt () {
 
 // @hide
 function initialisiereLoRaVerbindung () {
-    smartfeldAktoren.oledInit(128, 64)
     smartfeldAktoren.oledClear()
     smartfeldAktoren.oledWriteStr("Verbinde")
     IoTCube.LoRa_Join(
@@ -194,9 +195,9 @@ basic.forever(function () {
     smartfeldAktoren.oledClear()
     // @highlight
     distanzSensorZuSeife = smartfeldSensoren.measureInCentimetersV2(DigitalPin.P0)
-     // @highlight
+    // @highlight
     smartfeldAktoren.oledWriteNum(Math.round(distanzSensorZuSeife))
-     // @highlight
+    // @highlight
     smartfeldAktoren.oledWriteStr(" cm")
     led.plotBarGraph(
     seifenstandInProzent,
@@ -232,7 +233,8 @@ Um die Anwendung des Seifenspenders zu testen, kannst Du dir mit Karton einen Ha
 ## Seifenstand🧼 berechnen
 ![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/Seifenspender_Distanzen.png)
 * Aus der Messgrösse distanzSensorZuSeife kannst du den Seifenstand🧼 in % berechnen. Siehst Du die Zusammenhänge?
-* Berechne den Seifenstand in Prozent. Nutze ``||math:Mathematik||`` sowie ``||variables:setze seifenstandInProzent auf ... ||``
+* Berechne den Seifenstand in Prozent. Nutze ``||math:Mathematik||`` sowie ``||variables:setze seifenstandInProzent auf ... ||``.
+Es steht Dir frei, eine weitere Variable für Zwischenresultate zu erstellen.
 * Runde den Seifenstand in Prozent auf ganze Zahlen mit ``||math:runden||``
 * Seifenstände kleiner 0% sollen auf 0% begrenzt werden. Verwende dazu ``||Logic:wenn wahr dann||``.
 * Gib den Seifenstand🧼 in % auf dem OLED- Display 🖥️ aus (Anstelle der Distanz)
@@ -244,7 +246,12 @@ basic.forever(function () {
     smartfeldAktoren.oledClear()
     distanzSensorZuSeife = smartfeldSensoren.measureInCentimetersV2(DigitalPin.P0)
     // @highlight
-    seifenstandInProzent = (25 - distanzSensorZuSeife) / 25 * 100
+    zwischenresultat = 25 - distanzSensorZuSeife
+    // @highlight
+    zwischenresultat = zwischenresultat / 25
+    // @highlight
+    seifenstandInProzent = zwischenresultat * 100
+    // @highlight
     seifenstandInProzent = Math.round(seifenstandInProzent)
     // @highlight
     if (seifenstandInProzent < 0) {
@@ -358,7 +365,6 @@ function warte5SekundenUndZeigeFortschritt () {
 
 ```template
 function initialisiereLoRaVerbindung () {
-    smartfeldAktoren.oledInit(128, 64)
     smartfeldAktoren.oledClear()
     smartfeldAktoren.oledWriteStr("Verbinde")
     IoTCube.LoRa_Join(
@@ -384,6 +390,7 @@ function warte5SekundenUndZeigeFortschritt () {
     }
     smartfeldAktoren.oledClear()
 }
+smartfeldAktoren.oledInit(128, 64)
 let seifenstandInProzent = 100
 led.plotBarGraph(
 seifenstandInProzent,
