@@ -97,7 +97,7 @@ ziehe ihn in die ``dauerhaft`` Schleife
 basic.forever(function () {
     // @highlight
     if (input.buttonIsPressed(Button.A)) {
-        seifenstandInProzent = seifenstandInProzent - 20
+        seifenstandInProzent += -20
         led.plotBarGraph(
             seifenstandInProzent,
             100
@@ -126,7 +126,7 @@ Was passiert? Bleibt die Anzeige bei 0 stehen?
 ```blocks
 basic.forever(function () {
     if (input.buttonIsPressed(Button.A)) {
-        seifenstandInProzent = seifenstandInProzent - 20
+        seifenstandInProzent += -20
         // @highlight
         if(seifenstandInProzent<0){
             // @highlight
@@ -156,7 +156,7 @@ Füllt sich der Seifenstand auf 100% auf?
 ```blocks
 basic.forever(function () {
     if (input.buttonIsPressed(Button.A)) {
-        seifenstandInProzent = seifenstandInProzent - 20
+        seifenstandInProzent += -20
         
         if(seifenstandInProzent<0){
            
