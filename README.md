@@ -25,3 +25,13 @@ Das Tutorial ist in drei Teile aufgeteilt:
 Tipp: Scrolle in jedem Tutorial-Schritt ganz nach unten und klicke erst dann auf den Weiter-Button, damit du nichts übersiehst!
 
 ![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/iot-cube-anschliessen-klein.png)
+
+## Start Teil 1
+
+👉 **Klicke auf den Button unten, um mit Teil 1 zu beginnen:**
+
+[▶️ Starte Teil 1 – noch ohne Internetverbindung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-1)
+
+---
+
+⚠️ **Wichtig:** Klicke *nicht* auf "Fertig", sondern nutze den Link oben!
