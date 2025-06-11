@@ -10,8 +10,8 @@ sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
 * Scrollen nicht vergessen: Scrolle immer ganz nach unten, um wirklich alle Schritte zu sehen. Sonst verpasst du Teile des Tutorials!
 * Auf Links klicken: Wenn du eine blau unterstrichene Stelle (Link) siehst, musst du darauf klicken. Dort geht das Tutorial weiter oder es öffnet sich ein zusätzlicher Inhalt.
 
-## Einführung 
-Vorraussetzungen: 🌱 IoT Basics abgeschlossen  
+## Einführung
+Voraussetzungen: 🌱 IoT Basics abgeschlossen
 Schwierigkeitsgrad: 🔥🔥⚪⚪
 
 In diesem Tutorial baust du Schritt für Schritt ein Programm auf, das den Seifenstand simuliert und die Daten über 🛜 LoRa ins Internet sendet.
