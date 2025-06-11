@@ -9,13 +9,13 @@ sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
 
 ## 📗 Einführung,  Teil 1
 
-**Vorraussetzungen**
+**Voraussetzungen**
 * Micro:Bit Basics: 
     * Du kannst Programme erstellen und herunterladen.
     * Du kennst die Einstiegspunkte "Beim Start" und "Dauerhaft".
     * Dir ist klar, dass Programme in der Regel schrittweise (von oben nach unten) abgearbeitet werden.
     Zudem kannst Du Schleifen und Verzweigungen einsetzen.
-    * es ist bekannnt, dass Kategorien Blöcke (z.B. ``||basic:Grundlagen||``) beinhalten, welche in Programmen genutzt werden können
+    * es ist bekannt, dass Kategorien Blöcke (z.B. ``||basic:Grundlagen||``) beinhalten, welche in Programmen genutzt werden können
     * Variablen können erstellt, verwendet und verändert werden
 
 **Lernergebnis**
@@ -33,7 +33,7 @@ du ein funktionsfähiges Programm, das...
 
 Klicke auf das 💡- Symbol, falls Du zusätzliche Hilfe brauchst und um deinen Code zu überprüfen.
 
-## 👁️ Vorraussetzungen @showdialog
+## 👁️ Voraussetzungen @showdialog
 * Für Teil 1 brauchst Du grundsätzlich nur einen Micro:Bit. 
 * Falls du lieber gleich den IoT- Cube nehmen möchtest, kannst du ihn so anschliessen:
 ![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/iot-cube-anschliessen-klein.png)
