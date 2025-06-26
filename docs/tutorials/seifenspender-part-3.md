@@ -226,7 +226,7 @@ function warte5SekundenUndZeigeFortschritt () {
 
 Um die Anwendung des Seifenspenders zu testen, kannst Du dir mit Karton einen Halter für den Ultraschallsensor🦇 bauen.
 
-* Hier kannst du Dir ansehen, wie es aussehen könnte, der Karton-Schieber simuliert den Seifenstand🧼: [🌍Kartonmodell](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/3dModellViewer.html)
+* Hier kannst du Dir ansehen, wie es aussehen könnte, der Karton-Schieber simuliert den Seifenstand🧼: [🌍Kartonmodell](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/seifenspender3dModellViewer.html)
 * Falls dir das Modell gefällt, kannst Du dieses PDF herunterladen, auf A3 ausdrucken, auf ein Karton übertragen und zusammenfalten: [🌍Kartonmodell-Abwicklung](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/Seifenspender_Kartonvorlage_Abwicklung_zum_Ausdrucken_A3.pdf)
 
 ## Seifenstand🧼 berechnen
