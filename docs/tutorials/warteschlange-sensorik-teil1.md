@@ -8,24 +8,31 @@ sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
 
 ## 📗 Einführung
 
-In diesem Tutorial baust du eine Lichtschranke mit einem RGB-LED-Streifen und einem Lichtsensor auf. Mit dem 3D-gedruckten Modell kannst du Lego-Figuren zählen, die durch die Lichtschranke fahren.
+Voraussetzungen: 🌱 IoT Basics abgeschlossen
+Schwierigkeitsgrad: 🔥🔥🔥🔥
 
-Lade das STL-Modell hier herunter: [🌍3D-Modell](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/warteschlange3dViewer.html)
+Stell dir vor, du möchtest herausfinden, wie viele Personen vor einer smarten Toilette warten – ganz ohne Kamera oder komplexe Technik.
+In diesem Projekt baust du eine 🚧 Lichtschranke, die mit einfacher Sensorik auskommt: einem 💡 RGB-LED-Streifen und einem 👁️ Lichtsensor.
 
-**Voraussetzungen**
-* Micro:Bit Basics
-* Einen 16er RGB-LED-Streifen (9 LEDs werden genutzt)
-* Einen Lichtsensor am IoT Cube
+🔍 Das Messprinzip:
+Wir beleuchten nacheinander bestimmte Positionen mit einer 💡 LED und messen mit dem 👁️ Lichtsensor, wie viel Licht jeweils reflektiert wird.
+Dann schalten wir die 💡 LED kurz aus und messen erneut. Der Unterschied zeigt uns, wie stark das Licht zurückgeworfen wird. Steht etwas davor – zum Beispiel eine Lego-Figur – verringert sich die reflektierte Helligkeit.
+So erkennen wir, ob an einer bestimmten Position etwas im Lichtstrahl steht.
 
-**Lernergebnis**
-Am Ende dieses Tutorials besitzt du ein Programm, das die Anzahl der vorbeigeführten Figuren zählt und auf dem Display anzeigt.
 
-## 👁️ Voraussetzungen @showdialog
-* Schliesse den RGB-LED-Streifen an Pin P1 an.
-* Verbinde den Lichtsensor mit dem IoT Cube.
+**Was du in diesem Tutorial machst**
+* Du baust eine 🚧 Lichtschranke mit 💡 RGB-LEDs und einem 👁️ Lichtsensor, richtest das System mit einem 3D-gedruckten Modell ein und 
+* entwickelst ein Programm, das wartende Figuren zählt.
+
+
+## 👁️ Hardware- Voraussetzungen @showdialog
+* [🌍Wartebereich als Kunststoffteil:](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/warteschlange3dViewer.html)
+* Falls du das Teil 3D- Drucken möchtest, lade das STL- File hier herunter: [🌍STL-3D-Modell:](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/Wartebereich.stl)
+* Schliesse den RGB-LED-Streifen an J7 an.
+* Verbinde den Lichtsensor an J0 mit dem IoT Cube.
 
 ## 🧱 LEDs initialisieren
-* Lege eine Variable **ANZAHL_LEDS** mit dem Wert 9 an.
+* Lege eine Variable **ANZAHL_LEDS** mit dem Wert 9 an.
 * Erstelle eine Variable **ERSTE_LED_POS** mit dem Wert 2. Damit beginnen wir bei LED 2 zu messen.
 * Initialisiere den LED-Streifen mit ``||neopixel:create||`` an Pin P1 und 16 LEDs.
 * Setze die Helligkeit mit ``||neopixel:set brightness||`` auf 255.
