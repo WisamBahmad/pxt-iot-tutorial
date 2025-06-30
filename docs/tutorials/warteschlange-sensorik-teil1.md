@@ -1,6 +1,7 @@
 ```package
 iot-cube=github:Smartfeld/pxt-iot-cube#v1.1.2
 sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
+neopixel=github:microsoft/pxt-neopixel#v0.7.6
 ```
 ### @explicitHints false
 
@@ -8,40 +9,79 @@ sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
 
 ## 📗 Einführung
 
-Voraussetzungen: 🌱 IoT Basics abgeschlossen
-Schwierigkeitsgrad: 🔥🔥🔥🔥
+Stell dir vor, du möchtest automatisiert herausfinden, wie viele Personen vor 
+einer smarten Toilette warten. In diesem Projekt baust du eine neunkanalige 
+Lichtschranke💡👁️, die mit relativ einfacher Technik auskommt: 
+einem RGB-LED-Streifen💡 und einem Lichtsensor 👁️.
 
-Stell dir vor, du möchtest herausfinden, wie viele Personen vor einer smarten Toilette warten – ganz ohne Kamera oder komplexe Technik.
-In diesem Projekt baust du eine 🚧 Lichtschranke, die mit einfacher Sensorik auskommt: einem 💡 RGB-LED-Streifen und einem 👁️ Lichtsensor.
+* Voraussetzungen: 🌱 IoT Basics abgeschlossen
+* Schwierigkeitsgrad: 🔥🔥🔥🔥
 
-🔍 Das Messprinzip:
-Wir beleuchten nacheinander bestimmte Positionen mit einer 💡 LED und messen mit dem 👁️ Lichtsensor, wie viel Licht jeweils reflektiert wird.
-Dann schalten wir die 💡 LED kurz aus und messen erneut. Der Unterschied zeigt uns, wie stark das Licht zurückgeworfen wird. Steht etwas davor – zum Beispiel eine Lego-Figur – verringert sich die reflektierte Helligkeit.
+
+## 🎬 Messprinzip 
+
+Wir beleuchten nacheinander bestimmte Positionen mit einer LED💡und messen 
+mit dem Lichtsensor👁️, wie viel Licht jeweils ankommt.
+Steht etwas zwischen Sensor👁️ und LED💡, zum Beispiel eine Lego-Figur🦹‍♂️, 
+verringert sich die Helligkeit.
 So erkennen wir, ob an einer bestimmten Position etwas im Lichtstrahl steht.
+Die Messungen werden an neun Positionen in der Warteschlange nacheinander 
+vorgenommen, sodass dieL ego-Figuren🦹‍♂️gezählt werden können.
 
-
-**Was du in diesem Tutorial machst**
-* Du baust eine 🚧 Lichtschranke mit 💡 RGB-LEDs und einem 👁️ Lichtsensor, richtest das System mit einem 3D-gedruckten Modell ein und 
-* entwickelst ein Programm, das wartende Figuren zählt.
-
+Schau Dir dieses Video an, welches das Messprinzip illustriert:
+* [Video🎬 ansehen: Warteschlange Sensorik](https://wiki.smartfeld.ch/lib/exe/fetch.php?media=warteschlange_sensorik.mp4)
 
 ## 👁️ Hardware- Voraussetzungen @showdialog
-* [🌍Wartebereich als Kunststoffteil:](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/warteschlange3dViewer.html)
+* [Wartebereich als Kunststoffteil:](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/warteschlange3dViewer.html)
 * Falls du das Teil 3D- Drucken möchtest, lade das STL- File hier herunter: [🌍STL-3D-Modell:](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/Wartebereich.stl)
-* Schliesse den RGB-LED-Streifen an J7 an.
-* Verbinde den Lichtsensor an J0 mit dem IoT Cube.
+* Schliesse den RGB-LED-Streifen💡 an **J7** an.
+* Verbinde den Lichtsensor👁️ an **J0** mit dem IoT Cube.
+* Schliesse das OLED- Display 🖥️  an **J5** an. 
 
-## 🧱 LEDs initialisieren
-* Lege eine Variable **ANZAHL_LEDS** mit dem Wert 9 an.
-* Erstelle eine Variable **ERSTE_LED_POS** mit dem Wert 2. Damit beginnen wir bei LED 2 zu messen.
-* Initialisiere den LED-Streifen mit ``||neopixel:create||`` an Pin P1 und 16 LEDs.
-* Setze die Helligkeit mit ``||neopixel:set brightness||`` auf 255.
+
+## 💡 LEDs initialisieren
+* ``||variables:Erstelle eine Variable...||`` und benenne sie mit **ANZAHL_LEDS**. 
+Setze diese auf den Wert 9 (weil wir neun Austrittslöcher im 3D- Modell haben).
+* ``||variables:Erstelle eine Variable...||`` **ERSTE_LED_POS** und initialisiere
+sie mit dem Wert 2 (wir brauchen die LEDs konstruktionsbedingt 
+erst ab der dritten LED).
+* Beim Start initialisierst Du den LED-Streifen mit ``||neopixel:setze strip auf ...||`` an Pin P1 und 9 LEDs.
+* Setze die Helligkeit mit ``||neopixel:setzeHelligkeit||`` (unter mehr) auf 255.
+
+```blocks
+{
+let strip: neopixel.Strip = null
+let ERSTE_LED_POS = 0
+let ANZAHL_LEDS = 0
+ANZAHL_LEDS = 9
+ERSTE_LED_POS = 2
+strip = neopixel.create(DigitalPin.P1, 16, NeoPixelMode.RGB_RGB)
+strip.setBrightness(255)
+}
+```
 
 ## 🔍 Helligkeit messen
-* Schreibe eine Funktion **messeMax**, welche 10 Mal den Lichtsensor liest und den grössten Wert zurückgibt.
-* Baue eine Funktion **messeHelligkeitsUnterschied(ledNr)**, welche die Umgebung misst, danach die LED einschaltet, erneut misst und die Differenz zurückgibt.
-* In einer Funktion **messen** wird für jede verwendete LED der Unterschied gemessen und in eine Liste geschrieben.
 
+Künstliches Licht (z. B. LED oder Neonröhren) kann stark Flackern, 
+auch wenn wir dies nicht wahrnehmen.
+
+Damit die Messung auch bei flackerndem Licht konstanter wird, 
+hilft folgender Trick:
+Miss die Helligkeit mehrmals (z. B. 10-mal) und nimm den höchsten Wert.
+
+Baue dir mit folgenden Blöcken die Wartefunktion nach, welche im Tooltip
+(die 💡Glühbirne links unten) angezeigt wird.
+
+* ``||function:Erstelle eine Funktion||`` (im Bereich Fortgeschritten zu finden)
+    * Benenne die Funktion mit "messeMax" und klicke auf **Fertig**.
+    * ``||variables:Erstelle eine Variable...||`` und benenne sie mit **ANZAHL_MESSUNGEN**. 
+    Initialisiere die Variable mit 10. 
+    * ``||variables:Erstelle eine Variable...||`` und benenne sie mit **maximum**.
+    Setze das Maximum vorerst auf 0. 
+    * ``||loops:für Index von 0 bis 4||`` 
+      * ersetze die 4 mit **ANZAHL_MESSUNGEN**.
+    * Setze in der Schleife das **maximum** auf den Sensorwert ``||SmartfeldSensoren:gib sichtbares Licht[lm] ||``,
+    aber nur dann, wenn er grösser wie das bisherige maximum ist.
 ```blocks
 function messeMax () {
     ANZAHL_MESSUNGEN = 10
