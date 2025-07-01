@@ -87,10 +87,10 @@ führe diese Messung direkt nach dem ersten **strip anzeigen** durch.
 ein. 
 * Ersetze die 0 mit der Variable ``||variables:h_umgebung||``
 * Setze den Block  ``||SmartfeldAktoren:schreibe String "-" ||``ein, um einen Bindestrich
-(als Trennzeichen zum nächsten Messwert) auf dem 🖥️ Display auszugeben.
+(als Trennzeichen zum nächsten Messwert) auf dem Display🖥️ auszugeben.
 * ``||variables:Erstelle eine Variable...||`` und benenne sie mit **h_mitLED**.
 * Wiederhole die Messung sowie die Anzeige unter Verwendung der Variable **h_mitLED**. Die Messung kannst Du nach dem zweiten **strip anzeigen** einfügen. 
-* 📥 Drücke `|Download|` und beobachte die Werte auf dem Display. Beantworte
+* 📥 Drücke `|Download|` und beobachte die Werte auf dem Display🖥️ . Beantworte
 für dich folgende Fragen:
   * Wie gross ist der Unterschied der Messwerte (Umgebungungslicht - Licht mit LED)
   * Wie stark lassen sich die Werte von Fremdlicht beeinflussen?
@@ -174,10 +174,12 @@ function messeMax () {
 
 * Ersetze in der ``dauerhaft`` - Schleife die zwei Blöcke ``||SmartfeldSensoren:gib sichtbares Licht [lm]||``
   druch je einen Fuktionsaufruf ``||functions:Aufruf messeMax||``
-* 📥 Drücke `|Download|` und beobachte die Werte auf dem Display. Beantworte
+* 📥 Drücke `|Download|` und beobachte die Werte auf dem Display🖥️. Beantworte
 für dich folgende Fragen:
   * Sind die Messwerte gegenüber vorher konstanter?
   * Wie stark variieren die Werte noch bei gleichen Bedingungen?
+  * Könnte man das Umgebungslicht mathematisch herausfiltern mithilfe der
+  Umgebungsmessung?
 
 ```blocks
 // @hide
@@ -219,6 +221,128 @@ basic.forever(function () {
 })
 ```
 
+## Änderung der Lichtstärke aufgrund der LED
+
+Du hast nach Deinen Beobachtungen und Überlegungen möglicherweise erkannt, dass die 
+Messungen durch die Mehrfachmessung stabiler geworden sind 
+(nur noch ca. +/- 10 Lumen Unterschiede).
+Es müsste zudem möglich sein, das Umgebungslicht (h_umgebung) vom zweiten 
+Messwert (h_mitLED) abzuziehen, um das Umgebungslicht mathematisch zu eliminieren.
+Versuchen wir es!
+
+* ``||variables:Erstelle eine variable...||`` mit dem Namen h_unterschied
+* Nimm den Block ``||math:0 - 0||`` und ziehe das Umgebungslicht (h_umgebung) 
+vom zweiten Messwert (h_mitLED) ab.
+* Stelle auf dem Display🖥️ nur noch den Unterschied dar. Enferne die nicht 
+mehr benötigten Display- Ausgaben.
+* Die erste Pause kannst du ebenfalls entfernen, die zweite Pause ist immer noch sinnvoll, 
+damit du die Werte besser ablesen kannst.
+* 📥 Drücke `|Download|` und beobachte die Werte auf dem Display🖥️.
+  * Stelle eine Duplo- Figur zwischen LED und Lichtsensor.
+  * Beobachte, wie sich der Helligkeitsunterschied dabei verändert.
+
+```blocks
+// @hide
+function messeMax () {
+    ANZAHL_MESSUNGEN = 10
+    maximum = 0
+    for (let index = 0; index < ANZAHL_MESSUNGEN; index++) {
+        if (smartfeldSensoren.getHalfWord_Visible() > maximum) {
+            maximum = Math.max(maximum, smartfeldSensoren.getHalfWord_Visible())
+        }
+    }
+    return Math.round(maximum)
+}
+let h_unterschied = 0
+let h_mitLED = 0
+let h_umgebung = 0
+let maximum = 0
+let ANZAHL_MESSUNGEN = 0
+smartfeldSensoren.initSunlight()
+smartfeldAktoren.oledInit(128, 64)
+let strip = neopixel.create(DigitalPin.P1, 16, NeoPixelMode.RGB)
+strip.setBrightness(255)
+
+basic.forever(function () {
+    smartfeldAktoren.oledClear()
+    strip.setPixelColor(2, neopixel.colors(NeoPixelColors.Black))
+    strip.show()
+    h_umgebung = messeMax()
+    strip.setPixelColor(2, neopixel.colors(NeoPixelColors.White))
+    strip.show()
+    h_mitLED = messeMax()
+    // @highlight
+    h_unterschied = h_mitLED - h_umgebung
+    // @highlight
+    smartfeldAktoren.oledWriteNum(h_unterschied)
+    basic.pause(200)
+})
+```
+
+## 👥 Figuren zählen
+
+* ``||variables:Erstelle eine variable...||`` mit dem Namen **personen** und
+setze sie zu beginn der ``dauerhaft``- Schleife auf 0. 
+* Prüfe am Schluss der ``dauerhaft``- Schleife, ob der Helligkeitsunterschied 
+(h_unterschied) kleiner als 100 ist (du kannst diesen Wert auch Anpassen,
+falls nötig), dann soll Figur hochgezählt werden.
+Nutze dazu ``||logic:wenn wahr dann||`` sowie ``||logic:0 < 0||`` und 
+``||variables:ändere personen um 1||``
+* Zeige die Anzahl personen mit ``||basic:zeige Zahl ||`` auf dem Micro:Bit an.
+* 📥 Drücke `|Download|` und kontrolliere die 🟥 LED-Anzeige. 
+Wird die Person an der ersten Stelle korrekt gezählt?
+
+⬛⬛🟥⬛⬛  
+⬛🟥🟥⬛⬛  
+⬛⬛🟥⬛⬛  
+⬛⬛🟥⬛⬛  
+⬛🟥🟥🟥⬛  
+
+```blocks
+// @hide
+function messeMax () {
+    ANZAHL_MESSUNGEN = 10
+    maximum = 0
+    for (let index = 0; index < ANZAHL_MESSUNGEN; index++) {
+        if (smartfeldSensoren.getHalfWord_Visible() > maximum) {
+            maximum = Math.max(maximum, smartfeldSensoren.getHalfWord_Visible())
+        }
+    }
+    return Math.round(maximum)
+}
+let h_unterschied = 0
+let h_mitLED = 0
+let h_umgebung = 0
+let personen = 0
+let maximum = 0
+let ANZAHL_MESSUNGEN = 0
+smartfeldSensoren.initSunlight()
+smartfeldAktoren.oledInit(128, 64)
+let strip = neopixel.create(DigitalPin.P1, 16, NeoPixelMode.RGB)
+strip.setBrightness(255)
+
+basic.forever(function () {
+    personen = 0
+    smartfeldAktoren.oledClear()
+    strip.setPixelColor(2, neopixel.colors(NeoPixelColors.Black))
+    strip.show()
+    h_umgebung = messeMax()
+    strip.setPixelColor(2, neopixel.colors(NeoPixelColors.White))
+    strip.show()
+    h_mitLED = messeMax()
+    h_unterschied = h_mitLED - h_umgebung
+    smartfeldAktoren.oledWriteNum(h_unterschied)
+    // @highlight
+    if (h_unterschied < 100) {
+        personen += 1
+    }
+    // @highlight
+    basic.showNumber(personen)
+    basic.pause(200)
+})
+
+```
+
 ## Elemente für Später
 * ``||variables:Erstelle eine Variable...||`` und benenne sie mit **ANZAHL_LEDS**. 
 Setze diese auf den Wert 9 (weil wir neun Austrittslöcher im 3D- Modell haben).
@@ -238,14 +362,7 @@ strip.setBrightness(255)
 }
 ```
 
-## 👥 Figuren zählen
-* Miss beim Start die Werte ohne Figuren und speichere sie in **list_leermessungen**.
-* In der ``||basic:forever||``-Schleife misst du erneut. Ziehe die aktuellen Werte von den Leerwerten ab.
-* Ist der Unterschied grösser als 70, wird eine Figur gezählt.
-* Gib die Werte auf dem OLED-Display aus und zeige die Anzahl Figuren an.
-
 ## Gratuliere 🏆 – du hast Teil 1 abgeschlossen 🚀
-
 [Zur Lösung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/warteschlange-sensorik-teil1-solution)
 
 
