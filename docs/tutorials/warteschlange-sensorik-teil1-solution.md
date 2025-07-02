@@ -1,7 +1,7 @@
 ```package
 iot-cube=github:Smartfeld/pxt-iot-cube#v1.1.2
 sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
-neopixel=github:microsoft/pxt-neopixel#v0.7.6"
+neopixel=github:microsoft/pxt-neopixel#v0.7.6
 ```
 ### @explicitHints false
 
