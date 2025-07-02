@@ -279,18 +279,20 @@ basic.forever(function () {
 })
 ```
 
-## 👥 Figuren zählen
+## 👥 Figur erkennen und zählen
 
 * ``||variables:Erstelle eine variable...||`` mit dem Namen **personen** und
 setze sie zu beginn der ``dauerhaft``- Schleife auf 0. 
 * Prüfe am Schluss der ``dauerhaft``- Schleife, ob der Helligkeitsunterschied 
-(h_unterschied) kleiner als 100 ist (du kannst diesen Wert auch Anpassen,
-falls nötig), dann soll Figur hochgezählt werden.
+(h_unterschied) kleiner als 100 ist (du kannst diesen Wert auch anpassen,
+falls nötig), dann soll die Anzahl **personen** hochgezählt werden.
 Nutze dazu ``||logic:wenn wahr dann||`` sowie ``||logic:0 < 0||`` und 
 ``||variables:ändere personen um 1||``
-* Zeige die Anzahl personen mit ``||basic:zeige Zahl ||`` auf dem Micro:Bit an.
+* Zeige die Anzahl **personen** mit ``||basic:zeige Zahl ||`` auf dem Micro:Bit an.
 * 📥 Drücke `|Download|` und kontrolliere die 🟥 LED-Anzeige. 
-Wird die Person an der ersten Stelle korrekt gezählt?
+  * Wird die Person an der ersten Stelle korrekt gezählt?
+  * Hast Du schon Ideen, wie man an allen neun Positionen Personen 
+  zählen könnte?
 
 ⬛⬛🟥⬛⬛  
 ⬛🟥🟥⬛⬛  
@@ -343,23 +345,221 @@ basic.forever(function () {
 
 ```
 
-## Elemente für Später
-* ``||variables:Erstelle eine Variable...||`` und benenne sie mit **ANZAHL_LEDS**. 
+## Idee entwickeln für das Messen an verschiedenen Positionen
+
+Wenn Du dir im Tooltip (``|💡|``Glühbirne links unten) den bisherigen Code in der 
+``dauerhaft`` Schleife ansiehst, könnte man auf die Idee kommen, den gelb 
+markierten Teil neunfach (einmal für jedes Loch im Modell) auszuführen, jedoch 
+mit einer kleinen Änderung: Die LED- Nummer muss bei jeder Ausführung um eins 
+erhöht werden. Natürlich könnte man dies durch stupides neunfaches kopieren 
+erreichen, ein Programmierer würde hier aber **eine Schleife drum herum** bauen.
+
+* Sobald Du die grundlegende Idee verstanden hast, drücke auf ``|weiter|``
+
+```blocks
+// @hide
+function messeMax () {
+    ANZAHL_MESSUNGEN = 10
+    maximum = 0
+    for (let index = 0; index < ANZAHL_MESSUNGEN; index++) {
+        if (smartfeldSensoren.getHalfWord_Visible() > maximum) {
+            maximum = Math.max(maximum, smartfeldSensoren.getHalfWord_Visible())
+        }
+    }
+    return Math.round(maximum)
+}
+let h_unterschied = 0
+let h_mitLED = 0
+let h_umgebung = 0
+let personen = 0
+let maximum = 0
+let ANZAHL_MESSUNGEN = 0
+smartfeldSensoren.initSunlight()
+smartfeldAktoren.oledInit(128, 64)
+let strip = neopixel.create(DigitalPin.P1, 16, NeoPixelMode.RGB)
+strip.setBrightness(255)
+
+basic.forever(function () {
+    personen = 0
+    smartfeldAktoren.oledClear()
+
+    // @highlight
+    strip.setPixelColor(2, neopixel.colors(NeoPixelColors.Black))
+    // @highlight
+    strip.show()
+    // @highlight
+    h_umgebung = messeMax()
+    // @highlight
+    strip.setPixelColor(2, neopixel.colors(NeoPixelColors.White))
+    // @highlight
+    strip.show()
+    // @highlight
+    h_mitLED = messeMax()
+    // @highlight
+    h_unterschied = h_mitLED - h_umgebung
+    // @highlight
+    smartfeldAktoren.oledWriteNum(h_unterschied)
+    // @highlight
+    if (h_unterschied < 100) {
+        personen += 1
+    }
+    basic.showNumber(personen)
+    basic.pause(200)
+})
+
+```
+## An mehreren Positionen Personen erkennen und zählen
+
+* Bewerkstellige mit dem Block ``||loops:für Index von 0 bis 4|`` eine neunfache
+Ausführung der vorhergehend erwähnten Blöcken. Du must dafür die Zahl von 4 auf 8
+ändern.
+* Ersetze die LED- Nummer (im Moment = 2) durch ``||math:0+0||``, wobei du 0 + 0
+wiederum änderst zu der Addition ``||variables:Index||``+ 2. Dies ist nötig, 
+damit zuerst die LED mit Index 2 brennt.
+* Schalte nach jedem Durchlauf (zuunterst in der Schleife), alle LEDs aus mit dem
+Block  ``||neopixel:strip ausschalten||``.
+* Enferne alle Blöcke ``||basic:pausiere (ms)|| aus dem Code, diese sind nicht 
+mehr nötig.
+* Bewerkstellige einen Zeilenumbruch mit dem Block
+``||SmartfeldAktoren:Zeilenumbruch||`` direkt nach der Ausgabe 
+des Helligkeitsunterschieds auf dem OLED-Display🖥️.
+* 📥 Drücke `|Download|` und teste, ob die Warteschlange beim Platzieren von z.B.
+drei Duplo- Figuren🦹‍♂️ korrekt gezählt wird.
+
+🟥🟥🟥🟥🟥  
+⬛⬛⬛⬛🟥  
+🟥🟥🟥🟥🟥  
+⬛⬛⬛⬛🟥  
+🟥🟥🟥🟥🟥  
+
+```blocks
+//@hide
+function messeMax () {
+    ANZAHL_MESSUNGEN = 10
+    maximum = 0
+    for (let index = 0; index < ANZAHL_MESSUNGEN; index++) {
+        if (smartfeldSensoren.getHalfWord_Visible() > maximum) {
+            maximum = Math.max(maximum, smartfeldSensoren.getHalfWord_Visible())
+        }
+    }
+    return Math.round(maximum)
+}
+let h_unterschied = 0
+let h_mitLED = 0
+let h_umgebung = 0
+let personen = 0
+let maximum = 0
+let ANZAHL_MESSUNGEN = 0
+smartfeldSensoren.initSunlight()
+smartfeldAktoren.oledInit(128, 64)
+let strip = neopixel.create(DigitalPin.P1, 16, NeoPixelMode.RGB)
+strip.setBrightness(255)
+basic.forever(function () {
+    personen = 0
+    smartfeldAktoren.oledClear()
+    //@highlight
+    for (let Index = 0; Index <= 8; Index++) {
+        //@highlight
+        strip.setPixelColor(Index + 2, neopixel.colors(NeoPixelColors.Black))
+        strip.show()
+        h_umgebung = messeMax()
+        //@highlight
+        strip.setPixelColor(Index + 2, neopixel.colors(NeoPixelColors.White))
+        strip.show()
+        h_mitLED = messeMax()
+        h_unterschied = h_mitLED - h_umgebung
+        smartfeldAktoren.oledWriteNum(h_unterschied)
+        //@highlight
+        smartfeldAktoren.oledNewLine()
+        if (h_unterschied < 100) {
+            personen += 1
+        }
+        //@highlight
+        strip.clear()
+    }
+    basic.showNumber(personen)
+})
+```
+
+## Schönere Ausgabe auf dem OLED- Display🖥️
+
+Die Ausgabe auf dem OLED- Display könnten wir noch etwas zweckmässiger gestalten.
+Für die Fehlersuche könnte es hilfreich sein, die LED- Position, den Messwert, 
+sowie die Auswertung (Person **X** / keine Person **-**) anzuzeigen. Beispiel-
+Ausgabe auf dem Display:
+
+    P0: X :120
+    P1: - :5
+    P2: - :2
+    usw.
+
+* ``||functions:Erstelle eine Funktion...||`` (im Bereich Fortgeschritten zu finden)
+    * Füge drei Parameter hinzu: Zahl, Zahl und Text
+    * Benenne die Funktion mit **schreibeInfosAufDisplay** 
+    * Benenne **num** mit **position**
+    * Benenne **num2** mit **wert**
+    * Benenne **Text** mit **symbol** und klicke auf **Fertig**.
+*  ``||variables:Erstelle eine Variable...||`` und benenne sie mit **zeile**. 
+Darin wollen wir den Text einer Zeile (z.B. P0: X :120) abspeichern.
+* Nimm nun den Block ``||variables:setze zeile auf 0||`` und platziere ihn in die 
+erstellte Funktion.
+* Klappe ``||Fortgeschritten||`` auf. Dort findest Du den Block ``||text:verbinde "Hallo" "Welt" - +||``  
 Setze diese auf den Wert 9 (weil wir neun Austrittslöcher im 3D- Modell haben).
 * ``||variables:Erstelle eine Variable...||`` **ERSTE_LED_POS** und initialisiere
 sie mit dem Wert 2 (wir brauchen die LEDs konstruktionsbedingt 
 erst ab der dritten LED).
 
 ```blocks
-{
-let strip: neopixel.Strip = null
-let ERSTE_LED_POS = 0
-let ANZAHL_LEDS = 0
-ANZAHL_LEDS = 9
-ERSTE_LED_POS = 2
-strip = neopixel.create(DigitalPin.P1, 16, NeoPixelMode.RGB_RGB)
-strip.setBrightness(255)
+function schreibeInfosAufDisplay (position: number, wert: number, _symbol: string) {
+    zeile = "P" + position + ": " + _symbol + " :" + wert
+    smartfeldAktoren.oledWriteStrNewLine(zeile)
 }
+function macheEtwas (num: number, num2: number, Text: string) {
+	
+}
+function messeMax () {
+    ANZAHL_MESSUNGEN = 10
+    maximum = 0
+    for (let index = 0; index < ANZAHL_MESSUNGEN; index++) {
+        if (smartfeldSensoren.getHalfWord_Visible() > maximum) {
+            maximum = Math.max(maximum, smartfeldSensoren.getHalfWord_Visible())
+        }
+    }
+    return Math.round(maximum)
+}
+let h_unterschied = 0
+let h_mitLED = 0
+let h_umgebung = 0
+let personen = 0
+let maximum = 0
+let ANZAHL_MESSUNGEN = 0
+let zeile = ""
+smartfeldSensoren.initSunlight()
+smartfeldAktoren.oledInit(128, 64)
+let strip = neopixel.create(DigitalPin.P1, 16, NeoPixelMode.RGB)
+strip.setBrightness(255)
+basic.forever(function () {
+    personen = 0
+    smartfeldAktoren.oledClear()
+    for (let Index = 0; Index <= 8; Index++) {
+        strip.setPixelColor(Index + 2, neopixel.colors(NeoPixelColors.Black))
+        strip.show()
+        h_umgebung = messeMax()
+        strip.setPixelColor(Index + 2, neopixel.colors(NeoPixelColors.White))
+        strip.show()
+        h_mitLED = messeMax()
+        h_unterschied = h_mitLED - h_umgebung
+        if (h_unterschied < 100) {
+            schreibeInfosAufDisplay(Index, h_unterschied, "X")
+            personen += 1
+        } else {
+            schreibeInfosAufDisplay(Index, h_unterschied, "-")
+        }
+        strip.clear()
+    }
+    basic.showNumber(personen)
+})
+
 ```
 
 ## Gratuliere 🏆 – du hast Teil 1 abgeschlossen 🚀
