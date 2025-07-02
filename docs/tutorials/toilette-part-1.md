@@ -93,7 +93,7 @@ basic.forever(function () {
 }
 ```
 
-## 🧼 Flüllstand kleiner 0 verhindern
+## 🧼 Füllstand kleiner 0 verhindern
 * 🧼 Versuche mit dem Block ``||Logic:wenn wahr dann||`` Füllstände kleiner als 0 zu verhindern. 
 * 🧼 Setze den Füllstand auf 0 sollte der Füllstand die 0 unterschreiten.
 [Hier findest du weitere Informationen zu logischen Operatoren](https://makecode.microbit.org/blocks/logic/boolean)
