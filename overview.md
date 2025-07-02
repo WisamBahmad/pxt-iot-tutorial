@@ -5,7 +5,7 @@ sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
 
 # Dies ist ein Tutorial für den IoT Cube
 
-Vorraussetzungen: 🌱 IoT Basics abgeschlossen  
+Voraussetzungen: 🌱 IoT Basics abgeschlossen  
 Schwierigkeitsgrad: 🔥🔥⚪⚪
 
 In diesem Tutorial baust du Schritt für Schritt ein Programm auf, 

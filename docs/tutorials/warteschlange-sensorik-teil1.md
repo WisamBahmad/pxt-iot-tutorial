@@ -92,7 +92,7 @@ ein.
 * Wiederhole die Messung sowie die Anzeige unter Verwendung der Variable **h_mitLED**. Die Messung kannst Du nach dem zweiten **strip anzeigen** einfügen. 
 * 📥 Drücke `|Download|` und beobachte die Werte auf dem Display🖥️ . Beantworte
 für dich folgende Fragen:
-  * Wie gross ist der Unterschied der Messwerte (Umgebungungslicht - Licht mit LED)
+  * Wie gross ist der Unterschied der Messwerte (Umgebungslicht - Licht mit LED)
   * Wie stark lassen sich die Werte von Fremdlicht beeinflussen?
   * Wie stark streuen die Messwerte bei scheinbar konstantem Fremdlicht?
 
@@ -132,7 +132,7 @@ basic.forever(function () {
 Nach diesen Fragestellungen hast du wohlmöglich bemerkt, dass
   * die Einzelmessungen auch unter gleichen Bedingungen 
   relativ stark variieren, ca. +/- 40 Lumen
-  * Erhöht man das Fremdlich, erhöht sich der Hell- sowie der Dunkelwert inetwa gleich
+  * Erhöht man das Fremdlicht, erhöht sich der Hell- sowie der Dunkelwert in etwa gleich
 
 Gründe für die Unterschiede: Künstliches Licht (z. B. LEDs oder Neonröhren) 
 kann stark Flackern, auch wenn wir dies nicht wahrnehmen.
@@ -173,7 +173,7 @@ function messeMax () {
 ## 🔍 Mehrfachmessung (Funktion messeMax) einsetzen und testen
 
 * Ersetze in der ``dauerhaft`` - Schleife die zwei Blöcke ``||SmartfeldSensoren:gib sichtbares Licht [lm]||``
-  druch je einen Fuktionsaufruf ``||functions:Aufruf messeMax||``
+  durch je einen Funktionsaufruf ``||functions:Aufruf messeMax||``
 * 📥 Drücke `|Download|` und beobachte die Werte auf dem Display🖥️. Beantworte
 für dich folgende Fragen:
   * Sind die Messwerte gegenüber vorher konstanter?
@@ -233,7 +233,7 @@ Versuchen wir es!
 * ``||variables:Erstelle eine variable...||`` mit dem Namen h_unterschied
 * Nimm den Block ``||math:0 - 0||`` und ziehe das Umgebungslicht (h_umgebung) 
 vom zweiten Messwert (h_mitLED) ab.
-* Stelle auf dem Display🖥️ nur noch den Unterschied dar. Enferne die nicht 
+* Stelle auf dem Display🖥️ nur noch den Unterschied dar. Entferne die nicht 
 mehr benötigten Display- Ausgaben.
 * Die erste Pause kannst du ebenfalls entfernen, die zweite Pause ist immer noch sinnvoll, 
 damit du die Werte besser ablesen kannst.
@@ -411,14 +411,14 @@ basic.forever(function () {
 ## An mehreren Positionen Personen erkennen und zählen
 
 * Bewerkstellige mit dem Block ``||loops:für Index von 0 bis 4|`` eine neunfache
-Ausführung der vorhergehend erwähnten Blöcken. Du must dafür die Zahl von 4 auf 8
+Ausführung der vorhergehend erwähnten Blöcken. Du musst dafür die Zahl von 4 auf 8
 ändern.
 * Ersetze die LED- Nummer (im Moment = 2) durch ``||math:0+0||``, wobei du 0 + 0
 wiederum änderst zu der Addition ``||variables:Index||``+ 2. Dies ist nötig, 
 damit zuerst die LED mit Index 2 brennt.
 * Schalte nach jedem Durchlauf (zuunterst in der Schleife), alle LEDs aus mit dem
 Block  ``||neopixel:strip ausschalten||``.
-* Enferne alle Blöcke ``||basic:pausiere (ms)|| aus dem Code, diese sind nicht 
+* Entferne alle Blöcke ``||basic:pausiere (ms)|| aus dem Code, diese sind nicht 
 mehr nötig.
 * Bewerkstellige einen Zeilenumbruch mit dem Block
 ``||SmartfeldAktoren:Zeilenumbruch||`` direkt nach der Ausgabe 

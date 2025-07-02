@@ -378,7 +378,7 @@ function initialisiereLoRaVerbindung () {
 * Drücke 📥`|Download|`
 * Prüfe, ob in der Cloud Änderungen des Seifenstands 🧼 angezeigt werden: [iot.claviscloud.ch](https://iot.claviscloud.ch/dashboards/)
 * Behebe gegebenenfalls aufgetretene Fehler. Klicke auf das 💡- Symbol, um den gesamten Code des "Seifenspenders" anzuzeigen.
-* Energie sparen: Displays (das LED- sowie das OLED- Display) brauchen relativ viel Storm. Kannst Du den Code optimieren, sodass die beiden Displays nur bei Seifenstand- Änderungen aktiv sind?
+* Energie sparen: Displays (das LED- sowie das OLED- Display) brauchen relativ viel Strom. Kannst Du den Code optimieren, sodass die beiden Displays nur bei Seifenstand- Änderungen aktiv sind?
 
 ```blocks
 function initialisiereLoRaVerbindung () {
