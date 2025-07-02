@@ -423,8 +423,8 @@ mehr nötig.
 * Bewerkstellige einen Zeilenumbruch mit dem Block
 ``||SmartfeldAktoren:Zeilenumbruch||`` direkt nach der Ausgabe 
 des Helligkeitsunterschieds auf dem OLED-Display🖥️.
-* 📥 Drücke `|Download|` und teste, ob die Warteschlange beim Platzieren von z.B.
-drei Duplo- Figuren🦹‍♂️ korrekt gezählt wird.
+* 📥 Drücke `|Download|` und teste, ob die Personen beim Platzieren von z.B.
+drei Duplo- Figuren🦹‍♂️ korrekt gezählt werden.
 
 🟥🟥🟥🟥🟥  
 ⬛⬛⬛⬛🟥  
@@ -503,20 +503,38 @@ Ausgabe auf dem Display:
 Darin wollen wir den Text einer Zeile (z.B. P0: X :120) abspeichern.
 * Nimm nun den Block ``||variables:setze zeile auf 0||`` und platziere ihn in die 
 erstellte Funktion.
-* Klappe ``||Fortgeschritten||`` auf. Dort findest Du den Block ``||text:verbinde "Hallo" "Welt" - +||``  
-Setze diese auf den Wert 9 (weil wir neun Austrittslöcher im 3D- Modell haben).
-* ``||variables:Erstelle eine Variable...||`` **ERSTE_LED_POS** und initialisiere
-sie mit dem Wert 2 (wir brauchen die LEDs konstruktionsbedingt 
-erst ab der dritten LED).
+* Klappe ``||Fortgeschritten||`` auf. Unter ``Text`` findest Du den Block ``||text:verbinde "Hallo" "Welt" - +||``.
+Weise diesen Block der Variable **zeile** zu (anstelle der **0**). 
+* Verbinde nun den Text **"P"**, die Variable **position**, einen **": "**, die Variable **symbol**, ein **" :"**
+sowie die Variable **wert**. 
+* Danach zeigst Du die Variable ``||variables:zeile||`` mithilfe des Blocks 
+``||SmartfeldAktoren:Schreibe String und Zeilenumbruch||`` auf dem OLED-Display🖥️ an.
+* setze die Funktion ``||functions:schreibeInfosAufDisplay||`` nun in der ``dauerhaft`` Schleife an den 
+korrekten zwei Stellen ein, so wie im Tooltip (💡Links unten) angezeigt.
+* Bisherige OLED-Display- Ausgaben kannst du jetzt entfernen.
+* 📥 Drücke `|Download|` und teste, ob die OLED- Display🖥️- Ausgaben beim 
+Platzieren von z.B. drei Duplo- Figuren🦹‍♂️ korrekt angegeben werden 
+(Deine Ausgabe kann natürlich variieren):
+
+    P0: X :120  
+    P1: - :5  
+    P2: - :2  
+    P3: X :204  
+    P4: - :4  
+    P5: - :2  
+    P6: X :140  
+    P7: - :2  
+
+* Falls Du eine andere Idee hast für die Visualisierung auf dem OLED- Display, 
+fühle Dich frei, etwas anderes zu programmieren!
 
 ```blocks
+//@highlight
 function schreibeInfosAufDisplay (position: number, wert: number, _symbol: string) {
     zeile = "P" + position + ": " + _symbol + " :" + wert
     smartfeldAktoren.oledWriteStrNewLine(zeile)
 }
-function macheEtwas (num: number, num2: number, Text: string) {
-	
-}
+//@hide
 function messeMax () {
     ANZAHL_MESSUNGEN = 10
     maximum = 0
@@ -550,9 +568,11 @@ basic.forever(function () {
         h_mitLED = messeMax()
         h_unterschied = h_mitLED - h_umgebung
         if (h_unterschied < 100) {
+            //@highlight
             schreibeInfosAufDisplay(Index, h_unterschied, "X")
             personen += 1
         } else {
+            //@highlight
             schreibeInfosAufDisplay(Index, h_unterschied, "-")
         }
         strip.clear()
