@@ -87,11 +87,12 @@ Ziel ist es bei jedem Knopfdruck auf A den Seifenstand jeweils um 20% zu reduzie
 Dazu benötigen wir eine Verzweigung, die prüft, ob Knopf A gedrückt wurde. Wenn dies der Fall ist, 
 dann soll der Seifenstand um 20% reduziert werden.
 * Um diese Verzweigung einzufügen, hol dir den Block ``||Logic:wenn wahr dann||`` und 
-ziehe ihn in die ``dauerhaft`` Schleife
+ziehe ihn in die bestehende ``||basic:dauerhaft||`` Schleife
 * Schiebe einen neuen Block ``||Input:Knopf A ist geklickt||`` auf das Feld ``wahr``
 * Ändere die Variable ``||variables:seifenstandInProzent||`` 🧼 um -20.
 * Zeichne erneut das Säulendiagramm.🟥 Dupliziere diesen Teil aus ``beim Start``
-* Verzögere die Dauerhaftschleife um 150 ms mit ``||basic:pausiere (ms)||``.
+* Verzögere die bestehende ``||basic:dauerhaft||`` Schleife zum Schluss nach dem bestehenden 
+``||Logic:wenn wahr dann||`` Block um 150 ms mit ``||basic:pausiere (ms)||``.
 
 ```blocks
 basic.forever(function () {
@@ -109,10 +110,15 @@ basic.forever(function () {
 ```
 
 ## 🧼 Füllstand kleiner 0 verhindern
-Damit wir vermeiden, dass der Füllstand unter 0% fällt, benötigen wir eine weitere Bedingung, die prüft, 
-ob der Seifenstand unter 0% gefallen ist. Wenn dies der Fall ist, soll der Seifenstand auf 0% gesetzt werden.
-* Ergänze einen weiteren Block ``||Logic:wenn wahr dann||`` nachdem der Seifenstand 🧼 um 20% reduziert wurde.
-* Setze den ``||variables:seifenstandInProzent||`` auf 0% in dem du den Seifenstand 🧼 auf 0 setzt.
+Um zu vermeiden, dass der Füllstand unter 0% fällt, benötigen wir eine weitere Bedingung, 
+die prüft, ob der Seifenstand unter 0% gefallen ist. Wenn dies der Fall ist, soll der
+Seifenstand auf 0% gesetzt werden.
+* Ergänze unter dem Block ``||variables:ändere seifenstandInProzent um -20||`` 
+einen weiteren Block ``||Logic:wenn wahr dann||`` und überprüfe, ob der 
+``||seifenstandInProzent < 0||`` ist. Wenn ja, dann setze den 
+``||variables:seifenstandInProzent auf 0||``.
+* Setze den ``||variables:seifenstandInProzent||`` auf 0% in dem du den Seifenstand 🧼 
+auf 0 setzt.
 [Hier findest du weitere Informationen zu logischen Operatoren](https://makecode.microbit.org/blocks/logic/boolean)
 * 📥 Drücke `|Download|` und kontrolliere die 🟥 LED-Anzeige. Drücke öfters Knopf A, bis der Seifenstand unter 0% fällt. 
 
@@ -121,7 +127,7 @@ ob der Seifenstand unter 0% gefallen ist. Wenn dies der Fall ist, soll der Seife
 🟥🟥🟥🟥🟥  
 🟥🟥🟥🟥🟥  
 🟥🟥🟥🟥🟥  
-Was passiert? Bleibt die Anzeige bei 0 stehen?  
+Was passiert? Bleibt die LED-Anzeige bei 0 stehen?  
 
 ```blocks
 basic.forever(function () {
@@ -145,7 +151,7 @@ basic.forever(function () {
 Nun wollen wir den Seifenstand 🧼 wieder auffüllen, wenn Knopf B gedrückt wird.
 Dazu benötigen wir eine Bedingung, die prüft, ob Knopf B gedrückt wurde. Wenn dies der Fall ist, soll der Seifenstand 🧼 auf 100% gesetzt werden.
 * Hol dir den Block ``||Logic:wenn wahr dann||`` und ziehe ihn in
-die ``dauerhaft`` Schleife, oberhalb von ``||basic:pausiere (ms)||``
+die bestehende ``||basic:dauerhaft||`` Schleife, oberhalb von ``||basic:pausiere (ms)||``
 * Schiebe den Block ``||Input:Knopf A ist geklickt||`` auf das Feld ``wahr``
 und ändere Knopf A zu Knopf **B**
 * Setze den Seifenstand auf 100% indem du die Variable ``||variables:seifenstandInProzent||``🧼 auf 100 setzt.
