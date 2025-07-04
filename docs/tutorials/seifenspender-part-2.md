@@ -393,7 +393,8 @@ basic.forever(function () {
 
 ## 🪫 Energie sparen
 
-* Um Energie zu sparen kannst du die Anzeige des Seifenstandes🧼 in der Dauerhaftschleife nach jedem Durchlauf löschen.
+* Um Energie zu sparen kannst du die Anzeige des Seifenstandes🧼 in der
+bestehenden ``||basic:dauerhaft||`` Schleife nach jedem Durchlauf löschen.
 Nutze dazu ``||basic:Bildschirminhalt löschen||``.
 * 📥 Drücke `|Download|` und teste Dein fertiges Programm!
 
