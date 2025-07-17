@@ -21,12 +21,11 @@ Schau Dir dieses Video an, welches das Messprinzip illustriert:
 * [Video🎬 ansehen: Warteschlange Sensorik](https://wiki.smartfeld.ch/lib/exe/fetch.php?media=warteschlange_sensorik.mp4)
 
 ## 👁️ Hardware- Voraussetzungen @showdialog
-* [Wartebereich als Kunststoffteil:](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/warteschlange3dViewer.html)
-* Falls du das Teil 3D- Drucken möchtest, lade das STL- File hier herunter: [🌍STL-3D-Modell:](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/Wartebereich.stl)
+* Du brauchst dieses Kunststoffteil: [Wartebereich als Kunststoffteil](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/warteschlange3dViewer.html)
+* Falls du das Teil selbst 3D- Drucken möchtest, lade das STL- File hier herunter: [🌍STL-3D-Modell](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/Wartebereich.stl)
 * Schliesse den RGB-LED-Streifen💡 an **J7** an.
 * Verbinde den Lichtsensor👁️ an **J0** mit dem IoT Cube.
 * Schliesse das OLED- Display 🖥️  an **J5** an. 
-
 
 ## 💡 LEDs in Betrieb nehmen
 
