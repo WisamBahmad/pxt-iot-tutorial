@@ -5,18 +5,7 @@ neopixel=github:microsoft/pxt-neopixel#v0.7.6
 ```
 ### @explicitHints false
 
-# Warteschlange Sensorik Teil 1
-
-## 📗 Einführung
-
-Stell dir vor, du möchtest automatisiert herausfinden, wie viele Personen vor 
-einer smarten Toilette warten. In diesem Projekt baust du eine neunkanalige 
-Lichtschranke💡👁️, die mit relativ einfacher Technik auskommt: 
-einem RGB-LED-Streifen💡 und einem Lichtsensor 👁️.
-
-* Voraussetzungen: 🌱 IoT Basics abgeschlossen
-* Schwierigkeitsgrad: 🔥🔥🔥🔥
-
+# Warteschlangen-Sensorik Teil 1
 
 ## 🎬 Messprinzip 
 
@@ -281,19 +270,18 @@ basic.forever(function () {
 
 ## 👥 Figur erkennen und zählen
 
-* ``||variables:Erstelle eine variable...||`` mit dem Namen **personen** und
+* ``||variables:Erstelle eine variable...||`` mit dem Namen **anzahlPersonenInWarteschlange** und
 setze sie zu beginn der ``dauerhaft``- Schleife auf 0. 
 * Prüfe am Schluss der ``dauerhaft``- Schleife, ob der Helligkeitsunterschied 
 (h_unterschied) kleiner als 100 ist (du kannst diesen Wert auch anpassen,
-falls nötig), dann soll die Anzahl **personen** hochgezählt werden.
+falls nötig), dann soll die Anzahl **anzahlPersonenInWarteschlange** hochgezählt werden.
 Nutze dazu ``||logic:wenn wahr dann||`` sowie ``||logic:0 < 0||`` und 
-``||variables:ändere personen um 1||``
-* Zeige die Anzahl **personen** mit ``||basic:zeige Zahl ||`` auf dem Micro:Bit an.
-* 📥 Drücke `|Download|` und kontrolliere die 🟥 LED-Anzeige. 
+``||variables:ändere anzahlPersonenInWarteschlange um 1||``
+* Zeige **anzahlPersonenInWarteschlange** mit ``||basic:zeige Zahl ||`` auf dem Micro:Bit an.
+* 📥 Drücke `|Download|` und kontrolliere die  LED-Anzeige🟥. 
   * Wird die Person an der ersten Stelle korrekt gezählt?
   * Hast Du schon Ideen, wie man an allen neun Positionen Personen 
-  zählen könnte?
-
+  zählen könnte? <br />
 ⬛⬛🟥⬛⬛  
 ⬛🟥🟥⬛⬛  
 ⬛⬛🟥⬛⬛  
@@ -315,7 +303,7 @@ function messeMax () {
 let h_unterschied = 0
 let h_mitLED = 0
 let h_umgebung = 0
-let personen = 0
+let anzahlPersonenInWarteschlange = 0
 let maximum = 0
 let ANZAHL_MESSUNGEN = 0
 smartfeldSensoren.initSunlight()
@@ -324,7 +312,7 @@ let strip = neopixel.create(DigitalPin.P1, 16, NeoPixelMode.RGB)
 strip.setBrightness(255)
 
 basic.forever(function () {
-    personen = 0
+    anzahlPersonenInWarteschlange = 0
     smartfeldAktoren.oledClear()
     strip.setPixelColor(2, neopixel.colors(NeoPixelColors.Black))
     strip.show()
@@ -336,10 +324,10 @@ basic.forever(function () {
     smartfeldAktoren.oledWriteNum(h_unterschied)
     // @highlight
     if (h_unterschied < 100) {
-        personen += 1
+        anzahlPersonenInWarteschlange += 1
     }
     // @highlight
-    basic.showNumber(personen)
+    basic.showNumber(anzahlPersonenInWarteschlange)
     basic.pause(200)
 })
 
@@ -371,7 +359,7 @@ function messeMax () {
 let h_unterschied = 0
 let h_mitLED = 0
 let h_umgebung = 0
-let personen = 0
+let anzahlPersonenInWarteschlange = 0
 let maximum = 0
 let ANZAHL_MESSUNGEN = 0
 smartfeldSensoren.initSunlight()
@@ -380,7 +368,7 @@ let strip = neopixel.create(DigitalPin.P1, 16, NeoPixelMode.RGB)
 strip.setBrightness(255)
 
 basic.forever(function () {
-    personen = 0
+    anzahlPersonenInWarteschlange = 0
     smartfeldAktoren.oledClear()
 
     // @highlight
@@ -401,9 +389,9 @@ basic.forever(function () {
     smartfeldAktoren.oledWriteNum(h_unterschied)
     // @highlight
     if (h_unterschied < 100) {
-        personen += 1
+        anzahlPersonenInWarteschlange += 1
     }
-    basic.showNumber(personen)
+    basic.showNumber(anzahlPersonenInWarteschlange)
     basic.pause(200)
 })
 
@@ -424,8 +412,7 @@ mehr nötig.
 ``||SmartfeldAktoren:Zeilenumbruch||`` direkt nach der Ausgabe 
 des Helligkeitsunterschieds auf dem OLED-Display🖥️.
 * 📥 Drücke `|Download|` und teste, ob die Personen beim Platzieren von z.B.
-drei Duplo- Figuren🦹‍♂️ korrekt gezählt werden.
-
+drei Duplo- Figuren🦹‍♂️ korrekt gezählt werden.<br />
 🟥🟥🟥🟥🟥  
 ⬛⬛⬛⬛🟥  
 🟥🟥🟥🟥🟥  
@@ -447,7 +434,7 @@ function messeMax () {
 let h_unterschied = 0
 let h_mitLED = 0
 let h_umgebung = 0
-let personen = 0
+let anzahlPersonenInWarteschlange = 0
 let maximum = 0
 let ANZAHL_MESSUNGEN = 0
 smartfeldSensoren.initSunlight()
@@ -455,7 +442,7 @@ smartfeldAktoren.oledInit(128, 64)
 let strip = neopixel.create(DigitalPin.P1, 16, NeoPixelMode.RGB)
 strip.setBrightness(255)
 basic.forever(function () {
-    personen = 0
+    anzahlPersonenInWarteschlange = 0
     smartfeldAktoren.oledClear()
     //@highlight
     for (let Index = 0; Index <= 8; Index++) {
@@ -472,12 +459,12 @@ basic.forever(function () {
         //@highlight
         smartfeldAktoren.oledNewLine()
         if (h_unterschied < 100) {
-            personen += 1
+            anzahlPersonenInWarteschlange += 1
         }
         //@highlight
         strip.clear()
     }
-    basic.showNumber(personen)
+    basic.showNumber(anzahlPersonenInWarteschlange)
 })
 ```
 
@@ -514,7 +501,7 @@ korrekten zwei Stellen ein, so wie im Tooltip (💡Links unten) angezeigt.
 * Bisherige OLED-Display- Ausgaben kannst du jetzt entfernen.
 * 📥 Drücke `|Download|` und teste, ob die OLED- Display🖥️- Ausgaben beim 
 Platzieren von z.B. drei Duplo- Figuren🦹‍♂️ korrekt angegeben werden 
-(Deine Ausgabe kann natürlich variieren):
+(Deine Ausgabe kann natürlich variieren):<br />
 
     P0: X :120  
     P1: - :5  
@@ -548,7 +535,7 @@ function messeMax () {
 let h_unterschied = 0
 let h_mitLED = 0
 let h_umgebung = 0
-let personen = 0
+let anzahlPersonenInWarteschlange = 0
 let maximum = 0
 let ANZAHL_MESSUNGEN = 0
 let zeile = ""
@@ -557,7 +544,7 @@ smartfeldAktoren.oledInit(128, 64)
 let strip = neopixel.create(DigitalPin.P1, 16, NeoPixelMode.RGB)
 strip.setBrightness(255)
 basic.forever(function () {
-    personen = 0
+    anzahlPersonenInWarteschlange = 0
     smartfeldAktoren.oledClear()
     for (let Index = 0; Index <= 8; Index++) {
         strip.setPixelColor(Index + 2, neopixel.colors(NeoPixelColors.Black))
@@ -570,19 +557,19 @@ basic.forever(function () {
         if (h_unterschied < 100) {
             //@highlight
             schreibeInfosAufDisplay(Index, h_unterschied, "X")
-            personen += 1
+            anzahlPersonenInWarteschlange += 1
         } else {
             //@highlight
             schreibeInfosAufDisplay(Index, h_unterschied, "-")
         }
         strip.clear()
     }
-    basic.showNumber(personen)
+    basic.showNumber(anzahlPersonenInWarteschlange)
 })
 
 ```
 
-## Gratuliere 🏆 – du hast Teil 1 abgeschlossen 🚀
-[Zur Lösung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/warteschlange-sensorik-teil1-solution)
+## Gratuliere 🏆 - du hast den Teil 1 erfolgreich bearbeitet 🚀
 
-
+* Weiter gehts mit Teil 2: [Teil 2](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/warteschlange-sensorik-part-2)
+* Falls irgendwas noch nicht richtig läuft, hier hast Du eine funktionierende Version zum testen: [Lösung Teil 1](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/warteschlange-sensorik-part-1-solution)

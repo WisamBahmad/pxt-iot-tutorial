@@ -5,7 +5,7 @@ neopixel=github:microsoft/pxt-neopixel#v0.7.6
 ```
 ### @explicitHints false
 
-# Warteschlange Sensorik Teil 1
+# Warteschlangen-Sensorik Teil 1
 ## Lösung
 
 * Unten findest du die komplette Lösung.
@@ -29,7 +29,7 @@ function messeMax () {
 let h_unterschied = 0
 let h_mitLED = 0
 let h_umgebung = 0
-let personen = 0
+let anzahlPersonenInWarteschlange = 0
 let maximum = 0
 let ANZAHL_MESSUNGEN = 0
 let zeile = ""
@@ -38,7 +38,7 @@ smartfeldAktoren.oledInit(128, 64)
 let strip = neopixel.create(DigitalPin.P1, 16, NeoPixelMode.RGB)
 strip.setBrightness(255)
 basic.forever(function () {
-    personen = 0
+    anzahlPersonenInWarteschlange = 0
     smartfeldAktoren.oledClear()
     for (let Index = 0; Index <= 8; Index++) {
         strip.setPixelColor(Index + 2, neopixel.colors(NeoPixelColors.Black))
@@ -50,13 +50,13 @@ basic.forever(function () {
         h_unterschied = h_mitLED - h_umgebung
         if (h_unterschied < 100) {
             schreibeInfosAufDisplay(Index, h_unterschied, "X")
-            personen += 1
+            anzahlPersonenInWarteschlange += 1
         } else {
             schreibeInfosAufDisplay(Index, h_unterschied, "-")
         }
         strip.clear()
     }
-    basic.showNumber(personen)
+    basic.showNumber(anzahlPersonenInWarteschlange)
 })
 
 ```
