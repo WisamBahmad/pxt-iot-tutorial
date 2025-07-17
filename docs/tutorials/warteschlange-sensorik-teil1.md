@@ -418,7 +418,7 @@ wiederum änderst zu der Addition ``||variables:Index||``+ 2. Dies ist nötig,
 damit zuerst die LED mit Index 2 brennt.
 * Schalte nach jedem Durchlauf (zuunterst in der Schleife), alle LEDs aus mit dem
 Block  ``||neopixel:strip ausschalten||``.
-* Entferne alle Blöcke ``||basic:pausiere (ms)|| aus dem Code, diese sind nicht 
+* Entferne alle Blöcke ``||basic:pausiere (ms)||`` aus dem Code, diese sind nicht 
 mehr nötig.
 * Bewerkstellige einen Zeilenumbruch mit dem Block
 ``||SmartfeldAktoren:Zeilenumbruch||`` direkt nach der Ausgabe 

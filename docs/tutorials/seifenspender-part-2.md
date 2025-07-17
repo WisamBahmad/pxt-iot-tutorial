@@ -103,7 +103,7 @@ while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
 ## 🛜 Status Verbunden anzeigen
 Die Schleife wird beendet, wenn die Verbindung besteht, d.h. wir können nach der Schleife "Verbunden" am Display anzeigen:
 
-* Unter der Schleife löschst Du den Displayinhalt mittels 🖥️``||SmartfeldAktoren:Lösche Displayinhalt||``.
+* Unter der eben erstellten ``||loops:während||`` Schleife löschst Du den Displayinhalt mittels 🖥️``||SmartfeldAktoren:Lösche Displayinhalt||``.
 * Im Anschluss schreibst du ein "Verbunden!" auf das OLED- Display🖥️
 * ``||basic:pausiere (ms)||`` für 2 Sekunden (=2000 ms), nachdem der Text "Verbunden!" ausgegeben wurde,
 damit dieser Text mindestens für diese Zeit auf dem Display steht.
@@ -147,7 +147,9 @@ smartfeldAktoren.oledClear()
 
 Um die Übersicht zu behalten, werden beim Programmieren oft Funktionen eingesetzt. Wir wollen eine Funktion mit dem Namen **initialisiereLoRaVerbindung** erstellen, welche
 den Verbindungsaufbau beinhaltet.
-* Hol dir den Block ``||functions:Erstelle eine Funktion...||`` und benenne die Funktion **initialisiereLoRaVerbindung**.
+* Klappe den Bereich **Fortgeschritten** auf, hol dir den Block 
+``||functions:Erstelle eine Funktion...||`` und benenne 
+die Funktion **initialisiereLoRaVerbindung**.
 * Ziehe alle Code- Blöcke, welche im Zusammenhang mit dem Verbindungsaufbau stehen in diese neue Funktion. 
 Klicke auf die 💡Glühbirne, um zu klären, welche Code- Blöcke gemeint sind.
 * Hol dir den Block ``||functions:Aufruf initialisiereLoRaVerbindung ||`` und ziehe diesen zuunterst in den Block **beim Start**.
@@ -393,7 +395,8 @@ basic.forever(function () {
 
 ## 🪫 Energie sparen
 
-* Um Energie zu sparen kannst du die Anzeige des Seifenstandes🧼 in der Dauerhaftschleife nach jedem Durchlauf löschen.
+* Um Energie zu sparen kannst du die Anzeige des Seifenstandes🧼 in der
+bestehenden ``||basic:dauerhaft||`` Schleife nach jedem Durchlauf löschen.
 Nutze dazu ``||basic:Bildschirminhalt löschen||``.
 * 📥 Drücke `|Download|` und teste Dein fertiges Programm!
 
