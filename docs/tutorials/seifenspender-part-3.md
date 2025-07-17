@@ -224,13 +224,19 @@ function warte5SekundenUndZeigeFortschritt () {
 
 ## Modell für Seifenspender bauen
 
-Um die Anwendung des Seifenspenders zu testen, kannst Du dir mit Karton einen Halter für den Ultraschallsensor🦇 bauen.
+Um die Anwendung des Seifenspenders zu testen, bauen wir ein Karton-Modell, 
+welches als Halter für den Ultraschallsensor🦇 dient. 
+Über einen Schieber kann die Distanz eingestellt werden, welche den Seifenstand🧼 simuliert.
 
-* Hier kannst du Dir ansehen, wie es aussehen könnte, der Karton-Schieber simuliert den Seifenstand🧼: [🌍Kartonmodell](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/seifenspender3dModellViewer.html)
-* Falls dir das Modell gefällt, kannst Du dieses PDF herunterladen, auf A3 ausdrucken, auf ein Karton übertragen und zusammenfalten: [🌍Kartonmodell-Abwicklung](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/Seifenspender_Kartonvorlage_Abwicklung_zum_Ausdrucken_A3.pdf)
+* Lade dir das Modell herunter und drucke es auf A3 aus. 
+Empfehlenswert ist es, das Modell auf einen Karton oder dickeres Papier zu kleben. 
+Dadurch erhält das Modell mehr Stabilität. Download Vorlage:
+[🌍Kartonmodell-Abwicklung](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/Seifenspender_Kartonvorlage_Abwicklung_zum_Ausdrucken_A3.pdf)
+
+* Unter folgendem Links siehst du, wie das Modell aussieht:
+ [🌍Kartonmodell](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/seifenspender3dModellViewer.html)
 
 ## Seifenstand🧼 berechnen
-
 
 * Aus der Messgrösse distanzSensorZuSeife kannst du den Seifenstand🧼 in % berechnen. Siehst Du die Zusammenhänge, wenn Du das Bild weiter unten studierst?
 * Berechne den Seifenstand in Prozent. Nutze ``||math:Mathematik||`` sowie ``||variables:setze seifenstandInProzent auf ... ||``.
@@ -289,17 +295,26 @@ function warte5SekundenUndZeigeFortschritt () {
 
 ## Senden in die Cloud☁️ bei Änderung des Seifenstandes
 
-Sobald sich der Seifenstand ändert, wollen wir einen aktuellen Wert in die Cloud☁️ schicken.
+Da wir nicht immer, sondern nur dann, wenn sich der Seifenstand ändert, 
+diesen an die Cloud senden möchten, müssen wir unser Programm noch etwas erweitern, 
+d.h. eine Variable nutzen, um Änderungen zu erkennen. 
 
 * Um Änderungen am Seifenstand zu detektieren, müssen wir jeweils den alten Wert speichern. Dazu benötigen wir eine neue Variable.
 ``||variables:Erstelle eine Variable...||`` und benenne sie mit **seifenstandAlt** .
 * beim Start ``||variables:setze seifenstandAlt auf -1||``, bzw. auf einen Wert, der sich beim ersten Mal von der Realität unterscheidet.
-* Prüfe mit ``||Logic:Vergleich 0 ≠ 0||``, ob sich die Variablen ``||variables:seifenstandAlt||`` und ``||variables:seifenstandInProzent||`` unterscheiden. Falls ja, schicke den aktuellen Wert in die Cloud und setze ``||variables:seifenstandAlt||`` auf ``||variables:seifenstandInProzent||``.
-* Setze beim Start die Variable wieder auf true, damit der Verbindungsaufbau wieder ausgeführt wird.
+* In der bestehenden ``||basic:dauerhaft||``- Schleife
+prüfe nach der Berechnung des seifenstandInProzent mit ``||Logic:Vergleich 0 ≠ 0||``, 
+ob sich die Variablen ``||variables:seifenstandAlt||`` und 
+``||variables:seifenstandInProzent||`` unterscheiden. 
+Falls ja, schicke den aktuellen Wert in die Cloud und setze 
+``||variables:seifenstandAlt||`` auf ``||variables:seifenstandInProzent||``.
+* Setze beim Start die Variable wieder auf **Wahr**, 
+damit der Verbindungsaufbau wieder ausgeführt wird.
 
 ```blocks
 let zwischenresultat = 0
 let distanzSensorZuSeife = 0
+// @highlight
 let seifenstandAlt = -1
 smartfeldAktoren.oledInit(128, 64)
 let seifenstandInProzent = 100
@@ -308,7 +323,7 @@ seifenstandInProzent,
 100
 )
 smartfeldAktoren.oledInit(128, 64)
-// @highlight
+
 if (true) {
     initialisiereLoRaVerbindung()
     IoTCube.addUnsignedInteger(eIDs.ID_0, seifenstandInProzent)
