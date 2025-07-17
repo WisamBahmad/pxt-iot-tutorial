@@ -2,7 +2,7 @@
 
 ## Übersicht
 
-In diesem Repository sind zwei Makecode- Tutorials mit mehreren Teilen enthalten:
+In diesem Repository sind zwei Makecode-Tutorials mit mehreren Teilen enthalten:
 
 ### Seifenspender
 
@@ -15,7 +15,7 @@ In diesem Tutorial wird Schritt für Schritt ein Programm aufgebaut, das den Sei
 
 ### Warteschlange
 
-In diesem Tutorial wird eine Warteschlange simuliert für eine Smarte Toilette, um die wartenden Personen automatisiert zu zählen.
+In diesem Tutorial wird eine Warteschlange simuliert für eine smarte Toilette, um die wartenden Personen automatisiert zu zählen.
 
 * [Einstiegspunkt Warteschlange](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/warteschlange-overview)
 * [Teil 1 - noch ohne Internetverbindung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/warteschlange-sensorik-part-1)

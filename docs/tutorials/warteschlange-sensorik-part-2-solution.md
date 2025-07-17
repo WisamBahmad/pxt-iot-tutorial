@@ -9,7 +9,7 @@ neopixel=github:microsoft/pxt-neopixel#v0.7.6
 ## Lösung
 
 * Unten findest du die komplette Lösung.
-* Drücke 📥`|Download|` und teste das Programm.
+* Drücke 📥 `|Download|` und teste das Programm.
 
 ```template
 

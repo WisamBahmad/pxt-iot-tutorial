@@ -15,7 +15,7 @@ Steht etwas zwischen Sensor👁️ und LED💡, zum Beispiel eine Lego-Figur🦹
 verringert sich die Helligkeit.
 So erkennen wir, ob an einer bestimmten Position etwas im Lichtstrahl steht.
 Die Messungen werden an neun Positionen in der Warteschlange nacheinander 
-vorgenommen, sodass dieL ego-Figuren🦹‍♂️gezählt werden können.
+vorgenommen, sodass die Lego-Figuren🦹‍♂️gezählt werden können.
 
 Schau Dir dieses Video an, welches das Messprinzip illustriert:
 * [Video🎬 ansehen: Warteschlange Sensorik](https://wiki.smartfeld.ch/lib/exe/fetch.php?media=warteschlange_sensorik.mp4)
