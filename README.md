@@ -3,7 +3,7 @@ iot-cube=github:Smartfeld/pxt-iot-cube#v1.1.2
 sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
 ```
 
-# Dies ist ein Tutorial für den IoT Cube
+# Tutorial Seifenspender für den IoT Cube
 
 ## Wichtige Hinweise zu Beginn:
 * Fenster vergrössern: Zieh dieses Browser-Fenster oder das MakeCode-Fenster grösser, damit du alles gut sehen kannst.
