@@ -8,7 +8,7 @@ sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
 ## Lösung
 
 * Unten die Lösung von Tutorial Teil 2 
-* Drücke 📥`|Download|`und teste das Programm.
+* Drücke 📥 `|Download|` und teste das Programm.
 
 ```template
 
