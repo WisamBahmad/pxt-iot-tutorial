@@ -38,7 +38,7 @@ Falls dir bezüglich dieser Funktionen etwas unklar ist, überlege, vorgängig n
 
 ## 🛜 Verbindung mit Internet aufbauen
 
-Zu Beginn bauen wir eine Verbindung zum Internet auf. Dazu bennötigen wir einen Funktionsaufruf.
+Zu Beginn bauen wir eine Verbindung zum Internet auf. Dazu benötigen wir einen Funktionsaufruf.
 
 * Hol dir den Block ``||functions:Aufruf initialisiereLoRaVerbindung ||`` und ziehe diesen zuunterst in den Block **beim Start**.
 
@@ -140,7 +140,7 @@ basic.forever(function () {
 
 Bis jetzt wird die Personenanzahl in der 'Dauerhaft'- Schleife lediglich angezeigt, aber noch nicht gesendet. Dies wollen wir nun ändern:
 
-* Ersetzte den Block ``||basic:showNumber(anzahlPersonenInWarteschlange)||`` durch ``||functions:Aufruf sendeUndZeigePersonenanzahl||``.
+* Ersetze den Block ``||basic:showNumber(anzahlPersonenInWarteschlange)||`` durch ``||functions:Aufruf sendeUndZeigePersonenanzahl||``.
 * 📥 Drücke `|Download|` und kontrolliere das LED-Anzeige🟥 und das OLED-Display🖥️:  
 Teste, ob die Personen beim Platzieren von z.B.drei Duplo- Figuren🦹‍♂️ korrekt gezählt werden. Direkt nach der Anzeige der Zahl müsste auch der Ladebalken auf dem OLED-Display🖥️ für 5 Sekunden erscheinen<br />
 🟥🟥🟥🟥🟥  
@@ -244,7 +244,7 @@ Nun geht es an die Visualisierung der Daten auf der Clavis Cloud ☁️.
 * Rufe die Website [🌍iot.claviscloud.ch](https://iot.claviscloud.ch/home) auf.
 * Melde dich an (Login- Informationen kriegst Du von der Lehrperson/ Kursleitung).
 * Erweitere dein Dashboard mit einem Warteschlangen- Widget, falls noch nicht vorhanden.
-* Wähle im Widget als **Datenquelle** als **Gerät** deinen IoT- Cube (gemäss Aufschift) aus.
+* Wähle im Widget als **Datenquelle** als **Gerät** deinen IoT- Cube (gemäss Aufschrift) aus.
 * Wähle als **Data key** **Ganzzahl_ID_0** aus.
 * Klicke auf **Speichern** und teste, ob die Anzahl Personen gesendet und dargestellt wird.
 
