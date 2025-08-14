@@ -302,13 +302,14 @@ d.h. eine Variable nutzen, um Änderungen zu erkennen.
 * Um Änderungen am Seifenstand zu detektieren, müssen wir jeweils den alten Wert speichern. Dazu benötigen wir eine neue Variable.
 ``||variables:Erstelle eine Variable...||`` und benenne sie mit **seifenstandAlt** .
 * beim Start ``||variables:setze seifenstandAlt auf -1||``, bzw. auf einen Wert, der sich beim ersten Mal von der Realität unterscheidet.
-* In der bestehenden ``||basic:dauerhaft||``- Schleife
-prüfe nach der Berechnung des seifenstandInProzent mit ``||Logic:Vergleich 0 ≠ 0||``, 
+* In der bestehenden ``||basic:dauerhaft||``- Schleife befindet sich eine Logik ``||logic:wenn falsch dann||``,
+um das Senden zu verhindern.
+Diese baust du für deine Zwecke um: Prüfe mit ``||logic:Vergleich 0 ≠ 0||``, 
 ob sich die Variablen ``||variables:seifenstandAlt||`` und 
 ``||variables:seifenstandInProzent||`` unterscheiden. 
-Falls ja, schicke den aktuellen Wert in die Cloud und setze 
+Falls ja, schicke den aktuellen Wert in die Cloud (ist bereits vorhanden) und setze 
 ``||variables:seifenstandAlt||`` auf ``||variables:seifenstandInProzent||``.
-* Setze beim Start die Variable wieder auf **Wahr**, 
+* Setze beim Start den Wahrheitswert der Bedingung wieder auf **Wahr**, 
 damit der Verbindungsaufbau wieder ausgeführt wird.
 
 ```blocks

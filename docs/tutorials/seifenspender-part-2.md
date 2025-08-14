@@ -35,7 +35,7 @@ Dies ist im Klassensatz einmal vorhanden und kann hunderte von IoT- Cubes bedien
 ## 🖥️ Statusmeldung anzeigen auf OLED  
 Auf dem kleinen Display auf dem IoT Cube wollen wir den Text "Verbinde" anzeigen. 
 
-* Hol dir einen Block 🖥️ ``||SmartfeldAktoren:init OLED Breite 128 Höhe 64||`` .
+* Klappe den Bereich ``||SmartfeldAktoren:•••Display||`` auf und hol dir den Block 🖥️ ``||SmartfeldAktoren:init OLED Breite 128 Höhe 64||`` .
 und ergänze ihn unten im Block ``||basic:beim Start||``. 
 * Darunter setzt du den Block 🖥️ ``||SmartfeldAktoren:Lösche Displayinhalt||`` .
 ein.
@@ -189,7 +189,7 @@ initialisiereLoRaVerbindung()
 Zu Beginn ist der Seifenstand 100 %.
 Diesen wollen wir nach dem Initialisieren der LoRa Verbindung senden.
 
-* Setze unter der initialisierung der LoRa Verbindung den Block ``||IoTCube:Ganzzahl mit ID_0 = 0 hinzufügen||`` ein.
+* Setze unter den Aufruf der Funktion ``||functions:initialisierLoRaVerbindung||`` den Block ``||IoTCube:Ganzzahl mit ID_0 = 0 hinzufügen||`` ein.
 * Die 0 ersetzt du nun mit der Variable ``||variables:seifenstandInProzent||``.
 * Schicke nun den Seifenstand mit dem Befehl ``||IoTCube:Sende Daten||`` in die ☁️ Cloud!
 * Drücke 📥`|Download|`.
@@ -318,7 +318,7 @@ function warte5SekundenUndZeigeFortschritt () {
 
 ## ⏱️ Wartezeit einbauen
 
-* Nach jedem Befehl ``||IoTCube:Sende Daten||`` fügst Du die Funktion aus dem Bereich Fortgeschritten ``||function:warte5SekundenUndZeigeFortschritt||`` ein.
+* Nach jedem Befehl ``||IoTCube:Sende Daten||`` (insgesamt 3x) fügst Du die Funktion aus dem Bereich Fortgeschritten ``||function:warte5SekundenUndZeigeFortschritt||`` ein.
 * 📥 Drücke `|Download|` und kontrolliere ob...
     * der Ladebalken am OLED-Display bei Tastendruck angezeigt wird
     * die Daten auf deinem Dashboard angezeigt werden: [iot.claviscloud.ch](https://iot.claviscloud.ch/dashboards/)
