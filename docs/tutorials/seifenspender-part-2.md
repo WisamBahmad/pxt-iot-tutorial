@@ -318,7 +318,7 @@ function warte5SekundenUndZeigeFortschritt () {
 
 ## ⏱️ Wartezeit einbauen
 
-* Nach jedem Befehl ``||IoTCube:Sende Daten||`` fügst Du die Funktion aus dem Bereich Fortgeschritten ``||function:warte5SekundenUndZeigeFortschritt||`` ein.
+* Nach jedem Befehl ``||IoTCube:Sende Daten||`` (insgesamt 3x) fügst Du die Funktion aus dem Bereich Fortgeschritten ``||function:warte5SekundenUndZeigeFortschritt||`` ein.
 * 📥 Drücke `|Download|` und kontrolliere ob...
     * der Ladebalken am OLED-Display bei Tastendruck angezeigt wird
     * die Daten auf deinem Dashboard angezeigt werden: [iot.claviscloud.ch](https://iot.claviscloud.ch/dashboards/)
