@@ -22,7 +22,8 @@
         "docs/tutorials/warteschlange-sensorik-part-1.md",
         "docs/tutorials/warteschlange-sensorik-part-1-solution.md",
         "docs/tutorials/warteschlange-sensorik-part-2.md",
-        "docs/tutorials/warteschlange-sensorik-part-2-solution.md"
+        "docs/tutorials/warteschlange-sensorik-part-2-solution.md",
+        "docs/tutorials/toilette-part-1.md"
     ],
     "testFiles": [
         "test.ts"
