@@ -20,3 +20,10 @@ In diesem Tutorial wird eine Warteschlange simuliert für eine smarte Toilette, 
 * [Einstiegspunkt Warteschlange](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/warteschlange-overview)
 * [Teil 1 - noch ohne Internetverbindung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/warteschlange-sensorik-part-1)
 * [Teil 2 - mit Internetverbindung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/warteschlange-sensorik-part-2)
+
+
+### Smart Toilet
+
+In diesem Tutorial wird ein WC- Häuschen simuliert, dessen Zustand (Frei oder Besetzt) über 🛜 LoRa ins Internet sendet.
+
+* [Teil 3 - mit Internetverbindung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/smart-toilet-part-3.md)

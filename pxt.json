@@ -22,13 +22,15 @@
         "docs/tutorials/warteschlange-sensorik-part-1.md",
         "docs/tutorials/warteschlange-sensorik-part-1-solution.md",
         "docs/tutorials/warteschlange-sensorik-part-2.md",
-        "docs/tutorials/warteschlange-sensorik-part-2-solution.md"
+        "docs/tutorials/warteschlange-sensorik-part-2-solution.md",
+        "docs/tutorials/smart-toilet-part-3-solution.md",
+        "docs/tutorials/smart-toilet-part-3.md"
     ],
     "testFiles": [
         "test.ts"
     ],
     "targetVersions": {
-        "target": "8.0.15",
+        "target": "8.0.16",
         "targetId": "microbit"
     },
     "supportedTargets": [
