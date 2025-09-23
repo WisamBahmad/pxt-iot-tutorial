@@ -45,14 +45,15 @@ Falls dir am bestehenden Code etwas unklar ist, lohnt es sich,
 diesen Teil noch einmal in Ruhe durchzugehen.
 
 ## Hardware vorbereiten
-* Du bekommst dieses WC-Häuschen-Modell: ![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/wc-haus.png)
+* Du bekommst dieses WC-Häuschen-Modell:
+<img src="https://reifab.github.io/pxt-iot-tutorial/static/tutorials/wc-haus.png" width="200">
 * Falls das Modell bereits mit Sensorik bestückt ist, schliesse es an den Grove Magnetic Switch an **J3** an und mache
 beim nächsten Schritt weiter.
 * Falls das Modell noch keine Sensorik beinhaltet, kannst Du sie selbst integrieren:
-  * lade das STL-File hier herunter: [🌍 STL-3D-Modell](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/taster-halterung.stl), welches
-  Du hier anschauen kannst: [Taster-Halterung](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/taster-halterung.html)
+  * lade das STL-File hier herunter: [🌍 STL-3D-Modell](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/magnet-schalter-halterung.stl), welches
+  Du hier anschauen kannst: [🌍 Taster-Halterung](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/schalter-halterung.html)
   * Den Halter kannst Du mit einem 3D- Drucker ausdrucken
-  * Baue die Sensorik sowie einen Magneten🧲 ein, wie auf dem Bild: ![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/wc-haus-innen.png)
+  * Baue die Sensorik sowie einen Magneten🧲 ein, wie auf dem Bild: <img src="https://reifab.github.io/pxt-iot-tutorial/static/tutorials/wc-haus-innen.png" width="200">
 
 ## Magnet-Schalter🧲 auslesen
 Der Magnet-Schalter (Magnetic Switch) liefert ein digitales Signal,
