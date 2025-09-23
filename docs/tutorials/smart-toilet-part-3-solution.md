@@ -1,3 +1,17 @@
+```package
+iot-cube=github:Smartfeld/pxt-iot-cube#v1.1.2
+sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
+```
+### @explicitHints false
+
+# Smart Toilet Teil 3
+## Lösung
+
+* Unten die Lösung von Tutorial Teil 3 
+* Drücke 📥 `|Download|` und teste das Programm.
+
+```template
+
 function macheFrei () {
     statusFreiOderBesetzt = 1
     basic.showLeds(`
@@ -71,3 +85,4 @@ basic.forever(function () {
         sendeDaten(statusFreiOderBesetzt)
     }
 })
+```
