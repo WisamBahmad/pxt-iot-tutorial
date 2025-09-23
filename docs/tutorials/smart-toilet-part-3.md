@@ -105,34 +105,7 @@ function sendeDaten (status: number) {
         spaeterSenden = true
     }
 }
-let statusFreiOderBesetzt = 0
-let spaeterSenden = false
-let msBeiLetztemSenden = 0
-IoTCube.LoRa_Join(
-eBool.enable,
-eBool.enable,
-10,
-8
-)
-//@hide
-while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
-    basic.showLeds(`
-        # . # . #
-        # . # . #
-        # # # # #
-        . . # . .
-        . . # . .
-        `)
-    basic.pause(1000)
-}
-basic.showIcon(IconNames.Yes)
-basic.pause(5000)
-msBeiLetztemSenden = control.millis()
-spaeterSenden = false
-let zustandTür = 0
-//@highlight
-let zustandTürDavor = -1
-macheFrei()
+
 basic.forever(function () {
     //@highlight
     zustandTür = pins.digitalReadPin(DigitalPin.P2)
