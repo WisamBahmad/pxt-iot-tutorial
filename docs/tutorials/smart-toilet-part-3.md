@@ -27,14 +27,15 @@ Schwierigkeitsgrad: 🔥🔥⚪⚪
 
 ## Lernergebnis
 
-Aus den vorherigen Tutorials kennst du bereits, wie man den Status der Toilette 🚽 ("Besetzt" oder "Frei") per LoRa🛜 ins Internet sendet. Bisher hast du den Status durch Tastendruck ausgelöst. In einer echten Anwendung übernimmt das ein Sensor – und genau darum geht es in diesem Tutorial.
+Aus den vorherigen Tutorials kennst du bereits, wie man den Status der Toilette 🚽 ("Besetzt" oder "Frei") per LoRa🛜 ins Internet sendet. 
+Bisher hast du den Status durch Tastendruck ausgelöst. In einer echten Anwendung übernimmt das ein Sensor – und genau darum geht es in diesem Tutorial.
 
-* Du baust dein Toilettenhäuschen-Modell jetzt mit einem Taster (Magnetic Switch) aus.
+* Du baust ein Toilettenhäuschen-Modell mit einem Magnetschalter (Magnetic Switch).
 
 Am Ende hast du ein Programm, das …
 
 * eine LoRa-Verbindung🛜 aufbaut
-* den Status der Toilette 🚽 über den Taster erkennt
+* den Status der Toilette 🚽 über den Magnetschalter erkennt
 * den Status 🚽 über LoRa🛜 ins Internet sendet
 
 Brauchbare Funktionen aus Teil 2 sind schon integriert; das Auswerten der Tasten A und B
@@ -45,9 +46,13 @@ diesen Teil noch einmal in Ruhe durchzugehen.
 
 ## Hardware vorbereiten
 * Du bekommst dieses WC-Häuschen-Modell: ![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/wc-haus.png)
-* Du brauchst zusätzlich dieses Kunststoffteil: [Taster-Halterung](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/taster-halterung.html)
-* Falls du das Teil selbst 3D-drucken möchtest, lade das STL-File hier herunter: [🌍 STL-3D-Modell](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/taster-halterung.stl)
-* Schliesse den Grove Magnetic Switch an **J3** an.
+* Falls das Modell bereits mit Sensorik bestückt ist, schliesse es an den Grove Magnetic Switch an **J3** an und mache
+beim nächsten Schritt weiter.
+* Falls das Modell noch keine Sensorik beinhaltet, kannst Du sie selbst integrieren:
+  * lade das STL-File hier herunter: [🌍 STL-3D-Modell](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/taster-halterung.stl), welches
+  Du hier anschauen kannst: [Taster-Halterung](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/taster-halterung.html)
+  * Den Halter kannst Du mit einem 3D- Drucker ausdrucken
+  * Baue die Sensorik sowie einen Magneten🧲 ein, wie auf dem Bild: ![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/wc-haus-innen.png)
 
 ## Magnet-Schalter🧲 auslesen
 Der Magnet-Schalter (Magnetic Switch) liefert ein digitales Signal,
@@ -66,7 +71,7 @@ aus und übersetzen das Signal in "offen" oder "geschlossen".
 ``||basic:dauerhaft||``-Schleife auf den Zustand, der am Pin P2 gemessen wird. Verwende
   dazu die Blöcke ``||variables:setze zustandTür auf 0||`` sowie
   ``||pins:digitale Werte von Pin P0||`` und ersetze die 0 durch den Pins-Block.
-* Stelle im Pins-Block P0 auf P2 um.
+* Stelle im Pins-Block P0 auf P2 um und sei sicher, dass Du den Magnetschalter an **J3** angeschlossen hast.
 
 ```blocks
 //@hide
@@ -120,7 +125,7 @@ basic.forever(function () {
 Wenn die Tür geschlossen ist, nehmen wir an, das WC sei **Besetzt**. Andernfalls
 nehmen wir an, das WC sei **Frei**. Diese Zustände wollen wir einerseits
 anzeigen, andererseits über LoRa🛜 in die Claviscloud schicken, was 
-zum Glück beides schon vorbereitet ist.
+zum Glück beides in Form einer Funktion schon vorbereitet ist.
 
 * Setze unter das Auslesen des Magnetic Switch einen
   ``||logic:wenn wahr dann||``-Block.
@@ -133,7 +138,7 @@ zum Glück beides schon vorbereitet ist.
 * Prüfe, ob in der Cloud die Änderung des Zustands (frei oder besetzt) angezeigt wird:
   [iot.claviscloud.ch](https://iot.claviscloud.ch/dashboards/)
 * Behebe gegebenenfalls aufgetretene Fehler. Klicke auf das 💡-Symbol bei Schwierigkeiten.
-* Fällt dir sonst noch etwas auf? Gibt es Dinge, die du optimieren könntest?
+* Fällt dir sonst noch etwas auf? Gibt es Dinge, die Du optimieren könntest?
 
 
 ```blocks
@@ -296,9 +301,9 @@ basic.pause(5000)
 msBeiLetztemSenden = control.millis()
 spaeterSenden = false
 let zustandTür = 0
+macheFrei()
 //@highlight
 let zustandTürDavor = -1
-macheFrei()
 basic.forever(function () {
     zustandTür = pins.digitalReadPin(DigitalPin.P2)
     //@highlight
@@ -318,9 +323,11 @@ basic.forever(function () {
 
 ## Gratuliere 🏆 – du hast das Tutorial erfolgreich bearbeitet 🚀
 
-* Verbinde deine smarte Toilette mit dem Toiletten-Widget der [Claviscloud](https://iot.claviscloud.ch/).
-* Teste, ob die Daten korrekt angezeigt werden.
-* Falls etwas noch nicht richtig läuft, findest du hier eine funktionierende Version zum Testen: [Lösung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-smart-toilet-tutorial/docs/tutorials/smart-toilet-part3-solution)
+* Falls noch nicht gemacht, verbinde deine smarte Toilette mit dem Toiletten-Widget 
+der [Claviscloud](https://iot.claviscloud.ch/).
+* Teste, ob die Daten auf dem LED-Display sowie in der Cloud☁️ korrekt angezeigt werden.
+* Falls etwas noch nicht richtig läuft, findest du hier eine funktionierende Version zum Testen: 
+[Lösung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-smart-toilet-tutorial/docs/tutorials/smart-toilet-part3-solution)
 
 ```template
 function macheFrei () {
