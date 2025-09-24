@@ -52,10 +52,10 @@ diesen Teil noch einmal in Ruhe durchzugehen.
     <img src="https://reifab.github.io/pxt-iot-tutorial/static/tutorials/wc-haus-innen.png" width="220" alt="WC-Häuschen innen mit Sensorik">
   </div>
 
-* Falls du das Modell fixfertig bekommen hast, schliesse den Magnetschalter am IoT-Cube bei **J3** an und mache
+* Falls du das Modell bereits fertig montiert bekommen hast, schliesse den Magnetschalter am IoT-Cube bei **J3** an und mache
 beim nächsten Schritt weiter.
 * Falls du das Modell nicht hast, kannst du selbst etwas Ähnliches bauen:
-  * Für hohe Ansprüche lade das STL-Datei hier herunter: [🌍 STL-3D-Modell](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/magnet-schalter-halterung.stl), welches
+  * Für hohe Ansprüche lade das STL-Datei hier herunter: [🌍 STL-3D-Modell](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/magnet-schalter-halterung.stl), die
   Du hier anschauen kannst: [🌍 Taster-Halterung](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/schalter-halterung.html)
   * Den Halter kannst du mit einem 3D-Drucker ausdrucken
   * Baue die Sensorik sowie einen Magneten🧲 in dein Modell ein (ähnlich wie im Bild rechts oben). 
