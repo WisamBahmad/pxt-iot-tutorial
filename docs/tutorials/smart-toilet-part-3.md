@@ -131,7 +131,8 @@ zum Glück beides in Form einer Funktion schon vorbereitet ist.
 * Setze unter das Auslesen des Magnetic Switch einen
   ``||logic:wenn wahr dann||``-Block.
 * Prüfe mit ``||logic:Vergleich 0 = 0||``, ob ``||variables:zustandTür||``
-  den Wert 1 hat (Tür geschlossen).
+  den Wert 1 hat (Tür geschlossen). Den Vergleich setzt Du in den ``||logic:wenn wahr dann||``-Block
+  anstelle von **wahr** ein.
 * Wenn dies der Fall ist, rufe die Funktion ``||function:Aufruf macheBesetzt||`` auf,
   andernfalls ``||function:Aufruf macheFrei||``. (Die Funktionen findest du im Bereich
   **Fortgeschritten** – klappe ihn bei Bedarf zuerst auf.)
@@ -328,7 +329,7 @@ basic.forever(function () {
 der [Claviscloud](https://iot.claviscloud.ch/).
 * Teste, ob die Daten auf dem LED-Display sowie in der Cloud☁️ korrekt angezeigt werden.
 * Falls etwas noch nicht richtig läuft, findest du hier eine funktionierende Version zum Testen: 
-[Lösung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-smart-toilet-tutorial/docs/tutorials/smart-toilet-part3-solution)
+[Lösung Teil 3](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/smart-toilet-part-3-solution)
 
 ```template
 function macheFrei () {
