@@ -15,11 +15,11 @@ sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
 Schwierigkeitsgrad: 🔥🔥⚪⚪
 
 ## 👁️ Voraussetzungen @showdialog
-* Schliesse den Cube so an, falls du das noch nicht erledigt hast:
+* Schliesse den IoT-Cube so an, falls du das noch nicht erledigt hast:
 ![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/iot-cube-anschliessen-klein.png)
 * Stelle die Schalter vorerst so ein:
     * Battery Switch: **off**
-    * LoRa Module: **on**
+    * LoRa-Module: **on**
 ![Bild](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/iot-cube-power-switches-klein.png)
 * Ein LoRa-Gateway🛜 muss in Reichweite und mit TTN (The Things Network) verbunden sein.
   In jedem Klassensatz ist mindestens eines vorhanden, das Hunderte von IoT-Cubes bedienen kann.
