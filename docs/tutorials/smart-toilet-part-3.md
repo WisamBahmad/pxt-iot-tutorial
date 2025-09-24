@@ -232,14 +232,15 @@ des Türzustands zu senden.
 * Setze ganz am Ende im Block ``beim Start`` die Variable
   ``||variables:zustandTürDavor||`` auf -1, damit sie sich beim ersten Durchlauf garantiert
   vom gemessenen Wert unterscheidet: ``||variables:setze zustandTürDavor auf -1||``
-* Prüfe in der ``||basic:dauerhaft||``-Schleife, ob sich die Variablen ``||variables:zustandTür||`` und ``||variables:zustandTürDavor||``
+* Prüfe in der ``||basic:dauerhaft||``-Schleife, vor **wenn späterSenden dann**, ob sich die Variablen ``||variables:zustandTür||`` und ``||variables:zustandTürDavor||``
   unterscheiden (≠-Vergleich). Wenn ja, aktualisiere **zustandTürDavor**
-  und führe nur dann die bestehende Logik aus. Verwende dafür diese Blöcke:
-  * ``||logic:wenn wahr dann||`` sowie ``||logic:0 ≠ 0||``
-  * ``||variables:setze zustandTürDavor auf zustandTür||``
-  * Verschiebe nun deine bisherige Abfrage (Tür = 1) in diesen Wenn-Block.
-    (Dadurch werden die Funktionen nur noch ausgeführt, wenn sich der Türzustand
-    ändert.)
+  und führe nur dann die bestehende Logik aus. Gehe z.B. so vor:
+  * Nimm den Block ``||logic:wenn wahr dann||`` sowie ``||logic:0 ≠ 0||`` (Für den Vergleich der beiden Variablen)
+  * Ersetze die Nullen mit den beiden Variablen ``||variables:zustandTür||`` und ``||variables:zustandTürDavor||``
+  * Wenn die Bedinung erfüllt ist ``||variables:setze zustandTürDavor auf zustandTür||``
+  * Verschiebe nun deine bisherige Abfrage (Tür = 1) in diesen neuen Wenn-Block. 
+  Selektiere dazu den zu verschiebenden Wenn- Dann- Block, drücke ctrl+X zum ausschneiden und ctrl+V zum einsetzen. 
+  Dadurch wird das Anzeigen und Senden nur noch ausgeführt, wenn sich der Türzustand ändert.
 
 ```blocks
 //@hide
