@@ -71,8 +71,8 @@ aus und übersetzen das Signal in "offen" oder "geschlossen".
 * Setze die Variable **zustandTür** zuoberst in der
 ``||basic:dauerhaft||``-Schleife auf den Zustand, der am Pin P2 gemessen wird. Verwende
   dazu die Blöcke ``||variables:setze zustandTür auf 0||`` sowie
-  ``||pins:digitale Werte von Pin P0||`` und ersetze die 0 durch den Pins-Block.
-* Stelle im Pins-Block P0 auf P2 um und sei sicher, dass Du den Magnetschalter an **J3** angeschlossen hast.
+   ``||SmartfeldSensoren:erkenne Magnetfeld||`` (unter •••Mechanische Sensoren) und ersetze die 0 durch den "erkenne Magnetfeld"-Block.
+* Stelle im "erkenne Magnetfeld"-Block P0 auf **P2** und kontrolliere, ob Du den Magnetschalter an **J3** angeschlossen hast.
 
 ```blocks
 //@hide
@@ -114,7 +114,7 @@ function sendeDaten (status: number) {
 
 basic.forever(function () {
     //@highlight
-    zustandTür = pins.digitalReadPin(DigitalPin.P2)
+    zustandTür = smartfeldSensoren.fieldDetected(DigitalPin.P2)
     if (spaeterSenden) {
         sendeDaten(statusFreiOderBesetzt)
     }
@@ -208,7 +208,7 @@ let zustandTür = 0
 let zustandTürDavor = -1
 macheFrei()
 basic.forever(function () {
-    zustandTür = pins.digitalReadPin(DigitalPin.P2)
+    zustandTür = smartfeldSensoren.fieldDetected(DigitalPin.P2)
     //@highlight
     if (zustandTür == 1) {
         macheBesetzt()
@@ -306,7 +306,7 @@ macheFrei()
 //@highlight
 let zustandTürDavor = -1
 basic.forever(function () {
-    zustandTür = pins.digitalReadPin(DigitalPin.P2)
+    zustandTür = smartfeldSensoren.fieldDetected(DigitalPin.P2)
     //@highlight
     if (zustandTür != zustandTürDavor) {
         zustandTürDavor = zustandTür
