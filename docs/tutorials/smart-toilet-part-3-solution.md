@@ -11,7 +11,6 @@ sensors=github:Smartfeld/pxt-sensorikAktorikSmartfeld
 * Drücke 📥 `|Download|` und teste das Programm.
 
 ```template
-
 function macheFrei () {
     statusFreiOderBesetzt = 1
     basic.showLeds(`
@@ -72,7 +71,7 @@ let zustandTür = 0
 let zustandTürDavor = -1
 macheFrei()
 basic.forever(function () {
-    zustandTür = pins.digitalReadPin(DigitalPin.P2)
+    zustandTür = smartfeldSensoren.fieldDetected(DigitalPin.P2)
     if (zustandTür != zustandTürDavor) {
         zustandTürDavor = zustandTür
         if (zustandTür == 1) {

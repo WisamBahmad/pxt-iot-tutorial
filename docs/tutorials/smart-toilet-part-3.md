@@ -45,18 +45,24 @@ Falls dir am bestehenden Code etwas unklar ist, lohnt es sich,
 diesen Teil noch einmal in Ruhe durchzugehen.
 
 ## Hardware vorbereiten
-* Du bekommst dieses WC-Häuschen-Modell:
-<img src="https://reifab.github.io/pxt-iot-tutorial/static/tutorials/wc-haus.png" width="200">
-* Falls das Modell bereits mit Sensorik bestückt ist, schliesse es an den Grove Magnetic Switch an **J3** an und mache
-beim nächsten Schritt weiter.
-* Falls das Modell noch keine Sensorik beinhaltet, kannst Du sie selbst integrieren:
-  * lade das STL-File hier herunter: [🌍 STL-3D-Modell](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/magnet-schalter-halterung.stl), welches
-  Du hier anschauen kannst: [🌍 Taster-Halterung](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/schalter-halterung.html)
-  * Den Halter kannst Du mit einem 3D- Drucker ausdrucken
-  * Baue die Sensorik sowie einen Magneten🧲 ein, wie auf dem Bild: <img src="https://reifab.github.io/pxt-iot-tutorial/static/tutorials/wc-haus-innen.png" width="200">
 
-## Magnet-Schalter🧲 auslesen
-Der Magnet-Schalter (Magnetic Switch) liefert ein digitales Signal,
+* Du bekommst dieses WC-Häuschen-Modell:
+  <div>
+    <img src="https://reifab.github.io/pxt-iot-tutorial/static/tutorials/wc-haus.png" width="220" alt="WC-Häuschen außen">
+    <img src="https://reifab.github.io/pxt-iot-tutorial/static/tutorials/wc-haus-innen.png" width="220" alt="WC-Häuschen innen mit Sensorik">
+  </div>
+
+* Falls du das Modell bereits fertig montiert bekommen hast, schliesse den Magnetschalter am IoT-Cube bei **J3** an und mache
+beim nächsten Schritt weiter.
+* Falls du das Modell nicht hast, kannst du selbst etwas Ähnliches bauen:
+  * Für hohe Ansprüche lade das STL-Datei hier herunter: [🌍 STL-3D-Modell](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/magnet-schalter-halterung.stl), die
+  Du hier anschauen kannst: [🌍 Taster-Halterung](https://reifab.github.io/pxt-iot-tutorial/static/tutorials/3dModel/schalter-halterung.html)
+  * Den Halter kannst du mit einem 3D-Drucker ausdrucken
+  * Baue die Sensorik sowie einen Magneten🧲 in dein Modell ein (ähnlich wie im Bild rechts oben). 
+  Achte darauf, dass der Magnet im geschlossenen Zustand nicht genau mittig auf dem Magnetschalter liegt, sondern leicht nach rechts oder links versetzt zum länglichen, schwarzen Schalterteil positioniert ist.
+   
+## Magnetschalter auslesen 🧲
+Der Magnetschalter (Magnetic Switch) liefert ein digitales Signal,
 das wir einfach auswerten können:
 
 0 → kein Magnet in der Nähe → Tür offen
@@ -71,8 +77,8 @@ aus und übersetzen das Signal in "offen" oder "geschlossen".
 * Setze die Variable **zustandTür** zuoberst in der
 ``||basic:dauerhaft||``-Schleife auf den Zustand, der am Pin P2 gemessen wird. Verwende
   dazu die Blöcke ``||variables:setze zustandTür auf 0||`` sowie
-  ``||pins:digitale Werte von Pin P0||`` und ersetze die 0 durch den Pins-Block.
-* Stelle im Pins-Block P0 auf P2 um und sei sicher, dass Du den Magnetschalter an **J3** angeschlossen hast.
+   ``||SmartfeldSensoren:erkenne Magnetfeld||`` (unter •••Mechanische Sensoren) und ersetze die 0 durch den "erkenne Magnetfeld"-Block.
+* Stelle im "erkenne Magnetfeld"-Block P0 auf **P2** und kontrolliere, ob du den Magnetschalter an **J3** angeschlossen hast.
 
 ```blocks
 //@hide
@@ -114,24 +120,25 @@ function sendeDaten (status: number) {
 
 basic.forever(function () {
     //@highlight
-    zustandTür = pins.digitalReadPin(DigitalPin.P2)
+    zustandTür = smartfeldSensoren.fieldDetected(DigitalPin.P2)
     if (spaeterSenden) {
         sendeDaten(statusFreiOderBesetzt)
     }
 })
 ```
 
-## Logik zum Senden
+## Logik zum Senden 🛜
 
 Wenn die Tür geschlossen ist, nehmen wir an, das WC sei **Besetzt**. Andernfalls
 nehmen wir an, das WC sei **Frei**. Diese Zustände wollen wir einerseits
 anzeigen, andererseits über LoRa🛜 in die Claviscloud schicken, was 
 zum Glück beides in Form einer Funktion schon vorbereitet ist.
 
-* Setze unter das Auslesen des Magnetic Switch einen
+* Setze unter das Auslesen des Magnetschalters einen
   ``||logic:wenn wahr dann||``-Block.
 * Prüfe mit ``||logic:Vergleich 0 = 0||``, ob ``||variables:zustandTür||``
-  den Wert 1 hat (Tür geschlossen).
+  den Wert 1 hat (Tür geschlossen). Den Vergleich setzt du in den ``||logic:wenn wahr dann||``-Block
+  anstelle von **wahr** ein.
 * Wenn dies der Fall ist, rufe die Funktion ``||function:Aufruf macheBesetzt||`` auf,
   andernfalls ``||function:Aufruf macheFrei||``. (Die Funktionen findest du im Bereich
   **Fortgeschritten** – klappe ihn bei Bedarf zuerst auf.)
@@ -139,7 +146,7 @@ zum Glück beides in Form einer Funktion schon vorbereitet ist.
 * Prüfe, ob in der Cloud die Änderung des Zustands (frei oder besetzt) angezeigt wird:
   [iot.claviscloud.ch](https://iot.claviscloud.ch/dashboards/)
 * Behebe gegebenenfalls aufgetretene Fehler. Klicke auf das 💡-Symbol bei Schwierigkeiten.
-* Fällt dir sonst noch etwas auf? Gibt es Dinge, die Du optimieren könntest?
+* Fällt dir sonst noch etwas auf? Gibt es Dinge, die du optimieren könntest?
 
 
 ```blocks
@@ -179,36 +186,9 @@ function sendeDaten (status: number) {
         spaeterSenden = true
     }
 }
-let statusFreiOderBesetzt = 0
-let spaeterSenden = false
-let msBeiLetztemSenden = 0
-IoTCube.LoRa_Join(
-eBool.enable,
-eBool.enable,
-10,
-8
-)
-//@hide
-while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
-    basic.showLeds(`
-        # . # . #
-        # . # . #
-        # # # # #
-        . . # . .
-        . . # . .
-        `)
-    basic.pause(1000)
-}
-basic.showIcon(IconNames.Yes)
-basic.pause(5000)
-msBeiLetztemSenden = control.millis()
-spaeterSenden = false
-let zustandTür = 0
-//@highlight
-let zustandTürDavor = -1
-macheFrei()
+
 basic.forever(function () {
-    zustandTür = pins.digitalReadPin(DigitalPin.P2)
+    zustandTür = smartfeldSensoren.fieldDetected(DigitalPin.P2)
     //@highlight
     if (zustandTür == 1) {
         macheBesetzt()
@@ -221,7 +201,7 @@ basic.forever(function () {
 })
 ```
 
-## Optimieren
+## Optimieren 🪫
 
 Im Moment wird alle 5 Sekunden gesendet, auch ohne Zustandswechsel. 
 Das kostet unnötig Energie. Sinnvoller ist es, nur bei einer Änderung 
@@ -231,14 +211,15 @@ des Türzustands zu senden.
 * Setze ganz am Ende im Block ``beim Start`` die Variable
   ``||variables:zustandTürDavor||`` auf -1, damit sie sich beim ersten Durchlauf garantiert
   vom gemessenen Wert unterscheidet: ``||variables:setze zustandTürDavor auf -1||``
-* Prüfe in der ``||basic:dauerhaft||``-Schleife, ob sich die Variablen ``||variables:zustandTür||`` und ``||variables:zustandTürDavor||``
+* Prüfe in der ``||basic:dauerhaft||``-Schleife, vor **wenn späterSenden dann**, ob sich die Variablen ``||variables:zustandTür||`` und ``||variables:zustandTürDavor||``
   unterscheiden (≠-Vergleich). Wenn ja, aktualisiere **zustandTürDavor**
-  und führe nur dann die bestehende Logik aus. Verwende dafür diese Blöcke:
-  * ``||logic:wenn wahr dann||`` sowie ``||logic:0 ≠ 0||``
-  * ``||variables:setze zustandTürDavor auf zustandTür||``
-  * Verschiebe nun deine bisherige Abfrage (Tür = 1) in diesen Wenn-Block.
-    (Dadurch werden die Funktionen nur noch ausgeführt, wenn sich der Türzustand
-    ändert.)
+  und führe nur dann die bestehende Logik aus. Gehe z.B. so vor:
+  * Nimm den Block ``||logic:wenn wahr dann||`` sowie ``||logic:0 ≠ 0||`` (Für den Vergleich der beiden Variablen)
+  * Ersetze die Nullen mit den beiden Variablen ``||variables:zustandTür||`` und ``||variables:zustandTürDavor||``
+  * Wenn die Bedinung erfüllt ist ``||variables:setze zustandTürDavor auf zustandTür||``
+  * Verschiebe nun deine bisherige Abfrage (Tür = 1) in diesen neuen Wenn-Block. 
+  Selektiere dazu den zu verschiebenden Wenn-Dann-Block, drücke ctrl+X zum ausschneiden und ctrl+V zum einsetzen. 
+  Dadurch wird das Anzeigen und Senden nur noch ausgeführt, wenn sich der Türzustand ändert.
 
 ```blocks
 //@hide
@@ -286,7 +267,7 @@ eBool.enable,
 10,
 8
 )
-//@hide
+
 while (!(IoTCube.getStatus(eSTATUS_MASK.JOINED))) {
     basic.showLeds(`
         # . # . #
@@ -306,7 +287,7 @@ macheFrei()
 //@highlight
 let zustandTürDavor = -1
 basic.forever(function () {
-    zustandTür = pins.digitalReadPin(DigitalPin.P2)
+    zustandTür = smartfeldSensoren.fieldDetected(DigitalPin.P2)
     //@highlight
     if (zustandTür != zustandTürDavor) {
         zustandTürDavor = zustandTür
@@ -328,7 +309,7 @@ basic.forever(function () {
 der [Claviscloud](https://iot.claviscloud.ch/).
 * Teste, ob die Daten auf dem LED-Display sowie in der Cloud☁️ korrekt angezeigt werden.
 * Falls etwas noch nicht richtig läuft, findest du hier eine funktionierende Version zum Testen: 
-[Lösung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-smart-toilet-tutorial/docs/tutorials/smart-toilet-part3-solution)
+[Lösung Teil 3](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/smart-toilet-part-3-solution)
 
 ```template
 function macheFrei () {
