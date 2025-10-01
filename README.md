@@ -27,3 +27,9 @@ In diesem Tutorial wird eine Warteschlange simuliert für eine smarte Toilette, 
 In diesem Tutorial wird ein WC- Häuschen simuliert, dessen Zustand (Frei oder Besetzt) über 🛜 LoRa ins Internet sendet.
 
 * [Teil 3 - mit Internetverbindung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/smart-toilet-part-3)
+
+### Überprüfung der Cubes und der Boxen
+
+Dies ist eine schrittweise Anleitung zur Überprüfung der IoT-Sets und Cubes, bei der sowohl die Vollständigkeit als auch die Funktionsfähigkeit getestet werden:
+
+* [Test der Cubes und Vollständigkeit der IoT- Sets](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/funktionstests)
