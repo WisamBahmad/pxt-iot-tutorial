@@ -9,22 +9,8 @@
     },
     "files": [
         "main.ts",
-        "docs/tutorials/seifenspender-part-1.md",
-        "docs/tutorials/seifenspender-part-2.md",
-        "docs/tutorials/seifenspender-part-3.md",
         "README.md",
         "tutorial-info-cache.json",
-        "docs/tutorials/seifenspender-overview.md",
-        "docs/tutorials/seifenspender-part-1-solution.md",
-        "docs/tutorials/seifenspender-part-2-solution.md",
-        "docs/tutorials/seifenspender-part-3-solution.md",
-        "docs/tutorials/warteschlange-overview.md",
-        "docs/tutorials/warteschlange-sensorik-part-1.md",
-        "docs/tutorials/warteschlange-sensorik-part-1-solution.md",
-        "docs/tutorials/warteschlange-sensorik-part-2.md",
-        "docs/tutorials/warteschlange-sensorik-part-2-solution.md",
-        "docs/tutorials/smart-toilet-part-3-solution.md",
-        "docs/tutorials/smart-toilet-part-3.md",
         "docs/tutorials/funktionstests.md"
     ],
     "testFiles": [

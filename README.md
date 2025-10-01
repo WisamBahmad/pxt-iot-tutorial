@@ -1,35 +1,5 @@
-# Tutorials für den IoT Cube
-
-## Übersicht
-
-In diesem Repository sind zwei Makecode-Tutorials mit mehreren Teilen enthalten:
-
-### Seifenspender
-
-In diesem Tutorial wird Schritt für Schritt ein Programm aufgebaut, das den Seifenstand simuliert und die Daten über 🛜 LoRa ins Internet sendet.
-
-* [Einstiegspunkt Seifenspender](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-overview)
-* [Teil 1 - noch ohne Internetverbindung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-1)
-* [Teil 2 - mit Internetverbindung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-2)
-* [Teil 3 - mit Internetverbindung und Sensorik](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/seifenspender-part-3)
-
-### Warteschlange
-
-In diesem Tutorial wird eine Warteschlange simuliert für eine smarte Toilette, um die wartenden Personen automatisiert zu zählen.
-
-* [Einstiegspunkt Warteschlange](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/warteschlange-overview)
-* [Teil 1 - noch ohne Internetverbindung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/warteschlange-sensorik-part-1)
-* [Teil 2 - mit Internetverbindung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/warteschlange-sensorik-part-2)
-
-
-### Smart Toilet
-
-In diesem Tutorial wird ein WC- Häuschen simuliert, dessen Zustand (Frei oder Besetzt) über 🛜 LoRa ins Internet sendet.
-
-* [Teil 3 - mit Internetverbindung](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/smart-toilet-part-3)
-
 ### Überprüfung der Cubes und der Boxen
 
 Dies ist eine schrittweise Anleitung zur Überprüfung der IoT-Sets und Cubes, bei der sowohl die Vollständigkeit als auch die Funktionsfähigkeit getestet werden:
 
-* [Test der Cubes und Vollständigkeit der IoT- Sets](https://makecode.microbit.org/#tutorial:github:reifab/pxt-iot-tutorial/docs/tutorials/funktionstests)
+* [Test der Cubes und Vollständigkeit der IoT- Sets](https://makecode.microbit.org/#tutorial:github:WisamBahmad/pxt-iot-tutorial/docs/tutorials/funktionstests)
