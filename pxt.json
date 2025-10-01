@@ -24,7 +24,8 @@
         "docs/tutorials/warteschlange-sensorik-part-2.md",
         "docs/tutorials/warteschlange-sensorik-part-2-solution.md",
         "docs/tutorials/smart-toilet-part-3-solution.md",
-        "docs/tutorials/smart-toilet-part-3.md"
+        "docs/tutorials/smart-toilet-part-3.md",
+        "docs/tutorials/funktionstests.md"
     ],
     "testFiles": [
         "test.ts"
